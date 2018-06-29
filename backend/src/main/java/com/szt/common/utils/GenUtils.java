@@ -205,7 +205,7 @@ public class GenUtils {
 //            tpl.merge(context, sw);
             //渲染模板
             StringWriter sw = new StringWriter();
-//
+//             template
             //   String str = "We are using $project $name to render this. $now";
             Velocity.evaluate(context, sw, "mystring", template.getText());
             try {

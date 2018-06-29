@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 蹦迪
-Source Server Version : 50528
-Source Host           : 127.0.0.1:3306
-Source Database       : szhit-xjdc
+Source Server         : 三智慧测试库
+Source Server Version : 50718
+Source Host           : rm-wz9a3eouf17q38i5x1o.mysql.rds.aliyuncs.com:3306
+Source Database       : xjdc
 
 Target Server Type    : MYSQL
-Target Server Version : 50528
+Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-06-27 17:31:55
+Date: 2018-06-29 23:14:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -708,12 +708,12 @@ INSERT INTO `generator_table_field` VALUES ('2077', '178', 'household', 'varchar
 INSERT INTO `generator_table_field` VALUES ('2078', '178', 'price', 'decimal', '0', '1', '0', '1', '价格(万元)', '价格(万元)', '0', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '18');
 INSERT INTO `generator_table_field` VALUES ('2079', '178', 'decoration', 'varchar', '0', '0', '0', '1', '装修', '装修@1-毛胚,2-简装,3-精装', '0', '0', '0', '4', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '19');
 INSERT INTO `generator_table_field` VALUES ('2080', '178', 'label_tag', 'varchar', '0', '1', '[\"0\"]', '1', '房源标签', '房源标签&0-近地铁,1-近商圈,2-电梯楼,3-品质小区,4-品质小区,5-随时看房', '0', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 11:07:06', '0', '20');
-INSERT INTO `generator_table_field` VALUES ('2081', '178', 'image_path', 'varchar', '0', '1', '0', '1', '房源图片', '房源图片', '0', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '21');
+INSERT INTO `generator_table_field` VALUES ('2081', '178', 'image_path', 'varchar', '0', '1', '[\"0\"]', '1', '房源图片', '房源图片', '1', '0', '0', '9', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-28 08:01:34', '0', '21');
 INSERT INTO `generator_table_field` VALUES ('2082', '178', 'describe_info', 'varchar', '0', '1', '0', '1', '房源描述', '房源描述', '0', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '22');
 INSERT INTO `generator_table_field` VALUES ('2083', '178', 'module', 'varchar', '0', '0', '0', '1', '模块', '模块@0-二手房出售,1-租房', '0', '0', '0', '4', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '23');
 INSERT INTO `generator_table_field` VALUES ('2084', '178', 'pay_type', 'varchar', '0', '0', '0', '1', '支付方式', '支付方式@0-一次性,1-按揭', '0', '0', '0', '4', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '24');
-INSERT INTO `generator_table_field` VALUES ('2085', '178', 'others', 'varchar', '0', '1', '0', '1', '其他(满二唯一,满五唯一,满五不唯一)', '其他(满二唯一,满五唯一,满五不唯一)', '0', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '25');
-INSERT INTO `generator_table_field` VALUES ('2086', '178', 'commission_type', 'varchar', '0', '1', '0', '1', '佣金方式', '佣金方式', '0', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '26');
+INSERT INTO `generator_table_field` VALUES ('2085', '178', 'others', 'varchar', '0', '1', '0', '1', '其他(满二唯一,满五唯一,满五不唯一)', '其他(满二唯一,满五唯一,满五不唯一)', '1', '0', '1', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '25');
+INSERT INTO `generator_table_field` VALUES ('2086', '178', 'commission_type', 'varchar', '0', '1', '0', '1', '佣金方式', '佣金方式', '1', '0', '1', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '26');
 INSERT INTO `generator_table_field` VALUES ('2087', '178', 'remarks', 'varchar', '0', '1', '0', '1', '备注', '备注', '1', '0', '0', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '27');
 INSERT INTO `generator_table_field` VALUES ('2088', '178', 'version_no', 'int', '1', '1', '0', '1', '版本号', '版本号', '1', '0', '1', '1', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '28');
 INSERT INTO `generator_table_field` VALUES ('2089', '178', 'create_by', 'bigint', '0', '1', '0', '1', '创建人id', '创建人id', '1', '0', '1', '0', null, '1', null, '1', null, '2018-06-27 02:30:01', null, '2018-06-27 02:30:01', '0', '29');
@@ -982,7 +982,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'MACHENI-SRIS8DD1530087090735', '1530091909459', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('RenrenScheduler', 'iZwz94jyld0sl0ifmaqi1aZ1530192411787', '1530285258040', '15000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -3615,7 +3615,7 @@ CREATE TABLE `sys_log` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1379 DEFAULT CHARSET=utf8 COMMENT='系统日志管理';
+) ENGINE=InnoDB AUTO_INCREMENT=1403 DEFAULT CHARSET=utf8 COMMENT='系统日志管理';
 
 -- ----------------------------
 -- Records of sys_log
@@ -3905,6 +3905,30 @@ INSERT INTO `sys_log` VALUES ('1375', 'admin', '显示搜索字段', 'com.szt.mo
 INSERT INTO `sys_log` VALUES ('1376', 'admin', '修改信息', 'com.szt.modules.generator.controller.GeneratorTableFieldController.update()', '{\"id\":2243,\"tableId\":186,\"fieldName\":\"label_tag\",\"fieldType\":\"varchar\",\"isNull\":\"0\",\"isSeek\":\"1\",\"checkout\":\"[\\\"0\\\"]\",\"isExport\":\"1\",\"pageComment\":\"房源标签\",\"comment\":\"房源标签\\u00260-近地铁,1-近商圈,2-电梯楼,3-品质小区,4-品质小区,5-随时看房\",\"tableSet\":\"1\",\"isDataBase\":\"0\",\"isSet\":\"0\",\"inputType\":\"0\",\"columnKey\":\"1\",\"versionNo\":1,\"createTime\":\"Jun 27, 2018 1:22:41 PM\",\"updateTime\":\"Jun 27, 2018 2:39:50 PM\",\"deleteFlag\":\"0\",\"sort\":18,\"nullable\":false,\"isChebox\":false}', '11', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-27 14:39:50', null, '2018-06-27 14:39:50', '0', '0');
 INSERT INTO `sys_log` VALUES ('1377', 'admin', '隐藏表格字段', 'com.szt.modules.generator.controller.GeneratorTableFieldController.hideTableField()', '[2228]', '7', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-27 14:49:46', null, '2018-06-27 14:49:46', '0', '0');
 INSERT INTO `sys_log` VALUES ('1378', 'admin', '隐藏表格字段', 'com.szt.modules.generator.controller.GeneratorTableFieldController.hideSetField()', '[2228]', '3', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-27 14:49:52', null, '2018-06-27 14:49:52', '0', '0');
+INSERT INTO `sys_log` VALUES ('1379', 'admin', '修改菜单', 'com.szt.modules.sys.controller.SysMenuController.update()', '{\"id\":216,\"parentId\":0,\"name\":\"携进地产\",\"type\":0,\"orderNum\":1}', '41', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-27 20:49:40', null, '2018-06-27 20:49:40', '0', '0');
+INSERT INTO `sys_log` VALUES ('1380', 'admin', '删除角色', 'com.szt.modules.sys.controller.SysRoleController.delete()', '[19]', '37', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-27 23:44:44', null, '2018-06-27 23:44:44', '0', '0');
+INSERT INTO `sys_log` VALUES ('1381', 'admin', '修改信息', 'com.szt.modules.xjdc.controller.XjdcHouseSourceController.update()', '{\"id\":26,\"openid\":\"o2fqe0byk2IsilemMmDPFDCc7cZQ\",\"region\":\"北京 北京 东城区大好河山\",\"name\":\"世界上\",\"phone\":\"15874839393\",\"facility\":\"[\\\"1\\\",\\\"7\\\"]\",\"square\":10.0,\"houseStyle\":\"2\",\"houseType\":\"2\",\"providerType\":\"0\",\"floor\":\"10\",\"hasElevator\":\"0\",\"price\":10,\"labelTag\":\"近地铁,近商圈,品质小区\",\"describeInfo\":\"大结局自己\",\"module\":\"1\",\"payType\":\"1\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 4:14:19 AM\",\"updateTime\":\"Jun 28, 2018 4:15:44 AM\",\"deleteFlag\":\"0\",\"sort\":1}', '30', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 04:15:44', null, '2018-06-28 04:15:44', '0', '0');
+INSERT INTO `sys_log` VALUES ('1382', 'admin', '修改信息', 'com.szt.modules.generator.controller.GeneratorTableFieldController.update()', '{\"id\":2081,\"tableId\":178,\"fieldName\":\"image_path\",\"fieldType\":\"varchar\",\"isNull\":\"0\",\"isSeek\":\"1\",\"checkout\":\"[\\\"0\\\"]\",\"isExport\":\"1\",\"pageComment\":\"房源图片\",\"comment\":\"房源图片\",\"tableSet\":\"0\",\"isDataBase\":\"0\",\"isSet\":\"0\",\"inputType\":\"9\",\"columnKey\":\"1\",\"versionNo\":1,\"createTime\":\"Jun 27, 2018 2:30:01 AM\",\"updateTime\":\"Jun 28, 2018 8:01:34 AM\",\"deleteFlag\":\"0\",\"sort\":21,\"nullable\":false,\"isChebox\":false}', '17', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 08:01:34', null, '2018-06-28 08:01:34', '0', '0');
+INSERT INTO `sys_log` VALUES ('1383', 'admin', '隐藏表格字段', 'com.szt.modules.generator.controller.GeneratorTableFieldController.hideTableField()', '[2081]', '5', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 08:03:55', null, '2018-06-28 08:03:55', '0', '0');
+INSERT INTO `sys_log` VALUES ('1384', 'admin', '隐藏表格字段', 'com.szt.modules.generator.controller.GeneratorTableFieldController.hideTableField()', '[2085,2086]', '56', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 09:05:21', null, '2018-06-28 09:05:21', '0', '0');
+INSERT INTO `sys_log` VALUES ('1385', 'admin', '隐藏表格字段', 'com.szt.modules.generator.controller.GeneratorTableFieldController.hideSetField()', '[2085,2086]', '17', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 09:05:27', null, '2018-06-28 09:05:27', '0', '0');
+INSERT INTO `sys_log` VALUES ('1386', 'admin', '删除角色', 'com.szt.modules.sys.controller.SysRoleController.delete()', '[21]', '64', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 09:08:07', null, '2018-06-28 09:08:07', '0', '0');
+INSERT INTO `sys_log` VALUES ('1387', 'admin', '修改角色', 'com.szt.modules.sys.controller.SysRoleController.update()', '{\"id\":18,\"roleName\":\"协进地产客户\",\"remark\":\"协进地产客户\",\"versionNo\":1,\"createBy\":1,\"createTime\":\"Jun 18, 2018 6:03:44 AM\",\"updateTime\":\"Jun 28, 2018 9:08:41 AM\",\"deleteFlag\":\"0\",\"sort\":1,\"menuIdList\":[216,2,15,16,17,18,3,19,20,21,22,251,252,253,254,255,289,290,291,292,293,299,300,301,302,303,304,305,306,307,308,-666666]}', '113', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 09:08:41', null, '2018-06-28 09:08:41', '0', '0');
+INSERT INTO `sys_log` VALUES ('1388', 'admin', '保存用户', 'com.szt.modules.sys.controller.SysUserController.save()', '{\"id\":15,\"username\":\"xjdc\",\"password\":\"0d35d1511d6bba04d7acd97e40205fa41543b8944e906c882b99bead84ac1e9d\",\"salt\":\"ZVKPR6RhyVytxb2RZQk5\",\"email\":\"1171964050@qq.com\",\"mobile\":\"15874839393\",\"status\":1,\"remarks\":\"\",\"versionNo\":1,\"createBy\":1,\"createTime\":\"Jun 28, 2018 9:09:31 AM\",\"updateBy\":1,\"updateTime\":\"Jun 28, 2018 9:09:31 AM\",\"deleteFlag\":\"0\",\"sort\":1,\"roleIdList\":[18]}', '26', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 09:09:31', null, '2018-06-28 09:09:31', '0', '0');
+INSERT INTO `sys_log` VALUES ('1389', 'admin', '修改角色', 'com.szt.modules.sys.controller.SysRoleController.update()', '{\"id\":18,\"roleName\":\"协进地产客户\",\"remark\":\"协进地产客户\",\"versionNo\":1,\"createBy\":1,\"createTime\":\"Jun 18, 2018 6:03:44 AM\",\"updateTime\":\"Jun 28, 2018 9:11:54 AM\",\"deleteFlag\":\"0\",\"sort\":1,\"menuIdList\":[2,15,16,17,18,3,19,20,21,22,251,252,253,254,255,299,300,301,302,303,304,305,306,307,308,-666666,216]}', '37', '0:0:0:0:0:0:0:1', null, '1', null, '2018-06-28 09:11:54', null, '2018-06-28 09:11:54', '0', '0');
+INSERT INTO `sys_log` VALUES ('1390', 'xjdc', '删除信息', 'com.szt.modules.xjdc.controller.XjdcHouseSourceController.delete()', '[31,32]', '41', '183.238.199.41', null, '1', null, '2018-06-28 10:53:35', null, '2018-06-28 10:53:35', '0', '0');
+INSERT INTO `sys_log` VALUES ('1391', 'admin', '保存信息', 'com.szt.modules.wx.controller.WxUserInfoController.save()', '{\"id\":3,\"name\":\"广州半人马\",\"appid\":\"wxc1ebf92cf77e14ea\",\"appSecret\":\"6116d27ba469df03eaac36602683a91d\",\"mchid\":\"1395029702\",\"partnerKey\":\"3dcc36f214f147cbbda08a2f92952186\",\"certpath\":\"士大夫\",\"applicationType\":\"1\",\"type\":\"0\",\"token\":\"30a515b6089444aae56d152b12017526\",\"remarks\":\"\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 1:56:37 PM\",\"updateTime\":\"Jun 28, 2018 1:56:37 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '43', '183.238.199.41', null, '1', null, '2018-06-28 13:56:38', null, '2018-06-28 13:56:38', '0', '0');
+INSERT INTO `sys_log` VALUES ('1392', 'admin', '删除信息', 'com.szt.modules.wx.controller.WxUserInfoController.delete()', '[3]', '14', '183.238.199.41', null, '1', null, '2018-06-28 14:32:43', null, '2018-06-28 14:32:43', '0', '0');
+INSERT INTO `sys_log` VALUES ('1393', 'admin', '保存信息', 'com.szt.modules.wx.controller.WxUserInfoController.save()', '{\"id\":4,\"name\":\"广州半人马\",\"appid\":\"wxc1ebf92cf77e14ea\",\"appSecret\":\"6116d27ba469df03eaac36602683a91d\",\"mchid\":\"1395029702\",\"partnerKey\":\"3dcc36f214f147cbbda08a2f92952186\",\"certpath\":\"sadf\",\"applicationType\":\"0\",\"type\":\"0\",\"token\":\"1a091e396c0a088acaf75dcaa1aaf6c5\",\"remarks\":\"\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 2:34:11 PM\",\"updateTime\":\"Jun 28, 2018 2:34:11 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '26', '183.238.199.41', null, '1', null, '2018-06-28 14:34:12', null, '2018-06-28 14:34:12', '0', '0');
+INSERT INTO `sys_log` VALUES ('1394', 'admin', '修改信息', 'com.szt.modules.wx.controller.WxUserInfoController.update()', '{\"id\":4,\"name\":\"广州半人马\",\"appid\":\"wxc1ebf92cf77e14ea\",\"appSecret\":\"6116d27ba469df03eaac36602683a91d\",\"mchid\":\"1395029702\",\"partnerKey\":\"3dcc36f214f147cbbda08a2f92952186\",\"certpath\":\"sadf\",\"applicationType\":\"0\",\"type\":\"0\",\"token\":\"1a091e396c0a088acaf75dcaa1aaf6c5\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 2:34:12 PM\",\"updateTime\":\"Jun 28, 2018 2:34:57 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '21', '183.238.199.41', null, '1', null, '2018-06-28 14:34:57', null, '2018-06-28 14:34:57', '0', '0');
+INSERT INTO `sys_log` VALUES ('1395', 'admin', '修改角色', 'com.szt.modules.sys.controller.SysRoleController.update()', '{\"id\":18,\"roleName\":\"协进地产客户\",\"remark\":\"协进地产客户\",\"versionNo\":1,\"createBy\":1,\"createTime\":\"Jun 18, 2018 6:03:44 AM\",\"updateTime\":\"Jun 28, 2018 3:20:33 PM\",\"deleteFlag\":\"0\",\"sort\":1,\"menuIdList\":[2,15,16,17,18,3,19,20,21,22,299,300,301,302,303,304,305,306,307,308,-666666,216]}', '71', '183.238.199.41', null, '1', null, '2018-06-28 15:20:34', null, '2018-06-28 15:20:34', '0', '0');
+INSERT INTO `sys_log` VALUES ('1396', 'xjdc', '删除信息', 'com.szt.modules.xjdc.controller.XjdcHouseSourceController.delete()', '[33,34,35,36]', '32', '58.248.100.131', null, '1', null, '2018-06-28 15:30:09', null, '2018-06-28 15:30:09', '0', '0');
+INSERT INTO `sys_log` VALUES ('1397', 'admin', '删除信息', 'com.szt.modules.wx.controller.WxUserInfoController.delete()', '[4]', '35', '183.238.199.41', null, '1', null, '2018-06-28 15:59:41', null, '2018-06-28 15:59:41', '0', '0');
+INSERT INTO `sys_log` VALUES ('1398', 'admin', '删除信息', 'com.szt.modules.xjdc.controller.XjdcUserController.delete()', '[3]', '18', '183.238.199.41', null, '1', null, '2018-06-28 16:27:22', null, '2018-06-28 16:27:22', '0', '0');
+INSERT INTO `sys_log` VALUES ('1399', 'admin', '修改信息', 'com.szt.modules.xjdc.controller.XjdcHouseSourceController.update()', '{\"id\":37,\"openid\":\"o2fqe0d082iL_-9l_SANsJKCwzdw\",\"region\":\"北京 北京 崇文区都很好的好\",\"name\":\"asd\",\"phone\":\"15874839393\",\"facility\":\"[]\",\"square\":10.0,\"houseStyle\":\"6\",\"houseType\":\"3\",\"orientation\":\"睡觉睡觉\",\"buildingAge\":10,\"providerType\":\"1\",\"floor\":\"9\",\"houseFrame\":\"1\",\"hasElevator\":\"0\",\"price\":10,\"decoration\":\"3\",\"labelTag\":\"近商圈,随时看房,好好\",\"imagePath\":\"[{\\\"uid\\\":1530200112728,\\\"urd\\\":888,\\\"name\\\":\\\"name\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/233847c02cfb4f12916e77c78043691c.png?imageslim\\\",\\\"status\\\":\\\"success\\\"},{\\\"uid\\\":1530200112729,\\\"urd\\\":888,\\\"name\\\":\\\"name\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/06d33f324c63486db9c44530e4b64e95.png?imageslim\\\",\\\"status\\\":\\\"success\\\"}]\",\"describeInfo\":\"睡觉睡觉\",\"module\":\"0\",\"payType\":\"6\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 4:18:03 PM\",\"updateTime\":\"Jun 28, 2018 11:35:49 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '17', '183.238.199.41', null, '1', null, '2018-06-28 23:35:50', null, '2018-06-28 23:35:50', '0', '0');
+INSERT INTO `sys_log` VALUES ('1400', 'admin', '修改信息', 'com.szt.modules.xjdc.controller.XjdcHouseSourceController.update()', '{\"id\":38,\"openid\":\"o2fqe0byk2IsilemMmDPFDCc7cZQ\",\"region\":\"北京 北京 东城区哈哈哈\",\"name\":\"测试\",\"phone\":\"15874839393\",\"facility\":\"[\\\"2\\\",\\\"8\\\"]\",\"square\":10.0,\"houseStyle\":\"2\",\"houseType\":\"3\",\"providerType\":\"0\",\"floor\":\"8\",\"hasElevator\":\"0\",\"price\":10,\"labelTag\":\"近商圈,品质小区\",\"imagePath\":\"[{\\\"uid\\\":1530200155248,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/527b4704babd486399a0637fedc4edd8.png?imageslim\\\",\\\"status\\\":\\\"success\\\"},{\\\"uid\\\":1530200155250,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/dade6327f59f45fe9a11b37f447329c8.png?imageslim\\\",\\\"status\\\":\\\"success\\\"},{\\\"uid\\\":1530200155251,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/39e1b076b18b4f4ea1e0e32708dcbd76.png?imageslim\\\",\\\"status\\\":\\\"success\\\"},{\\\"uid\\\":1530200155252,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/3d17030fe5084c2a9b76cca07deaaf7a.png?imageslim\\\",\\\"status\\\":\\\"success\\\"}]\",\"describeInfo\":\"公共\",\"module\":\"1\",\"payType\":\"1\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 9:31:05 PM\",\"updateTime\":\"Jun 28, 2018 11:36:03 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '48', '183.238.199.41', null, '1', null, '2018-06-28 23:36:03', null, '2018-06-28 23:36:03', '0', '0');
+INSERT INTO `sys_log` VALUES ('1401', 'admin', '修改信息', 'com.szt.modules.xjdc.controller.XjdcHouseSourceController.update()', '{\"id\":38,\"openid\":\"o2fqe0byk2IsilemMmDPFDCc7cZQ\",\"region\":\"北京 北京 东城区哈哈哈\",\"name\":\"测试\",\"phone\":\"15874839393\",\"facility\":\"[\\\"2\\\",\\\"8\\\"]\",\"square\":10.0,\"houseStyle\":\"2\",\"houseType\":\"3\",\"providerType\":\"0\",\"floor\":\"8\",\"hasElevator\":\"0\",\"price\":10,\"labelTag\":\"近商圈,品质小区\",\"imagePath\":\"[{\\\"uid\\\":1530200155248,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/527b4704babd486399a0637fedc4edd8.png?imageslim\\\",\\\"status\\\":\\\"success\\\"},{\\\"uid\\\":1530200155250,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/dade6327f59f45fe9a11b37f447329c8.png?imageslim\\\",\\\"status\\\":\\\"success\\\"},{\\\"uid\\\":1530200155251,\\\"urd\\\":888,\\\"name\\\":\\\"imagePath\\\",\\\"url\\\":\\\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/39e1b076b18b4f4ea1e0e32708dcbd76.png?imageslim\\\",\\\"status\\\":\\\"success\\\"}]\",\"describeInfo\":\"公共\",\"module\":\"1\",\"payType\":\"1\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 9:31:05 PM\",\"updateTime\":\"Jun 28, 2018 11:38:00 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '18', '183.238.199.41', null, '1', null, '2018-06-28 23:38:00', null, '2018-06-28 23:38:00', '0', '0');
+INSERT INTO `sys_log` VALUES ('1402', 'admin', '保存信息', 'com.szt.modules.oss.controller.SysOssController.save()', '{\"id\":153,\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/6d5dc1caa40040a88359fe6255b691b0.png?imageslim\",\"remarks\":\"test\",\"versionNo\":1,\"createTime\":\"Jun 28, 2018 11:47:14 PM\",\"updateTime\":\"Jun 28, 2018 11:47:14 PM\",\"deleteFlag\":\"0\",\"sort\":1}', '27', '183.238.199.41', null, '1', null, '2018-06-28 23:47:15', null, '2018-06-28 23:47:15', '0', '0');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -3928,7 +3952,7 @@ CREATE TABLE `sys_menu` (
   `delete_flag` varchar(6) DEFAULT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=324 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+) ENGINE=InnoDB AUTO_INCREMENT=319 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -3978,7 +4002,7 @@ INSERT INTO `sys_menu` VALUES ('91', '89', '新增', null, 'generator:generatort
 INSERT INTO `sys_menu` VALUES ('92', '89', '修改', null, 'generator:generatortablefield:update', '2', null, '6', null, null, null, null, null, null, null, null);
 INSERT INTO `sys_menu` VALUES ('93', '89', '删除', null, 'generator:generatortablefield:delete', '2', null, '6', null, null, null, null, null, null, null, null);
 INSERT INTO `sys_menu` VALUES ('95', '79', '模板预览', null, 'generator:generatortable:preview,generator:generatortemplate:queryGeneratorTemplateList', '2', null, '0', null, null, null, null, null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('216', '0', '协进地产', null, null, '0', null, '1', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_menu` VALUES ('216', '0', '携进地产', null, null, '0', null, '1', null, null, null, null, null, null, null, null);
 INSERT INTO `sys_menu` VALUES ('228', '261', '定时任务管理', 'modules/job/schedulejob.html', null, '1', 'fa fa-file-code-o', '6', null, null, null, null, null, null, null, null);
 INSERT INTO `sys_menu` VALUES ('229', '228', '查看', null, 'job:schedulejob:list,job:schedulejob:info', '2', 'fa fa-file-code-o', '6', null, null, null, null, null, null, null, null);
 INSERT INTO `sys_menu` VALUES ('230', '228', '新增', null, 'job:schedulejob:save', '2', 'fa fa-file-code-o', '6', null, null, null, null, null, null, null, null);
@@ -4052,7 +4076,7 @@ CREATE TABLE `sys_oss` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8 COMMENT='上传图片管理';
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8 COMMENT='上传图片管理';
 
 -- ----------------------------
 -- Records of sys_oss
@@ -4093,6 +4117,8 @@ INSERT INTO `sys_oss` VALUES ('148', 'http://p1kqsiha2.bkt.clouddn.com/upload/20
 INSERT INTO `sys_oss` VALUES ('149', 'http://p1kqsiha2.bkt.clouddn.com/upload/20180623/708ad7b00085464cb725d02c5a47af7c.jpg?imageslim', null, '1', null, '2018-06-23 17:20:53', null, '2018-06-23 17:20:53', '0', '0');
 INSERT INTO `sys_oss` VALUES ('150', 'http://p1kqsiha2.bkt.clouddn.com/upload/20180625/0725ba5edcb548749a74b160259e8cd4.png?imageslim', null, '1', null, '2018-06-25 22:17:31', null, '2018-06-25 22:17:31', '0', '0');
 INSERT INTO `sys_oss` VALUES ('151', 'http://p1kqsiha2.bkt.clouddn.com/upload/20180626/98a93ab556bb48e4b97bacddcce4f63c.png?imageslim', null, '1', null, '2018-06-26 02:00:26', null, '2018-06-26 02:00:26', '0', '0');
+INSERT INTO `sys_oss` VALUES ('152', 'http://p1kqsiha2.bkt.clouddn.com/upload/20180627/94d3455e1c604b969ff95344df2dc985.png?imageslim', null, '1', null, '2018-06-27 17:51:13', null, '2018-06-27 17:51:13', '0', '0');
+INSERT INTO `sys_oss` VALUES ('153', 'http://p1kqsiha2.bkt.clouddn.com/upload/20180628/6d5dc1caa40040a88359fe6255b691b0.png?imageslim', 'test', '1', null, '2018-06-28 23:47:15', null, '2018-06-28 23:47:15', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -4111,14 +4137,12 @@ CREATE TABLE `sys_role` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='角色管理';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='角色管理';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('18', '协进地产客户', '协进地产客户', null, '1', '1', '2018-06-18 06:03:44', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role` VALUES ('19', '开发人员', '开发人员', null, '1', '1', '2018-06-18 06:27:05', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role` VALUES ('21', '协进员工', 'create_by', null, '1', '12', '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
+INSERT INTO `sys_role` VALUES ('18', '协进地产客户', '协进地产客户', null, '1', '1', '2018-06-18 06:03:44', null, '2018-06-28 15:20:33', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -4137,101 +4161,33 @@ CREATE TABLE `sys_role_menu` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1273 DEFAULT CHARSET=utf8 COMMENT='角色与菜单关系管理';
+) ENGINE=InnoDB AUTO_INCREMENT=1354 DEFAULT CHARSET=utf8 COMMENT='角色与菜单关系管理';
 
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('936', '19', '191', null, '1', null, '2018-06-18 07:22:08', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('937', '19', '192', null, '1', null, '2018-06-18 07:22:08', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('938', '19', '193', null, '1', null, '2018-06-18 07:22:08', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('939', '19', '194', null, '1', null, '2018-06-18 07:22:08', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('940', '19', '195', null, '1', null, '2018-06-18 07:22:08', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('942', '19', '31', null, '1', null, '2018-06-18 07:22:08', null, '2018-06-18 07:22:08', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1147', '18', '216', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1148', '18', '2', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1149', '18', '15', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1150', '18', '16', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1151', '18', '17', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1152', '18', '18', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1153', '18', '3', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1154', '18', '19', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1155', '18', '20', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1156', '18', '21', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1157', '18', '22', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1158', '18', '251', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1159', '18', '252', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1160', '18', '253', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1161', '18', '254', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1162', '18', '255', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1163', '18', '289', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1164', '18', '290', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1165', '18', '291', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1166', '18', '292', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1167', '18', '293', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1168', '18', '294', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1169', '18', '295', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1170', '18', '296', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1171', '18', '297', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1172', '18', '298', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1173', '18', '299', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1174', '18', '300', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1175', '18', '301', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1176', '18', '302', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1177', '18', '303', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1178', '18', '304', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1179', '18', '305', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1180', '18', '306', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1181', '18', '307', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1182', '18', '308', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1183', '18', '309', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1184', '18', '310', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1185', '18', '311', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1186', '18', '312', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1187', '18', '313', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1188', '18', '-666666', null, '1', null, '2018-06-22 14:05:21', null, '2018-06-22 14:05:21', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1231', '21', '216', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1232', '21', '2', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1233', '21', '15', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1234', '21', '16', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1235', '21', '17', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1236', '21', '18', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1237', '21', '3', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1238', '21', '19', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1239', '21', '20', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1240', '21', '21', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1241', '21', '22', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1242', '21', '251', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1243', '21', '252', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1244', '21', '253', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1245', '21', '254', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1246', '21', '255', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1247', '21', '289', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1248', '21', '290', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1249', '21', '291', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1250', '21', '292', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1251', '21', '293', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1252', '21', '294', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1253', '21', '295', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1254', '21', '296', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1255', '21', '297', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1256', '21', '298', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1257', '21', '299', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1258', '21', '300', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1259', '21', '301', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1260', '21', '302', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1261', '21', '303', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1262', '21', '304', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1263', '21', '305', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1264', '21', '306', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1265', '21', '307', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1266', '21', '308', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1267', '21', '309', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1268', '21', '310', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1269', '21', '311', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1270', '21', '312', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1271', '21', '313', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
-INSERT INTO `sys_role_menu` VALUES ('1272', '21', '-666666', null, '1', null, '2018-06-22 14:10:26', null, '2018-06-22 14:10:26', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1332', '18', '2', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1333', '18', '15', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1334', '18', '16', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1335', '18', '17', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1336', '18', '18', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1337', '18', '3', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1338', '18', '19', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1339', '18', '20', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1340', '18', '21', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1341', '18', '22', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1342', '18', '299', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1343', '18', '300', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1344', '18', '301', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1345', '18', '302', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1346', '18', '303', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1347', '18', '304', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1348', '18', '305', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1349', '18', '306', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1350', '18', '307', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1351', '18', '308', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1352', '18', '-666666', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1353', '18', '216', null, '1', null, '2018-06-28 15:20:33', null, '2018-06-28 15:20:33', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -4255,14 +4211,13 @@ CREATE TABLE `sys_user` (
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='后端用户管理';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='后端用户管理';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'admin', 'a750d398e27f760c0dd9d11b3d4201277c632f81a63ab255e6064a58843e884c', 'YzcmCZNvbXocrsz9dm8e', '1171964050@qq.com', '15874839393', '1', '系统管理用户', '1', '1', '2018-06-13 10:10:28', '11', '2018-06-18 07:06:04', '0', '1');
-INSERT INTO `sys_user` VALUES ('12', 'xjdc', '56b4afe623e836d9f518066c964d1f040ec819c284e6fb61eea0ab7f48e67971', 'Z4tExLGoBhz5oBuKOrwG', '1171964050@qq.com', '15874839393', '1', null, '1', '11', '2018-06-18 07:29:12', '1', '2018-06-19 20:46:13', '0', '1');
-INSERT INTO `sys_user` VALUES ('13', '协进员工', '6f32ca7e2fd4052debb7c1001a52633a7e6be431a284ee58d39d1cba9da9e781', '8r9gV428WbNxeztO285w', '1171964050@qq.com', '15874839393', '1', null, '1', '12', '2018-06-22 14:18:01', '12', '2018-06-22 14:18:01', '0', '1');
+INSERT INTO `sys_user` VALUES ('15', 'xjdc', '0d35d1511d6bba04d7acd97e40205fa41543b8944e906c882b99bead84ac1e9d', 'ZVKPR6RhyVytxb2RZQk5', '1171964050@qq.com', '15874839393', '1', null, '1', '1', '2018-06-28 09:09:31', '1', '2018-06-28 09:09:31', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -4281,15 +4236,14 @@ CREATE TABLE `sys_user_role` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户与角色关系管理';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='用户与角色关系管理';
 
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('6', '11', '18', null, '1', null, '2018-06-18 06:41:41', null, '2018-06-18 06:41:41', '0', '1');
-INSERT INTO `sys_user_role` VALUES ('7', '11', '19', null, '1', null, '2018-06-18 06:41:41', null, '2018-06-18 06:41:41', '0', '1');
 INSERT INTO `sys_user_role` VALUES ('8', '12', '18', null, '1', null, '2018-06-19 20:46:13', null, '2018-06-19 20:46:13', '0', '1');
-INSERT INTO `sys_user_role` VALUES ('9', '13', '21', null, '1', null, '2018-06-22 14:18:01', null, '2018-06-22 14:18:01', '0', '1');
+INSERT INTO `sys_user_role` VALUES ('10', '15', '18', null, '1', null, '2018-06-28 09:09:31', null, '2018-06-28 09:09:31', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_user_token
@@ -4310,12 +4264,12 @@ CREATE TABLE `sys_user_token` (
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='登录token管理';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='登录token管理';
 
 -- ----------------------------
 -- Records of sys_user_token
 -- ----------------------------
-INSERT INTO `sys_user_token` VALUES ('1', '1', '4780f94845b921b366ccb648feee4d93', '2018-06-27 20:48:53', null, '1', null, '2018-06-13 10:27:05', null, '2018-06-27 08:48:53', '0', '0');
+INSERT INTO `sys_user_token` VALUES ('1', '1', 'ecef3f167a838538681a2da97792b0b4', '2018-06-30 10:57:15', null, '1', null, '2018-06-13 10:27:05', null, '2018-06-29 22:57:15', '0', '0');
 INSERT INTO `sys_user_token` VALUES ('5', '10', 'e1817e0ff267631e8acb7e20d26c7478', '2018-06-17 23:58:02', null, '1', null, '2018-06-17 11:58:02', null, '2018-06-17 11:58:02', '0', '0');
 INSERT INTO `sys_user_token` VALUES ('6', '10', 'c4221858400561ee72abe4696b0ea8a5', '2018-06-17 23:59:08', null, '1', null, '2018-06-17 11:59:08', null, '2018-06-17 11:59:08', '0', '0');
 INSERT INTO `sys_user_token` VALUES ('7', '10', '24575cb784b6cadbd3e2c74f45156944', '2018-06-17 23:59:42', null, '1', null, '2018-06-17 11:59:42', null, '2018-06-17 11:59:42', '0', '0');
@@ -4325,6 +4279,8 @@ INSERT INTO `sys_user_token` VALUES ('10', '10', 'b2177b38e72e30540fe0e8028c22c5
 INSERT INTO `sys_user_token` VALUES ('11', '11', '608eae9521446b5500c3050e58582f5f', '2018-06-19 02:07:39', null, '1', null, '2018-06-18 06:13:01', null, '2018-06-18 14:07:39', '0', '1');
 INSERT INTO `sys_user_token` VALUES ('12', '12', '193535641b5d3a7c22c707fd1bb7736e', '2018-06-27 20:48:44', null, '1', null, '2018-06-19 20:46:21', null, '2018-06-27 08:48:44', '0', '1');
 INSERT INTO `sys_user_token` VALUES ('13', '13', 'ff5dc803f7eb8aef620fcc40e454cd88', '2018-06-23 02:18:30', null, '1', null, '2018-06-22 14:18:30', null, '2018-06-22 14:18:30', '0', '1');
+INSERT INTO `sys_user_token` VALUES ('14', '15', '3d676ba47dbb433d1de46afc2900f11c', '2018-06-28 21:09:58', null, '1', null, '2018-06-28 09:09:58', null, '2018-06-28 09:09:58', '0', '1');
+INSERT INTO `sys_user_token` VALUES ('15', '15', '6e2567cce126479b0db02917cc61ef19', '2018-06-29 03:32:54', null, '1', null, '2018-06-28 09:10:38', null, '2018-06-28 15:32:54', '0', '1');
 
 -- ----------------------------
 -- Table structure for wx_user_info
@@ -4350,7 +4306,7 @@ CREATE TABLE `wx_user_info` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='微信公众号管理';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='微信公众号管理';
 
 -- ----------------------------
 -- Records of wx_user_info
@@ -4416,15 +4372,29 @@ CREATE TABLE `xjdc_demand` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='需求信息';
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COMMENT='需求信息';
 
 -- ----------------------------
 -- Records of xjdc_demand
 -- ----------------------------
-INSERT INTO `xjdc_demand` VALUES ('13', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', null, '0', '了', null, '15874839393', null, '北京 北京 东城区绿岛湖', '10', null, '[]', null, null, '8', '0', '1', null, '1', '士大夫似的', '1', null, '2018-06-27 14:33:52', null, '2018-06-27 14:33:52', '0', '0');
-INSERT INTO `xjdc_demand` VALUES ('14', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', null, '1', '了打野', null, '15874839393', null, '北京 北京 东城区北京天安门', '10', null, '[\"0\",\"1\",\"4\"]', null, null, '10', '1', '2', '近地铁,近商圈,随时看房', '1', '15874839393', '1', null, '2018-06-27 14:42:10', null, '2018-06-27 14:42:10', '0', '0');
-INSERT INTO `xjdc_demand` VALUES ('15', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', null, null, '了大侠', null, '15874839393', '1', '北京 北京 东城区了大侠', '100', null, '[\"0\",\"1\",\"2\",\"3\"]', null, null, null, '1', null, '近商圈,随时看房', '1', '士大夫士大夫', '1', null, '2018-06-27 14:44:20', null, '2018-06-27 14:44:20', '0', '0');
-INSERT INTO `xjdc_demand` VALUES ('16', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', null, null, '了', null, '15874839393', '0', '北京 北京 西城区撒地方', '200', null, '[\"0\",\"3\",\"4\"]', null, null, null, '0', null, '品质小区,随时看房', '1', '好吃的', '1', null, '2018-06-27 14:47:58', null, '2018-06-27 14:47:58', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('17', 'o2fqe0d082iL_-9l_SANsJKCwzdw', null, '0', '杨超帅', null, '15236579168', null, '北京 北京 东城区测试', '100', null, '[\"0\",\"1\"]', null, null, '1', '0', '1', '近地铁,近商圈,电梯楼', '1', '测试', '1', null, '2018-06-28 11:06:57', null, '2018-06-28 11:06:57', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('18', 'o2fqe0d082iL_-9l_SANsJKCwzdw', null, null, '撩', null, '15874839393', '1', '北京 北京 东城区测试', '1', null, '[\"0\",\"4\"]', null, null, null, '1', null, '近商圈,随时看房,试试', '0', '带回家点解点解', '1', null, '2018-06-28 11:13:37', null, '2018-06-28 11:13:37', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('19', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', null, null, '梁', null, '18665000833', '0', '广东 广州 越秀区北京路', '1000', null, '[\"0\",\"1\",\"2\"]', null, null, null, '0', null, '近地铁,近商圈,电梯楼', '0', null, '1', null, '2018-06-28 12:03:45', null, '2018-06-28 12:03:45', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('38', 'o2fqe0d082iL_-9l_SANsJKCwzdw', null, null, '杨大厨', null, '15874839393', '1', '北京 北京 东城区杨老师', '1000', null, '[\"1\"]', null, null, null, '1', null, '近商圈,随时看房,好好', '0', '时候是', '1', null, '2018-06-28 16:15:44', null, '2018-06-28 16:15:44', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('39', 'o2fqe0d082iL_-9l_SANsJKCwzdw', null, '0', '杨先生', null, '15874839393', null, '北京 北京 东城区点解点解', '10', null, '[\"1\",\"4\"]', null, null, '10', '0', '1', '电梯楼,随时看房,好好', '1', '都很简单', '1', null, '2018-06-28 16:16:46', null, '2018-06-28 16:16:46', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('40', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', null, '0', '好', null, '18933870097', null, '北京 北京 东城区null', '9', null, '[\"1\",\"2\"]', null, null, '5', '2', '1', null, '1', null, '1', null, '2018-06-28 16:20:16', null, '2018-06-28 16:20:16', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('41', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', null, '0', '好', null, '18933870097', null, '北京 北京 东城区null', '9', null, '[\"1\",\"2\"]', null, null, '5', '2', '1', null, '1', null, '1', null, '2018-06-28 16:21:05', null, '2018-06-28 16:21:05', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('42', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', null, '0', '测试', null, '15218811900', null, '北京 北京 东城区null', '8', null, '[\"2\"]', null, null, '6', '0', '1', '电梯楼', '1', '测试', '1', null, '2018-06-28 16:22:36', null, '2018-06-28 16:22:36', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('43', 'o2fqe0amKma6MVCtLnT839YFIBnQ', null, null, '刘小姐', null, '13548734010', '0', '北京 北京 东城区null', '1000-2000', null, '[\"0\",\"1\",\"3\",\"4\"]', null, null, null, '1', null, '近地铁,近商圈,电梯楼', '0', '好看', '1', null, '2018-06-28 16:23:06', null, '2018-06-28 16:23:06', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('44', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', null, null, '嗯嗯', null, '15874839393', '1', '北京 北京 东城区等等', '1', null, '[\"0\",\"4\"]', null, null, null, '1', null, '近商圈,品质小区', '0', '今生今世家', '1', null, '2018-06-28 16:24:50', null, '2018-06-28 16:24:50', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('45', 'o2fqe0amKma6MVCtLnT839YFIBnQ', null, null, '刘小姐', null, '13548734010', '0', '北京 北京 东城区null', '2000', null, '[\"0\"]', null, null, null, '0', null, '近商圈', '0', null, '1', null, '2018-06-28 16:25:31', null, '2018-06-28 16:25:31', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('46', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', null, null, '嗯嗯', null, '15874839393', '1', '北京 北京 东城区等等', '1', null, '[\"0\",\"4\"]', null, null, null, '1', null, '近商圈,品质小区', '0', '今生今世家', '1', null, '2018-06-28 16:28:59', null, '2018-06-28 16:28:59', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('47', 'o2fqe0fIIyjjVuQmSHqPpTHHCk34', null, null, '王大爷', null, '15874839393', '1', '北京 北京 东城区待机时间', '17', null, '[\"1\",\"4\"]', null, null, null, '1', null, '近商圈,品质小区', '0', '今', '1', null, '2018-06-28 16:30:14', null, '2018-06-28 16:30:14', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('48', 'o2fqe0fIIyjjVuQmSHqPpTHHCk34', null, null, '王大爷', null, '15874839393', '1', '北京 北京 东城区待机时间', '17', null, '[\"1\",\"4\"]', null, null, null, '1', null, '近商圈,品质小区', '0', '今', '1', null, '2018-06-28 16:30:44', null, '2018-06-28 16:30:44', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('49', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', null, '0', '测试', null, '17227443998', null, '北京 北京 东城区null', '9', null, '[\"2\",\"3\"]', null, null, '1', '0', '1', '电梯楼,随时看房', '1', null, '1', null, '2018-06-28 21:36:01', null, '2018-06-28 21:36:01', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('50', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', null, null, '陈生', null, '18665000888', '0', '广东 广州 越秀区null', '1000', null, '[\"0\",\"1\"]', null, null, null, '0', null, '近地铁,近商圈,电梯楼,品质小区', '0', null, '1', null, '2018-06-29 11:22:48', null, '2018-06-29 11:22:48', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('51', 'o2fqe0Q_femE1yMxWePty8Jn9pvc', null, '0', '张生', null, '13560002080', null, '广东 广州 越秀区null', '100', null, '[\"0\",\"1\"]', null, null, '19', '0', '3', '近地铁,近商圈,电梯楼', '1', null, '1', null, '2018-06-29 11:31:14', null, '2018-06-29 11:31:14', '0', '0');
+INSERT INTO `xjdc_demand` VALUES ('52', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', null, null, '陈生', null, '18665593901', '0', '广东 广州 荔湾区芳村周边', '2500', null, '[\"1\",\"2\"]', null, null, null, '0', null, '近地铁,近商圈,电梯楼,品质小区,品质小区,随时看房', '0', null, '1', null, '2018-06-29 17:36:11', null, '2018-06-29 17:36:11', '0', '0');
 
 -- ----------------------------
 -- Table structure for xjdc_house_source
@@ -4451,7 +4421,7 @@ CREATE TABLE `xjdc_house_source` (
   `price` decimal(32,2) DEFAULT NULL COMMENT '价格(万元)',
   `decoration` varchar(255) DEFAULT NULL COMMENT '装修@1-毛胚,2-简装,3-精装',
   `label_tag` varchar(200) DEFAULT NULL COMMENT '房源标签&0-近地铁,1-近商圈,2-电梯楼,3-品质小区,4-品质小区,5-随时看房',
-  `image_path` varchar(1000) DEFAULT NULL COMMENT '房源图片',
+  `image_path` text COMMENT '房源图片',
   `describe_info` varchar(1000) DEFAULT NULL COMMENT '房源描述',
   `module` varchar(50) DEFAULT NULL COMMENT '模块@0-二手房出售,1-租房',
   `pay_type` varchar(255) DEFAULT NULL COMMENT '支付方式@0-一次性,1-按揭',
@@ -4466,17 +4436,16 @@ CREATE TABLE `xjdc_house_source` (
   `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='佣金方式';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='佣金方式';
 
 -- ----------------------------
 -- Records of xjdc_house_source
 -- ----------------------------
-INSERT INTO `xjdc_house_source` VALUES ('17', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区绿岛湖', '廖先生', '15874839393', '[\"1\",\"7\"]', '998.00', '2', '3', null, null, '0', '9', null, null, '0', null, '800.00', null, '近地铁,近商圈,电梯楼,品质小区,品质小区', null, '士大夫士大夫', '1', '1', null, null, null, '1', null, '2018-06-27 13:58:10', null, '2018-06-27 13:58:10', '0', '0');
-INSERT INTO `xjdc_house_source` VALUES ('18', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区地址', '廖', '15874839393', '[\"0\",\"6\"]', '80.00', '1', '3', null, null, '0', '9', null, null, '0', null, '800.00', null, null, null, '鼎折覆餗', '1', '0', null, null, null, '1', null, '2018-06-27 14:05:17', null, '2018-06-27 14:05:17', '0', '0');
-INSERT INTO `xjdc_house_source` VALUES ('19', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区路岛湖', '杨先生', '15874839393', '[\"1\",\"8\"]', '80.00', '3', '1', null, null, '0', '9', null, null, '1', null, '800.00', null, '近地铁', null, 'hx', '1', '1', null, null, null, '1', null, '2018-06-27 14:08:20', null, '2018-06-27 14:08:20', '0', '0');
-INSERT INTO `xjdc_house_source` VALUES ('20', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区15874839393', '出售', '15874839393', null, '15874839600.00', '4', '4', '座北朝南', '1', '0', '9层共22层', null, '1', '0', null, '100.00', '4', '自建房', null, '十分士大夫', '0', '4', null, null, null, '1', null, '2018-06-27 14:14:57', null, '2018-06-27 14:14:57', '0', '0');
-INSERT INTO `xjdc_house_source` VALUES ('21', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区代购代购', '赵总', '15874839393', null, '100.00', '6', '3', '坐北朝南', '2', '1', '9层30楼', null, '0', '1', null, '101.00', '2', '近商圈', null, '代购代购，专业代购', '0', '2', null, null, null, '1', null, '2018-06-27 14:21:45', null, '2018-06-27 14:21:45', '0', '0');
-INSERT INTO `xjdc_house_source` VALUES ('22', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区代购代购', '刘总', '15874839393', null, '180.00', '6', '3', '坐北朝南', '3', '0', '300', null, '1', '0', null, '120.00', '1', '电梯楼', null, '士大夫大师傅', '0', '6', null, null, null, '1', null, '2018-06-27 14:24:23', null, '2018-06-27 14:24:23', '0', '0');
+INSERT INTO `xjdc_house_source` VALUES ('37', 'o2fqe0d082iL_-9l_SANsJKCwzdw', '北京 北京 崇文区都很好的好', 'asd', '15874839393', '[]', '10.00', '6', '3', '睡觉睡觉', '10', '1', '9', null, '1', '0', null, '10.00', '3', '近商圈,随时看房,好好', '[{\"uid\":1530200112728,\"urd\":888,\"name\":\"name\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/233847c02cfb4f12916e77c78043691c.png?imageslim\",\"status\":\"success\"},{\"uid\":1530200112729,\"urd\":888,\"name\":\"name\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/06d33f324c63486db9c44530e4b64e95.png?imageslim\",\"status\":\"success\"}]', '睡觉睡觉', '0', '6', null, null, null, '1', null, '2018-06-28 16:18:03', null, '2018-06-28 23:35:50', '0', '1');
+INSERT INTO `xjdc_house_source` VALUES ('38', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '北京 北京 东城区哈哈哈', '测试', '15874839393', '[\"2\",\"8\"]', '10.00', '2', '3', null, null, '0', '8', null, null, '0', null, '10.00', null, '近商圈,品质小区', '[{\"uid\":1530200155248,\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/527b4704babd486399a0637fedc4edd8.png?imageslim\",\"status\":\"success\"},{\"uid\":1530200155250,\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/dade6327f59f45fe9a11b37f447329c8.png?imageslim\",\"status\":\"success\"},{\"uid\":1530200155251,\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180628/39e1b076b18b4f4ea1e0e32708dcbd76.png?imageslim\",\"status\":\"success\"}]', '公共', '1', '1', null, null, null, '1', null, '2018-06-28 21:31:05', null, '2018-06-28 23:38:00', '0', '1');
+INSERT INTO `xjdc_house_source` VALUES ('39', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', '广东 广州 越秀区hmmm悯农哦', '梁生', '18665008833', '[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\"]', '18.00', '1', '1', null, null, '0', '9', null, null, '0', null, '1000.00', null, '近地铁,近商圈,电梯楼,品质小区,品质小区', '[{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/5eb197d9cf9e430b9eae4cb1f266bdb1.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/b9515f0afd9a4ab7b5e34cfea8b7e443.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/096c9662437447029741fd1344b41182.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/20aa0157efd84876bf058701567cfae2.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/da29b611bad7436faca588995663c5d4.png?imageslim\"}]', null, '1', '0', null, null, null, '1', null, '2018-06-29 11:21:24', null, '2018-06-29 11:21:24', '0', '0');
+INSERT INTO `xjdc_house_source` VALUES ('40', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', '广东 广州 越秀区哦你好你摸', '梁生', '18665000833', '[\"0\",\"1\",\"3\",\"5\",\"6\"]', '100.00', '3', '1', null, null, '0', '9', null, null, '1', null, '1000.00', null, '近地铁,近商圈,电梯楼,品质小区', '[{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/72a7f83e31584ea3be28edaa01e51446.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/e0ea2fa906b047a1a2885084d1bbb94d.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/4c1d157ccf9e4e42a36489b4382b226c.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/c564e7daccbf4dc891527ccc93cc1178.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/7c07bddffb0641d486ed7fcfee479bf6.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/c70f15443a5f4bf1a65b4300d0e72ad6.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/b7490e0d20714799a27bbe5de9a58c87.png?imageslim\"},{\"urd\":888,\"name\":\"imagePath\",\"url\":\"http://p1kqsiha2.bkt.clouddn.com/upload/20180629/24fc86a9cd4c45ba91f8168093bccf20.png?imageslim\"}]', null, '1', '1', null, null, null, '1', null, '2018-06-29 14:59:18', null, '2018-06-29 14:59:18', '0', '0');
+INSERT INTO `xjdc_house_source` VALUES ('41', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', '广东 广州 荔湾区芳村', '梁生', '18665000833', null, '56.00', '1', '2', '南', '10', '0', '9', null, '0', '0', null, '100.00', '3', '近地铁,近商圈,电梯楼,品质小区,品质小区,随时看房', '[]', null, '0', '5', null, null, null, '1', null, '2018-06-29 17:38:20', null, '2018-06-29 17:38:20', '0', '0');
 
 -- ----------------------------
 -- Table structure for xjdc_housing_resources
@@ -4520,27 +4489,39 @@ CREATE TABLE `xjdc_housing_resources` (
 DROP TABLE IF EXISTS `xjdc_user`;
 CREATE TABLE `xjdc_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `headimgurl` varchar(200) DEFAULT NULL COMMENT '用户头像',
-  `openid` varchar(200) NOT NULL COMMENT 'openid',
-  `nickname` varchar(200) NOT NULL COMMENT '昵称',
-  `sex` varchar(6) NOT NULL COMMENT '性别@0-未知,1-男,2-女',
-  `city` varchar(200) DEFAULT NULL COMMENT '所在城市',
-  `country` varchar(200) DEFAULT NULL COMMENT '所在国家',
-  `province` varchar(200) DEFAULT NULL COMMENT '所在省份',
-  `language` varchar(200) DEFAULT NULL COMMENT '语言',
-  `unionid` varchar(200) DEFAULT NULL COMMENT '只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。',
-  `remarks` varchar(500) DEFAULT NULL COMMENT '备注',
+  `headimgurl` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户头像',
+  `openid` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'openid',
+  `nickname` text COLLATE utf8mb4_unicode_ci,
+  `sex` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '性别@0-未知,1-男,2-女',
+  `city` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '所在城市',
+  `country` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '所在国家',
+  `province` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '所在省份',
+  `language` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '语言',
+  `unionid` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。',
+  `remarks` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   `version_no` int(5) NOT NULL COMMENT '版本号',
   `create_by` bigint(20) DEFAULT NULL COMMENT '创建人id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_by` bigint(20) DEFAULT NULL COMMENT '修改人id',
   `update_time` datetime NOT NULL COMMENT '修改时间',
-  `delete_flag` varchar(6) NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
+  `delete_flag` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '逻辑删除@0-存在,1-隐藏,2-删除,3-停用',
   `sort` int(6) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户信息';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户信息';
 
 -- ----------------------------
 -- Records of xjdc_user
 -- ----------------------------
-INSERT INTO `xjdc_user` VALUES ('3', 'http://thirdwx.qlogo.cn/mmopen/vi_32/t0SgynmSKLeVDR3QobXTnqeicqHg9596N09CaVkuWaS6oO4jD7PCb5BEFOnbW2xEgm9TTq05nPGuH9uVGTXuGAg/132', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '赏金猎人', '0', null, null, null, 'zh_CN', null, null, '1', null, '2018-06-26 23:48:01', null, '2018-06-26 23:48:01', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('4', 'http://thirdwx.qlogo.cn/mmopen/vi_32/IM2JvRB8ibNUjaJgK1H5kKiaWkLfLPrTH5gOlOJJsx8hufq9MsGL2MCkXp03Y4hOmQwedVHrgDUiarqtXndia9DJAA/132', 'o2fqe0d082iL_-9l_SANsJKCwzdw', '帅', '1', '安阳', '中国', '河南', 'zh_CN', null, null, '1', null, '2018-06-28 11:02:49', null, '2018-06-28 11:02:49', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('5', 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJaj3zHfIOR2KXicribo5rkL2XESE6vnericXAXet3ePsBKM9HtNwhM9VAPTs2fA0c7QCUEkDrn7ibhwQ/132', 'o2fqe0bjMgQtpgpS600F8_MaREDc', '赵世杰', '1', '新乡', '中国', '河南', 'zh_CN', null, null, '1', null, '2018-06-28 11:05:52', null, '2018-06-28 11:05:52', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('6', 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo1TwKH1gHhyxb0ayRthFlXoNCzxnoe4YazAzU5d69N6O9JqLXhJCIqlQg5xPokALWaPnXul7DQJw/132', 'o2fqe0fIIyjjVuQmSHqPpTHHCk34', '悠悠我心', '1', null, '马达加斯加', null, 'zh_CN', null, null, '1', null, '2018-06-28 11:09:38', null, '2018-06-28 11:09:38', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('7', 'http://thirdwx.qlogo.cn/mmopen/vi_32/IYZjB4DFWytwWoVg9W3pYP5HfymtZF6FUmy4NoKbY5Leg1TBc0pvE1KPRJWreKejDAxjdQ3POo3GfHTevdoAvA/132', 'o2fqe0USdIXg9IPiuhNmK3iSDNrc', 'A.【携進金融地产】梁教授', '1', '广州', '中国', '广东', 'zh_TW', null, null, '1', null, '2018-06-28 11:22:59', null, '2018-06-28 11:22:59', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('8', 'http://thirdwx.qlogo.cn/mmopen/vi_32/YLTXJ0icsUnibAdrPGDqeNE8nicq4skS74cIUjUqxwabHUCMxPgMLLiaqZoogcgRDKM0Pyh4lfpQCxueVvQcib95z1w/132', 'ogXRjwfcjrmQ42McgfF3HuRakE0E', '?JUNO_', '1', '佛山', '中国', '广东', 'zh_CN', null, null, '1', null, '2018-06-28 15:30:14', null, '2018-06-28 15:30:14', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('9', 'http://thirdwx.qlogo.cn/mmopen/vi_32/bDx9vHibEqZVp7WWAYaSxvarCiaibuO0daGY6MaicJElr3NSLkSoHtlGRPpibQdJTESibare8tOZ6JaSqGCJjK20uzcg/132', 'o2fqe0SOybwIDGbKcxFES9LKj8C4', '?JUNO_', '1', '佛山', '中国', '广东', 'zh_CN', null, null, '1', null, '2018-06-28 15:33:27', null, '2018-06-28 15:33:27', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('10', 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJQfzuWluWVoavRibK7jEvicibricicnYezWFfEEwJempOgj0yoUrdRdRX5UpO3l3mQoFVd4MCIGS9I1zw/132', 'o2fqe0amKma6MVCtLnT839YFIBnQ', '长了腿的年糕', '0', null, null, null, 'zh_CN', null, null, '1', null, '2018-06-28 16:19:54', null, '2018-06-28 16:19:54', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('11', 'http://thirdwx.qlogo.cn/mmopen/vi_32/t0SgynmSKLeVDR3QobXTnqeicqHg9596N09CaVkuWaS6oO4jD7PCb5BEFOnbW2xEgm9TTq05nPGuH9uVGTXuGAg/132', 'o2fqe0byk2IsilemMmDPFDCc7cZQ', '赏金猎人?', '0', null, null, null, 'zh_CN', null, null, '1', null, '2018-06-28 16:27:44', null, '2018-06-28 21:38:45', '0', '1');
+INSERT INTO `xjdc_user` VALUES ('12', 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLPHYBib57DDvSKOXYIbDdySldfB4KFMkQqMqJ5J3bJoTAbkxH35QI5TaVfTMV2k4UKFNOIaybE6qA/132', 'o2fqe0ZaCZ6M8YNSbQ-e6fzeUsPQ', 'charlse', '1', '广州', '中国', '广东', 'zh_CN', null, null, '1', null, '2018-06-29 10:19:44', null, '2018-06-29 10:19:44', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('13', 'http://thirdwx.qlogo.cn/mmopen/vi_32/DGibMlVKSgicM5euSjuoVictkh8fvjvCS7Q3hUflDG6GohCgnIlUYvaMBgE7moh5V2GpXJmcgEs5pqbfZeCMyYfMA/132', 'o2fqe0UUE4Fg7NsW-N7_AEcv9bvQ', 'blake', '1', '广州', '中国', '广东', 'zh_CN', null, null, '1', null, '2018-06-29 10:22:59', null, '2018-06-29 10:22:59', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('14', 'http://thirdwx.qlogo.cn/mmopen/vi_32/KQpJHrQFQncbGqriaWLib3I7GlzczlaNEXm3Zqwk7LF1EHJVUnpLw6NRajbLqemz6BqWjYibjtOYHYW3NCfGJmXQg/132', 'o2fqe0ZVmSkNBF9AhcQtKC1-UkoQ', '水下月', '1', '曼哲拉', '澳大利亚', '西澳大利亚', 'zh_CN', null, null, '1', null, '2018-06-29 10:23:06', null, '2018-06-29 10:23:06', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('15', 'http://thirdwx.qlogo.cn/mmopen/vi_32/abL3BfHXt2R2QPNiaefJF8Hc49qVxkxkr00U5toMoZ44vIzyRZMmEhbp8BZfcGI0w85fNXWuzUSUaibqeK4upoow/132', 'o2fqe0Q_femE1yMxWePty8Jn9pvc', 'A【携進投资】??Rex', '1', null, '日本', '神奈川', 'zh_CN', null, null, '1', null, '2018-06-29 10:47:57', null, '2018-06-29 10:47:57', '0', '0');
+INSERT INTO `xjdc_user` VALUES ('16', 'http://thirdwx.qlogo.cn/mmopen/vi_32/NxYJ6LEPofKLQvwR3TPnp1NvvIHz2bs0XhajRUE7sDDxY2DuLcFbyI2jV8xFAn0gbM4hHflxuocQQ8kPBJSaPw/132', 'o2fqe0en1a2XRaVFRAIFoHGoksPc', '【携進投资】Jeng Lee', '1', '利物浦', '英国', '英格兰', 'zh_CN', null, null, '1', null, '2018-06-29 17:36:45', null, '2018-06-29 17:36:45', '0', '0');

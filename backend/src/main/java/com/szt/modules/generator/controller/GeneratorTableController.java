@@ -4,7 +4,11 @@ package com.szt.modules.generator.controller;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.szt.common.validator.ValidatorUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -129,9 +133,12 @@ public class GeneratorTableController {
      */
     @ApiOperation("生成")
     @GetMapping("/generate")
-    @RequiresPermissions("generator:generatortable:generate")
-    public void generate(javax.servlet.http.HttpServletRequest request, HttpServletResponse response , @RequestBody Long[]ids) throws IOException {
-        byte[] data = generatorTableService.generate(ids);
+    //@RequiresPermissions("generator:generatortable:generate")
+    public void generate(javax.servlet.http.HttpServletRequest request, HttpServletResponse response ,String ids) throws IOException {
+       List<Long> list =  JSON.parseArray(ids,Long.class);
+        Long[] strings = new Long[list.size()];
+        list.toArray(strings);
+       byte[] data = generatorTableService.generate(strings);
         response.reset();
         response.setHeader("Content-Disposition", "attachment; filename=\"renren.zip\"");
         response.addHeader("Content-Length", "" + data.length);

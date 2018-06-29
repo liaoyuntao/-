@@ -114,10 +114,29 @@ public class GeneratorTableServiceImpl extends CommonServiceImpl<GeneratorTableD
         List<ColumnListEntity> lists = new ArrayList<ColumnListEntity>();
         Map<String, GeneratorTemplateConfigEntity> config = generatorTemplateConfigService.queryGeneratorTemplateConfig();
         List<GeneratorTemplateEntity> templates = generatorTemplateDao.queryGeneratorTemplateList();
-        List<TableFieldVo> tableEntitys = baseMapper.queryTableFieldVO(Arrays.asList(ids));
+        List<GeneratorTableEntity> tableEntitys = baseMapper.queryTableFieldVO(Arrays.asList(ids));
         Map<String, Boolean> maps = new HashMap<String, Boolean>();
-        for (TableFieldVo tableEntity : tableEntitys) {
-            // tableEntity = GenUtils.readerTable(tableEntity,map,lists,config,tableEntity.getList(),true);
+        for (GeneratorTableEntity tableEntity : tableEntitys) {
+            //封装模板数据
+            Map<String, Object> map = new HashMap<>();
+//            map.put("tableName", tableEntity.getTableName());
+//            map.put("comments", tableEntity.getTableComment());
+//            map.put("pk", tableEntity.getPk());
+//            map.put("className", tableEntity.getClassName());
+//            map.put("classname", tableEntity.getClassname());
+//            map.put("pathName", tableEntity.getClassname().toLowerCase());
+//            map.put("columns", tableEntity.getColumns());
+//            map.put("lists", lists);
+//            map.put("hasBigDecimal", true);
+//            map.put("mainPath", mainPath);
+//            map.put("package", config.get("package").getModelVal());
+//            map.put("moduleName", config.get("moduleName").getModelVal());
+//            map.put("author", config.get("author").getModelVal());
+//            map.put("email", config.get("email").getModelVal());
+//            map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
+            tableEntity = GenUtils.readerTable(tableEntity,maps,lists,config,true,map);
+            map.put("moduleName", tableEntity.getModulesName());
+            config.get("moduleName").setModelVal(tableEntity.getModulesName());
             //生成代码
             //设置velocity资源加载器
             Properties prop = new Properties();
@@ -128,23 +147,7 @@ public class GeneratorTableServiceImpl extends CommonServiceImpl<GeneratorTableD
             String className = GenUtils.tableToJava(tableEntity.getTableName(), config.get("tablePrefix").getModelVal());
             tableEntity.setClassName(className);
             tableEntity.setClassname(StringUtils.uncapitalize(className));
-            //封装模板数据
-            Map<String, Object> map = new HashMap<>();
-            map.put("tableName", tableEntity.getTableName());
-            map.put("comments", tableEntity.getTableComment());
-            map.put("pk", tableEntity.getPk());
-            map.put("className", tableEntity.getClassName());
-            map.put("classname", tableEntity.getClassname());
-            map.put("pathName", tableEntity.getClassname().toLowerCase());
-            map.put("columns", tableEntity.getColumns());
-            map.put("lists", lists);
-            map.put("hasBigDecimal", true);
-            map.put("mainPath", mainPath);
-            map.put("package", config.get("package").getModelVal());
-            map.put("moduleName", config.get("moduleName").getModelVal());
-            map.put("author", config.get("author").getModelVal());
-            map.put("email", config.get("email").getModelVal());
-            map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
+
             VelocityContext context = new VelocityContext(map);
             //获取模板列表
             //List<String> templates = getTemplates();

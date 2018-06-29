@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
-        <el-button  type="primary" @click="generate()">生成</el-button>
+        <!--<el-button  type="primary" @click="generate()">生成</el-button>-->
         <!--<el-button v-if="isAuth('yczj:generator:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除
         </el-button>-->
       </el-form-item>

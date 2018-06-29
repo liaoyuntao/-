@@ -66,6 +66,7 @@ public class ShiroConfig {
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/views/**", "anon");
         filterMap.put("/sys/generator/**","anon");
+        filterMap.put("/generator/generatortable/generate","anon");
         filterMap.put("/xjdc/**","anon");
         filterMap.put("/app/**","anon");
         filterMap.put("/statics/**","anon");

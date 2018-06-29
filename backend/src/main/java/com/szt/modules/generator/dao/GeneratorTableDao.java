@@ -3,7 +3,6 @@ package com.szt.modules.generator.dao;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.szt.modules.generator.entity.GeneratorTableEntity;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.szt.modules.generator.vo.TableFieldVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public interface GeneratorTableDao extends BaseMapper<GeneratorTableEntity> {
      * @param longs
      * @return
      */
-    List<TableFieldVo> queryTableFieldVO(List<Long> longs);
+    List<GeneratorTableEntity> queryTableFieldVO(List<Long> longs);
 
     List<GeneratorTableEntity> selectPageList(Page<GeneratorTableEntity> page, Map<String,Object> params);
 

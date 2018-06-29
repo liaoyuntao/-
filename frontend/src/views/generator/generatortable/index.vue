@@ -6,6 +6,7 @@
         <el-button @click="getDataList()">查询</el-button>
         <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
         <el-button v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+        <el-button  type="primary" @click="generate()" :disabled="dataListSelections.length <= 0">生成</el-button>
       </div>
     </el-form>
     <tablefield :pathUrl="pathUrl" ref="tablefield" :saveForm="saveForm":dataForm.sync="dataForm"  :setListSelections="setListSelections"  :model="model" :operation.sync="operation"></tablefield>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+  import API from '@/api'
   import seek from '@/components/generator/seek.vue'
   import generatortablefield from '../generatortablefield/index'
   import preview from './preview/preview'
@@ -84,6 +86,34 @@
       getDataList () {
         this.$nextTick(() => {
           this.$refs.tablefield.getDataList()
+        })
+      },
+      // 生成
+      generate (id) {
+        var self = this
+        var ids = id ? [id] : this.dataListSelections.map(item => {
+          return item.id
+        })
+        this.$confirm(`确定对[id=${ids.join(',')}]进行[${id ? '生成' : '批量生成'}]操作?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          location.href =window.SITE_CONFIG.baseUrl+ '/generator/generatortable/generate?ids=' + JSON.stringify(ids)
+          // API.generatortable.generator(ids).then(({data}) => {
+          //   if (data && data.code === 0) {
+          //     this.$message({
+          //       message: '操作成功',
+          //       type: 'success',
+          //       duration: 1500,
+          //       onClose: () => {
+          //         this.getDataList()
+          //       }
+          //     })
+          //   } else {
+          //     this.$message.error(data.msg)
+          //   }
+          // })
         })
       },
       // 查看字段

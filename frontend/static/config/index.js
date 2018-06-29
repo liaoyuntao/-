@@ -4,10 +4,10 @@
 ;(function () {
   window.SITE_CONFIG = {}
   // api接口请求地址
-  window.SITE_CONFIG.baseUrl = '//localhost:8080/xjdc/'
+  window.SITE_CONFIG.baseUrl = 'http://localhost:8087/xjdc/'
 
   // 嵌套iframe地址
-  window.SITE_CONFIG.nestIframeUrl = '//localhost:8080/xjdc/'
+  window.SITE_CONFIG.nestIframeUrl = 'http://localhost:8087/xjdc/'
   // 嵌套iframe路由名称列表
   window.SITE_CONFIG.nestIframeRouteNameList = ['sql']
 

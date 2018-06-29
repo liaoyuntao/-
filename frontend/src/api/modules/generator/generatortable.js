@@ -64,3 +64,11 @@ export function queryTableFilePreviewVO (params) {
     data: requestParam(params, 'get', false)
   })
 }
+// 生成
+export function generator (params) {
+  return request({
+    url: requestUrl('/generator/generatortable/generate'),
+    method: 'post',
+    data: requestParam(params, 'post', false)
+  })
+}

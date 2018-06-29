@@ -16,11 +16,14 @@
         <result property="deleteFlag" column="delete_flag"/>
         <result property="sort" column="sort"/>
     </resultMap>
-    <resultMap id="queryTableFieldVO" type="com.szt.modules.generator.vo.TableFieldVo">
+    <resultMap id="queryTableFieldVO" type="com.szt.modules.generator.entity.GeneratorTableEntity">
         <id property="id" column="table_id"/>
-        <result property="tableName" column="table_name"/>
+        <result property="remarks" column="remarks"/>
+        <result property="tableComment" column="table_comment"/>
         <result property="modulesId" column="modules_id"/>
-        <collection property="list" ofType="com.szt.modules.generator.entity.GeneratorTableFieldEntity">
+        <result property="tableName" column="table_name"/>
+        <result property="modulesName" column="modules_name"/>
+        <collection property="columns" ofType="com.szt.modules.generator.entity.GeneratorTableFieldEntity">
             <id property="id" column="field_id"/>
             <result property="fieldName" column="field_name"/>
             <result property="fieldType" column="field_type"/>
@@ -28,22 +31,45 @@
             <result property="isSeek" column="is_seek"/>
             <result property="checkout" column="checkout"/>
             <result property="isExport" column="is_export"/>
+            <result property="pageComment" column="page_comment"/>
+            <result property="comment" column="comment"/>
+            <result property="tableSet" column="table_set"/>
+            <result property="isDataBase" column="is_data_base"/>
+            <result property="isSet" column="is_set"/>
+            <result property="inputType" column="input_type"/>
+             <result property="dataDefault" column="data_default"/>
+            <result property="columnKey" column="column_key"/>
         </collection>
     </resultMap>
     <select id="queryTableFieldVO" resultMap="queryTableFieldVO">
             select
             tab.id table_id,
+            tab.remarks,
+            tab.table_comment,
+            tab.modules_id,
+            tab.table_name,
             (select m.`name` from generator_modules m where m.id=tab.modules_id) modules_name,
-              f.id field_id,
+            f.id field_id,
             f.field_name,
             f.field_type,
             f.is_null,
             f.is_seek,
             f.checkout,
-            f.is_export
+            f.is_export,
+            f.page_comment,
+            f.comment,
+            f.table_set,
+            f.is_data_base,
+            f.is_set,
+            f.input_type,
+            f.data_default,
+            f.column_key
              from generator_table tab
             left join generator_table_field f on tab.id=f.table_id and f.delete_flag='0'
             where tab.delete_flag='0'
+            <foreach collection="list" open="  and  tab.id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
     </select>
     <select id="selectPageList" parameterType="map" resultType="com.szt.modules.generator.entity.GeneratorTableEntity">
         select id,
