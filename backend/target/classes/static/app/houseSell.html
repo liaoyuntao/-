@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>房源出售</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../statics/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../statics/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../statics/plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../statics/plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../statics/css/main.css">
+    <script src="../statics/libs/jquery.min.js"></script>
+    <script src="../statics/plugins/layer/layer.js"></script>
+    <script src="../statics/libs/bootstrap.min.js"></script>
+    <script src="../statics/libs/vue.min.js"></script>
+    <script src="../statics/plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../statics/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../statics/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../statics/js/common.js"></script>
+    <!-- Bootstrap -->
+    <link href="../statics/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css//weui.css">
+    <link rel="stylesheet" href="../statics/css//weui2.css">
+    <link rel="stylesheet" href="../statics/css//style.css">
+</head>
+<body>
+
+<div class="container-fluid" id="test">
+    <!--发布人信息-->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>发布人信息</span>
+            <div class="publi_shou" id="publi_btn"></div>
+        </div>
+        <div class="publi_cont" id="publi_msg">
+            <ul>
+                <li>
+                    <div class="publi_name">我是<span>*</span></div>
+                    <div class="publi_choose publi_sf">
+                        <label class="publi_inp_act" v-for="item in preoviderList">
+                            {{item.title}}
+                            <input  v-model="houseSource.providerType" :value="item.value"  class="publi_rad" name="kk1" type="radio" >
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">称呼<span>*</span></div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.name" type="text" placeholder="先生/小姐">
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">电话 <span>*</span></div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.phone" type="text" placeholder="输入联系电话">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--区域信息 -->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>区域信息 <span>(信息将会保密)</span></span>
+            <div class="publi_shou" id="qy_btn"></div>
+        </div>
+        <div class="publi_cont" id="qy_msg">
+            <ul>
+                <li>
+                    <div class="publi_name">所在区域</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='ssx' placeholder="省市县"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <textarea v-model="houseSource.ads" class="qy_detail" placeholder="输入详细地理地址"></textarea>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--房源信息-->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>房源信息</span>
+            <div class="publi_shou" id="fy_btn"></div>
+        </div>
+        <div class="publi_cont" id="fy_msg">
+            <ul>
+                <li>
+                    <div class="publi_name">面积</div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.square" type="text" placeholder="输入面积">
+                        平方米
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">类型</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='type' placeholder="选择类型"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">户型</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='hx' placeholder="选择户型"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">朝向</div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.orientation" type="text" placeholder="例如坐北朝南">
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">楼龄</div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.buildingAge" type="text" placeholder="楼龄">
+                        年
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">楼层</div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.floor" type="text" placeholder="如：第9层共22层">
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">电梯</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='dt' placeholder="是否有电梯"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">结构</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='xzjg' placeholder="选择结构"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="publi_name">装修</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='zffs' placeholder="选择装修"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--售价信息-->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>售价信息</span>
+            <div class="publi_shou" id="ptss_btn"></div>
+        </div>
+        <div class="publi_cont" id="ptss_msg">
+            <ul>
+                <li>
+                    <div class="publi_name">售价</div>
+                    <div class="publi_choose">
+                        <input v-model="houseSource.price" type="text" placeholder="输入金额">
+                        万
+                    </div>
+                </li>
+               <!-- <li>
+                    <div class="publi_name">其他</div>
+                    <div class="publi_choose">
+                        <div class="weui_cells weui_cells_form qy_addre">
+                            <div class="weui_cell">
+                                <div class="weui_cell_bd weui_cell_primary">
+                                    <input class="weui_input" type="text" value="" id='sjqt' placeholder="选择其他"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>-->
+                <li>
+                    <div class="publi_name">支付方式</div>
+                    <div class="publi_choose publi_zf">
+                        <label class="publi_inp_act">
+                            按揭
+                            <input v-model="houseSource.payType" class="publi_rad" name="kk" value="5" type="radio">
+                        </label>
+                        <label>
+                            一次性
+                            <input v-model="houseSource.payType" class="publi_rad" name="kk" value="6" type="radio">
+                        </label>
+                    </div>
+                </li>
+                <!--<li>
+                    <div class="publi_name">佣金方式</div>
+                    <div class="publi_choose">
+                        <p class="hx_txt">成功出售奖励2万</p>
+                    </div>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <!--房源标签-->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>房源标签 </span>
+            <div class="publi_shou" id="fybq_btn"></div>
+        </div>
+        <div id="fybq_msg">
+            <div class="publi_choose fybq_more" id="addbiaoqian">
+                <label v-for="item in labelList">
+                    <input  class="publi_rad" name="kk" value="item.title" v-model="item.chebox"  :value="false" type="checkbox" >{{item.title}}
+                </label>
+
+            </div>
+            <div class="fybq_add">
+                <span>添加标签</span>
+                <input v-model="addbq" type="text" placeholder="限4个字">
+                <button style=" width: 50px; float: right;background-color:#00AEAE"  @click="addb">添加</button>
+            </div>
+        </div>
+
+    </div>
+    <!--上传图片-->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>上传图片 <span>(最多可上传9张图片)</span></span>
+            <div class="publi_shou" id="upload_btn"></div>
+        </div>
+        <div class="upload_cont" id="upload_msg">
+            <!--<ul>-->
+            <!--<li>-->
+            <!--<img src="images/img_photo.png" alt="">-->
+            <!--</li>-->
+            <!--</ul>-->
+
+
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <div class="weui_uploader">
+                        <div class="weui_uploader_bd">
+                            <div id="pictureFrame" style="display: inline-flex;flex-wrap: wrap;" type="file">
+                                <div v-for="item in imgList" style="margin-bottom:10px;border: 1px solid #D9D9D9;margin-right: 10px;">
+                                    <img style="border: none; width: 80px;height: 80px;"
+                                         :src="item.url"/>
+                                </div>
+                                <!-- <div class=""
+                                      style="float:left;margin-right:9px; margin-bottom:9px; width:77px; height:77px;border:1px solid #D9D9D9;margin-top:10px;"
+
+                                     <img :src="item.url" style="width:100%;heigth:100%;">
+                                 </div>-->
+                                <div class="weui_uploader_input_wrp" @click="wxImgUpload();">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--房源描述-->
+    <div class="cont1">
+        <div class="publisher_msg">
+            <span>房源描述 </span>
+            <div class="publi_shou" id="fyms_btn"></div>
+        </div>
+        <div class="fyms_txt" id="fyms_msg">
+            <textarea v-model="houseSource.describeInfo" placeholder="请输入描述内容..."></textarea>
+        </div>
+    </div>
+    <!--提交按钮-->
+    <div class="the_submit">
+        <button @click="conmit">提交</button>
+    </div>
+</div>
+<script src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>
+<script src="../statics/js/bootstrap.js"></script>
+<script src="../statics/js/jquery-1.11.3.min.js"></script>
+<script src="../statics/js/zepto.min.js"></script>
+<script src="../statics/js/example.js"></script>
+<script src="../statics/js/picker.js"></script>
+<script src="../statics/js/lrz.min.js"></script>
+<script src="../statics/js/houseSell.js"></script>
+
+</body>
+</html>

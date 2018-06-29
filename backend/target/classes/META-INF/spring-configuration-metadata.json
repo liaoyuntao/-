@@ -1,0 +1,90 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay",
+      "type": "com.szt.modules.pay.alipay.AliPayBean"
+    },
+    {
+      "sourceType": "com.szt.datasources.DynamicDataSourceConfig",
+      "name": "spring.datasource.druid.first",
+      "sourceMethod": "firstDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.szt.datasources.DynamicDataSourceConfig",
+      "name": "spring.datasource.druid.second",
+      "sourceMethod": "secondDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx",
+      "type": "com.szt.modules.pay.wx.WxPayBean"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay.alipay-public-key",
+      "description": "支付宝公钥",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay.domain",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay.private-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay.public-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.alipay.AliPayBean",
+      "name": "alipay.server-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx.app-secret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx.cert-path",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx.domain",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx.mch-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.szt.modules.pay.wx.WxPayBean",
+      "name": "wx.partner-key",
+      "type": "java.lang.String"
+    }
+  ]
+}
