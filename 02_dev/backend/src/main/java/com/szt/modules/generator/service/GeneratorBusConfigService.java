@@ -1,0 +1,49 @@
+package com.szt.modules.generator.service;
+
+import com.szt.common.CommonService;
+import com.szt.modules.generator.entity.ColumnListEntity;
+import com.szt.modules.generator.entity.GeneratorBusConfigEntity;
+import com.szt.modules.sys.vo.QuerySysBusConfigListVO;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 自动生成参数管理
+ *
+ * @author liao
+ * @email 1171964050@qq.com
+ * @date 2018-06-19 15:18:03
+ */
+public interface GeneratorBusConfigService extends CommonService<GeneratorBusConfigEntity>  {
+
+    /**
+     * 查询所有业务参数
+     * @param codes
+     */
+    Map<String, QuerySysBusConfigListVO> querySysBusConfigList(String[] codes);
+
+    /**
+     * 插入业务参数
+     * @param selectKey
+     * @param list
+     */
+    void insertSysBusConfigPar(String selectKey, List<ColumnListEntity> list);
+
+    /**
+     * 查询app业务参数
+     * * @return
+     */
+    Map<String,Object> queryAppSysBusConfigList();
+
+    QuerySysBusConfigListVO querySysBusConfigByKey(String key);
+
+    /**
+     * 查询表格业务参数
+     * @param key
+     * @return
+     */
+    Map<String,GeneratorBusConfigEntity> querySysBusConfigByCodeKey(String key);
+
+}
+
