@@ -16,11 +16,11 @@ spring:
 #                username: erp
 #                password: erp
             first:  #数据源1
-                url: jdbc:mysql://localhost:3306/wjxcx?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+                url: jdbc:mysql://localhost:3306/xxfb?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
                 username: root
                 password: root
             second:  #数据源2
-                url: jdbc:mysql://localhost:3306/wjxcx?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+                url: jdbc:mysql://localhost:3306/xxfb?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
                 username: root
                 password: root
             initial-size: 10
