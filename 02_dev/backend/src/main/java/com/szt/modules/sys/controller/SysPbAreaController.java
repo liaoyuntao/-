@@ -114,9 +114,8 @@ public class SysPbAreaController {
         return R.ok();
     }
     /**
-     * 删除
+     * 查询地址信息
      */
-    @SysLog("删除信息")
     @ApiOperation("删除")
     @PostMapping("/getAddressConfig")
     public R getAddressConfig() {

@@ -183,15 +183,6 @@
         this.sortData.order = value.order === 'descending' ? 'desc' : 'asc'
         this.getDataList()
       },
-      // jsonStr (map, value) {
-      //   var str = []
-      //   value = JSON.parse(value)
-      //   //console.log(value)
-      //   for (var i in value) {
-      //     str.push(map[value[i]])
-      //   }
-      //   return JSON.stringify(str)
-      // },
       // 获取数据列表
       getDataList () {
         this.dataListLoading = true

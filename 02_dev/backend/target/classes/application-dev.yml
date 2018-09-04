@@ -3,26 +3,14 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         druid:
-#            first:  #数据源1
-#                url: jdbc:mysql://localhost:3306/szt-erp-local?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
-#                username: root
-#                password: 123456
-#            first:  #数据源1
-#                url: jdbc:mysql://120.77.247.69/szt-erp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
-#                username: erp
-#                password: erp
-#            second:  #数据源2
-#                url: jdbc:mysql://120.77.247.69/szt-erp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
-#                username: erp
-#                password: erp
-            first:  #数据源1
-                url: jdbc:mysql://localhost:3306/xxfb?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+            first:
+                url: jdbc:mysql://120.79.193.54/brm-admin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: root
-            second:  #数据源2
-                url: jdbc:mysql://localhost:3306/xxfb?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+                password: 123456
+            second:
+                url: jdbc:mysql://120.79.193.54/brm-admin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: root
+                password: 123456
             initial-size: 10
             max-active: 100
             min-idle: 10
@@ -49,9 +37,9 @@ spring:
                     config:
                         multi-statement-allow: true
     redis:
-            database: 1
-            host: 127.0.0.1
-            password:
+            database: 0
+            host:  120.79.193.54
+            password: brmredis
             port: 6379
             timeout: 6000  # 连接超时时长（毫秒）
             pool:
@@ -62,10 +50,10 @@ spring:
 
 #微信配置
 wx:
-  appId: wx8cedadee1a84a376
-  appSecret: 61aaa23a92af79bb0d8b5d94f4907e3b
-  mchId: 1489094562
-  partnerKey: d270777b86be4ebd8f2a5617ca56681e
+  appId: wx5b0fde4c84dcf033
+  appSecret: f0ada9932b426c64c9bcdaec4f35741c
+  mchId: 1498925632
+  partnerKey: fjdkl44fdgba4d54v1v6d5s4f46d41an
   certPath: xxxx
   domain: shop.3zhit.com
 

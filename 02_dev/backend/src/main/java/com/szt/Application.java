@@ -55,12 +55,9 @@ public class Application extends WebMvcConfigurerAdapter {
         ConfigurableApplicationContext application = SpringApplication.run(Application.class, args);
         Environment env = application.getEnvironment();
         log.info("\n----------------------------------------------------------\n\t" +
-                        "Application '{}' is running! Access URLs:\n\t" +
-                        "Local: \t\thttp://localhost:{}{}/doc.html\n\t" +
-                        "External: \thttp://{}:{}{}\n\t" +
+                        "后台管理系统: \t\thttp://localhost:{}{}/admin/index.html\n\t" +
                         "接口文档: \thttp://{}:{}{}/doc.html\n" +
                         "----------------------------------------------------------",
-                env.getProperty("spring.application.name"),
                 env.getProperty("server.port"),
                 env.getProperty("server.context-path"),
                 InetAddress.getLocalHost().getHostAddress(),
