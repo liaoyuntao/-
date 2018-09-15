@@ -57,8 +57,7 @@ public class GeneratorBusConfigController {
     @GetMapping("/info/{id}")
     @RequiresPermissions("generator:generatorbusconfig:info")
     public R info(@PathVariable("id") Long id) {
-            GeneratorBusConfigEntity generatorBusConfig = generatorBusConfigService.selectById(id);
-
+        GeneratorBusConfigEntity generatorBusConfig = generatorBusConfigService.selectById(id);
         return R.ok().put("data", generatorBusConfig);
     }
 
@@ -96,14 +95,14 @@ public class GeneratorBusConfigController {
             generatorBusConfigService.deleteList(Arrays.asList(ids));
         return R.ok();
     }
-    /**
-     * 查询所有业务参数
-     */
-    @ApiOperation("查询所有业务参数")
-    @GetMapping("/querySysBusConfigList")
-    public R querySysBusConfigList() {
-        return R.ok().put("data",InitBusConfig.getBusConfig());
-    }
+//    /**
+//     * 查询所有业务参数
+//     */
+//    @ApiOperation("查询所有业务参数")
+//    @GetMapping("/querySysBusConfigList")
+//    public R querySysBusConfigList() {
+//        return R.ok().put("data",InitBusConfig.getBusConfig());
+//    }
     /**
      * 根据业务参数的key查询表格业务参数
      */
@@ -112,5 +111,12 @@ public class GeneratorBusConfigController {
     public R querySysBusConfigByKey(String key) {
         return R.ok().put("data",generatorBusConfigService.querySysBusConfigByKey(key));
     }
-
+    /**
+     * 根据模块查询所需的业务参数
+     */
+    @ApiOperation("根据模块查询所需的业务参数")
+    @GetMapping("/queryModuleBusConfig")
+    public R queryModuleBusConfig(String module) {
+        return R.ok().put("data",generatorBusConfigService.queryModuleBusConfig(module));
+    }
 }

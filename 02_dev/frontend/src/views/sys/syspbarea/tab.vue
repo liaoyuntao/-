@@ -51,10 +51,10 @@
                         width="150"
                         label="操作" >
                     <template slot-scope="scope">
-                        <el-button type="text"  v-if="isAuth(model+':'+pathUrl+':save')"  size="small" @click="addOrUpdateHandle(scope.row.id)">修改
+                        <el-button type="text"  v-if="isAuth(model+':'+pathUrl+':save')"  size="mini" @click="addOrUpdateHandle(scope.row.id)">修改
                         </el-button>
-                        <el-button  v-if="isAuth(model+':'+pathUrl+':delete')"  type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
-                        <el-button  v-for="items in operation"   v-if="isAuth(model+':'+pathUrl+':'+items.scope)"  @click="items.fun(scope.row)" type="text" size="small" v-text="items.name"></el-button>
+                        <el-button  v-if="isAuth(model+':'+pathUrl+':delete')"  type="text" size="mini" @click="deleteHandle(scope.row.id)">删除</el-button>
+                        <el-button  v-for="items in operation"   v-if="isAuth(model+':'+pathUrl+':'+items.scope)"  @click="items.fun(scope.row)" type="text" size="mini" v-text="items.name"></el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -406,25 +406,25 @@
             },
             // 表单提交
             dataFormSubmit () {
-                         this.$refs['saveForm'].validate((valid) => {  
+                         this.$refs['saveForm'].validate((valid) => {
             if (valid) {
             var params = {}
             Object.assign(params, this.saveForm)
             console.log(params)
-            var tick = !this.saveForm.id ? API[this.pathUrl].add(params) : API[this.pathUrl].update(params) 
+            var tick = !this.saveForm.id ? API[this.pathUrl].add(params) : API[this.pathUrl].update(params)
             tick.then(({data}) => {
             if (data && data.code === 0) {
-                  this.$message({ 
+                  this.$message({
             message: '操作成功',
             type: 'success',
             duration: 1500,
             onClose: () => {
             this.visible = true
-                        this.$emit('refreshDataList') 
+                        this.$emit('refreshDataList')
             }
             })
             } else {
-                   this.$message.error(data.msg) 
+                   this.$message.error(data.msg)
             }
             })
             }

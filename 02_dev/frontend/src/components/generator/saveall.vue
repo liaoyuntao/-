@@ -9,7 +9,7 @@
       </div>
     <el-form :inline="true" :model="tableData" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" >
   <el-table :data="tableData" class="tb-edit" style="width: 100%"  height="500"  size="mini" border highlight-current-row >
-    <el-table-column v-for="item in tableFieldMap[pathUrl].isSetList"
+    <el-table-column v-for="item in tableFieldMap.columns" v-if="item.isSet=='0'"
                      sortable="custom"
                      :prop="item.fieldName"
                      header-align="center"
@@ -31,7 +31,7 @@
           <div  v-else-if="item.inputType=='4'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
             <el-select v-model="scope.row[item.fieldName]" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
               <el-option
-                v-for="itemss in getBusConfig(item.dictionaryIndex).list"
+                v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                 :key="itemss.confName"
                 :label="itemss.confName"
                 :value="itemss.confVue"><template slot="prepend">{{item.pageComment}}</template>
@@ -44,7 +44,7 @@
                         v-model="scope.row[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option
                         :placeholder="item.pageComment" >
               <el-option
-                v-for="itemss in getBusConfig(item.dictionaryIndex).list"
+                v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                 :key="itemss.confVue"
                 :label="itemss.confName"
                 :value="itemss.confVue"><template slot="prepend">{{item.pageComment}}</template>
@@ -147,8 +147,6 @@
         prewImgLoad: false,
         prewImg: null,
         imgUrl: API.sysoss.upload(this.$cookie.get('token')),
-        busConfig: this.busConfig,
-        tableFieldMap: this.tableFieldMap,
         sysurl: window.SITE_CONFIG.baseUrl,
         visible: false,
         dialogImageUrl: '',
@@ -178,12 +176,21 @@
       pathUrl: {
         type: String
       },
+      model: {
+        type: String
+      },
       list: {
         type: Array
       },
       updateFunction: {
         type: Function
-      }
+      },
+      tableFieldMap: {
+        type:Object
+      },
+      busConfig: {
+        type:Object
+      },
     },
     watch: {
       // content (val) {
@@ -218,7 +225,7 @@
       },
       querySearch(queryString, cb) {
         ////console.log(this.activeIndex);
-        var restaurants = this.getBusConfig(this.activeIndex).list;
+        var restaurants = this.getBusConfig(busConfig,this.activeIndex).list;
         for(var i in restaurants){
           restaurants[i].value=restaurants[i].confName;
         }
@@ -264,8 +271,8 @@
         this.tableData=[];
         var dataForm = {};
         dataForm.id = id || 0
-        for (var i = 0; i < this.tableFieldMap[this.pathUrl].columns.length; i++) {
-          var cou = this.tableFieldMap[this.pathUrl].columns[i];
+        for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
+          var cou = this.tableFieldMap.columns[i];
           ////console.log(cou);
           if (cou.isNull === '1') {
             this.dataRule[cou.fieldName] = [

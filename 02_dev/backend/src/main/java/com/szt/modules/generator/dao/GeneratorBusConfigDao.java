@@ -5,6 +5,7 @@ import com.szt.modules.generator.entity.GeneratorBusConfigEntity;
 import com.szt.modules.sys.vo.QuerySysBusConfigListVO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Map;
@@ -25,4 +26,10 @@ public interface GeneratorBusConfigDao extends BaseMapper<GeneratorBusConfigEnti
     @MapKey("confCode")
     @Select("select id,conf_name,conf_code,conf_vue from generator_bus_config where conf_code=#{key}")
     Map<String,GeneratorBusConfigEntity> querySysBusConfigByCodeKey(String key);
+//    @Select("  select id, conf_code ,conf_name,conf_vue from generator_bus_config\n" +
+//            "        where   conf_code in(select  dictionary_index from generator_table_field where table_id=(select id from (SELECT concat((select name from generator_modules mo where mo.id=modules_id),REPLACE(table_name,'_','')) name,id  FROM \n" +
+//            "`generator_table` ) tab\n" +
+//            "            where tab.name =#{module}))")
+    @MapKey("confCode")
+    Map<String, QuerySysBusConfigListVO> queryModuleBusConfig(@Param("module") String module);
 }

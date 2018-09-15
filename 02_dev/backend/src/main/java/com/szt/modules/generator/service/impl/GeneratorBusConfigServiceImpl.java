@@ -14,7 +14,6 @@ import com.szt.modules.generator.entity.GeneratorTableEntity;
 import com.szt.modules.generator.service.GeneratorBusConfigService;
 import com.szt.modules.generator.service.GeneratorTableService;
 import com.szt.modules.sys.vo.QuerySysBusConfigListVO;
-import lombok.experimental.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -118,15 +117,30 @@ public class GeneratorBusConfigServiceImpl extends CommonServiceImpl<GeneratorBu
     }
 
     @Override
+    public Map<String, QuerySysBusConfigListVO> queryModuleBusConfig(String module) {
+
+        Map<String, QuerySysBusConfigListVO> map  = baseMapper.queryModuleBusConfig(module);
+        for (Map.Entry<String, QuerySysBusConfigListVO> entry : map.entrySet()) {
+            Map<String,String> map1 = new HashMap<>();
+            QuerySysBusConfigListVO quer =  entry.getValue();
+            for(GeneratorBusConfigEntity item : quer.getList()){
+                map1.put(item.getConfVue(),item.getConfName());
+            }
+            quer.setMap(map1);
+        }
+        return map;
+    }
+
+    @Override
     public void insertEntity(GeneratorBusConfigEntity entity){
         entity.insert();
         baseMapper.insert(entity);
-        InitBusConfig.updateBuConfig(entity.getConfCode());
+        //InitBusConfig.updateBuConfig(entity.getConfCode());
     }
     @Override
     public void updateEntity(GeneratorBusConfigEntity entity){
         entity.update();
         baseMapper.updateById(entity);
-        InitBusConfig.updateBuConfig(entity.getConfCode());
+       // InitBusConfig.updateBuConfig(entity.getConfCode());
     }
 }

@@ -178,14 +178,14 @@ public class GeneratorTableController {
         PageUtils page = generatorTableService.queryPage(params);
         return R.ok().put("page", page);
     }
-    /**
-     * 查询所有表格字段数据
-     */
-    @ApiOperation("查询所有表格字段数据")
-    @GetMapping("/queryTableFilePreviewVO")
-    public R queryTableFilePreview()  {
-        return R.ok().put("data",InitBusConfig.getTabConfig());
-    }
+//    /**
+//     * 查询所有表格字段数据
+//     */
+//    @ApiOperation("查询所有表格字段数据")
+//    @GetMapping("/queryTableFilePreviewVO")
+//    public R queryTableFilePreview()  {
+//        return R.ok().put("data",InitBusConfig.getTabConfig());
+//    }
     /**
      * 数据库结构同步
      */
@@ -197,6 +197,14 @@ public class GeneratorTableController {
         }
         generatorTableService.synchronizationStructure(ids);
         return R.ok();
+    }
+    /**
+     * 根据模块获取对应的表格信息
+     */
+    @ApiOperation("根据模块获取对应的表格信息")
+    @GetMapping("/queryTabeConfig")
+    public R queryTabeConfig(String module)  {
+        return R.ok().put("data",generatorTableService.queryTabeConfig(module));
     }
 
 }

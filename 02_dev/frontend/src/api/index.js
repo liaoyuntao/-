@@ -18,33 +18,9 @@ import * as sysconfig from './modules/sys/sysconfig'
 import * as sysoss from './modules/oss/sysoss'
 import * as sysagreement from './modules/sys/sysagreement'
 import * as sysprotocolhistory from './modules/sys/sysprotocolhistory'
-import * as wjadmincart from './modules/wjadmin/wjadmincart'
-import * as wjadmincoupon from './modules/wjadmin/wjadmincoupon'
-import * as wjadminfeedback from './modules/wjadmin/wjadminfeedback'
-import * as wjadmingoods from './modules/wjadmin/wjadmingoods'
-import * as wjadmingoodscategory from './modules/wjadmin/wjadmingoodscategory'
-import * as wjadminorder from './modules/wjadmin/wjadminorder'
-import * as wjadminordergoods from './modules/wjadmin/wjadminordergoods'
-import * as wjadminpaymenthistory from './modules/wjadmin/wjadminpaymenthistory'
-import * as wjadminreplenishmentpart from './modules/wjadmin/wjadminreplenishmentpart'
-import * as wjadminuseraddress from './modules/wjadmin/wjadminuseraddress'
-import * as wjadminusercoupon from './modules/wjadmin/wjadminusercoupon'
-import * as wjadminuserinfo from './modules/wjadmin/wjadminuserinfo'
-import * as wjadminvendingmachine from './modules/wjadmin/wjadminvendingmachine'
-import * as wjadminxcxuser from './modules/wjadmin/wjadminxcxuser'
-
 
 
 export default {
-  wjadminfeedback,
-  wjadmincart,
-  wjadmincoupon,
-  wjadminorder,
-  wjadminordergoods,
-  wjadminpaymenthistory,
-  wjadminuseraddress,
-  wjadminusercoupon,
-  wjadminuserinfo,
   common,     // 公共
   user,       // 管理员管理
   role,       // 角色管理
@@ -64,11 +40,6 @@ export default {
   sysoss,
   syspbarea,
   sysagreement,
-  sysprotocolhistory,
-  wjadmingoods,
-  wjadmingoodscategory,
-  wjadminreplenishmentpart,
-  wjadminvendingmachine,
-  wjadminxcxuser
+  sysprotocolhistory
 }
 

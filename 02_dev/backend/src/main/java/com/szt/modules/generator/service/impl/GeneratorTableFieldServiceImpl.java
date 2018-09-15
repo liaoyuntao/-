@@ -1,5 +1,6 @@
 package com.szt.modules.generator.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
 import com.szt.common.CommonServiceImpl;
 import com.szt.common.exception.RRException;
@@ -38,6 +39,8 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
     private GeneratorModulesService generatorModulesService;
     @Autowired
     private GeneratorTemplateConfigService generatorTemplateConfigService;
+    @Autowired
+    private GeneratorBusConfigService generatorBusConfigService;
     @Override
     @Transactional
     public void hideTableField(List<Long> longs) {
@@ -89,8 +92,13 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
         if (tab == null) {
             throw new RRException("您的表不存在");
         }
-
-        generatorTableField.setDataType(InitBusConfig.getFieldType().getMap().get(generatorTableField.getFieldType()));
+        Map<String, GeneratorBusConfigEntity> map =  generatorBusConfigService.querySysBusConfigByCodeKey("generator_table_field_field_type");
+        for(Map.Entry<String, GeneratorBusConfigEntity> item : map.entrySet()){
+            if(item.getValue().equals(generatorTableField.getDataType())){
+                generatorTableField.setFieldType(item.getKey());
+                break;
+            }
+        }
         //插入字段数据
         generatorTableField.setTabName(tab.getTableName());
         generatorTableField.setDictionaryIndex(tab.getTableName()+"_"+generatorTableField.getFieldName());
@@ -152,7 +160,9 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
                 //判断是否为数字
                 Integer.parseInt(item.getFieldType());
             }catch (Exception e){
-                List<GeneratorBusConfigEntity> types = InitBusConfig.getFieldType().getList();
+                EntityWrapper<GeneratorBusConfigEntity> ew = new EntityWrapper<>();
+                ew.eq("conf_code","generator_table_field_field_type");
+                List<GeneratorBusConfigEntity> types =generatorBusConfigService.selectList(ew);;
                 for(GeneratorBusConfigEntity type : types){
                     if(type.getConfName().equals(item.getFieldType())){
                         item.setFieldType(type.getConfVue());
@@ -169,6 +179,6 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
         entity.update();
         baseMapper.updateById(entity);
 
-        InitBusConfig.updateTabConfig(generatorTableService.selectById(baseMapper.selectById(entity).getTableId()).getTableName());
+        //InitBusConfig.updateTabConfig(generatorTableService.selectById(baseMapper.selectById(entity).getTableId()).getTableName());
     }
 }

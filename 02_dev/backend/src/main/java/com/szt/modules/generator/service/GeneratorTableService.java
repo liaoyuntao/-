@@ -3,7 +3,6 @@ package com.szt.modules.generator.service;
 import com.szt.common.CommonService;
 import com.szt.modules.generator.entity.GeneratorBusConfigEntity;
 import com.szt.modules.generator.entity.GeneratorTableEntity;
-import com.szt.modules.sys.vo.QuerySysBusConfigListVO;
 
 import java.util.List;
 import java.util.Map;
@@ -65,6 +64,11 @@ public interface GeneratorTableService extends CommonService<GeneratorTableEntit
      */
     List<GeneratorBusConfigEntity> queryData(String tableName, String key, String value);
 
-
+    /**
+     * 根据模块查询所需表格字段
+     * @param module
+     * @return
+     */
+    GeneratorTableEntity queryTabeConfig(String module);
 }
 

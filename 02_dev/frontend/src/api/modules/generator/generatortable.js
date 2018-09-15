@@ -87,4 +87,13 @@ export function synchronizationStructure (params) {
     data: requestParam(params, 'post', false)
   })
 }
+//获取表格字段
+export function queryTabeConfig (params) {
+  return request({
+    url: requestUrl('/generator/generatortable/queryTabeConfig'),
+    method: 'get',
+    params: requestParam(params, 'get', false)
+  })
+}
+
 

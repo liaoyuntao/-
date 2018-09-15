@@ -14,7 +14,7 @@ import com.szt.modules.generator.service.GeneratorModulesService;
 import com.szt.modules.generator.service.GeneratorTableService;
 import com.szt.modules.generator.service.GeneratorTemplateConfigService;
 import com.szt.modules.sys.service.SysMenuService;
-import com.szt.modules.sys.vo.QuerySysBusConfigListVO;
+import lombok.experimental.var;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -278,7 +278,7 @@ public class GeneratorTableServiceImpl extends CommonServiceImpl<GeneratorTableD
     public void updateEntity(GeneratorTableEntity generatorTable){
         generatorTable.update();
         baseMapper.updateById(generatorTable);
-        InitBusConfig.updateTabConfig(generatorTable.getClass().getAnnotation(TableName.class).value());
+       // InitBusConfig.updateTabConfig(generatorTable.getClass().getAnnotation(TableName.class).value());
     }
     @Override
     public List<GeneratorBusConfigEntity> queryData(String tableName, String key, String value) {
@@ -288,5 +288,17 @@ public class GeneratorTableServiceImpl extends CommonServiceImpl<GeneratorTableD
             e.printStackTrace();
             return new ArrayList<GeneratorBusConfigEntity>();
         }
+    }
+
+    @Override
+    public GeneratorTableEntity queryTabeConfig(String module) {
+        GeneratorTableEntity tab =baseMapper.queryTabeConfig(module);
+        for(GeneratorTableFieldEntity field : tab.getColumns()){
+            String attrName = GenUtils.columnToJava(field.getFieldName());
+            field.setFieldnames(field.getFieldName().replaceAll("_", ""));
+            field.setFieldName(org.apache.commons.lang.StringUtils.uncapitalize(attrName));
+        }
+
+        return tab;
     }
 }

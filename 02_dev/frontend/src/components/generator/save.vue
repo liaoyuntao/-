@@ -4,7 +4,7 @@
    :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" >
       <el-row :gutter="20">
-        <el-col :lg="item.inputType=='5'||item.inputType=='7' ||item.inputType=='6' ||item.inputType=='8' ||item.inputType=='9' ?24:12"  v-for="item in tableFieldMap[pathUrl].isSetList">
+        <el-col :lg="item.inputType=='5'||item.inputType=='7' ||item.inputType=='6' ||item.inputType=='8' ||item.inputType=='9' ?24:12"  v-for="item in tableFieldMap.columns" v-if="item.isSet=='0'">
       <!--  <el-col :xs="item.inputType=='5'||item.inputType=='7'?24:12" :sm="item.inputType=='5'?24:12" :md="item.inputType=='5'?24:12" :lg="item.inputType=='5'||item.inputType=='7'?24:12" :xl="item.inputType=='5'||item.inputType=='7'?24:12"  v-for="item in tableFieldMap[pathUrl].isSetList">
     -->   <!--   <div class="grid-content bg-purple">-->
           <el-form-item  :prop="item.fieldName">
@@ -29,14 +29,13 @@
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
               <el-select v-model="dataForm[item.fieldName]" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
                 <el-option
-                  v-for="itemss in getBusConfig(item.dictionaryIndex).list"
+                  v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                   :key="itemss.confName"
                   :label="itemss.confName"
                   :value="itemss.confVue"><template slot="prepend">{{item.pageComment}}</template>
                 </el-option>
               </el-select>
             </div>
-
             <!--复选框-->
             <div  v-else-if="item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
@@ -44,7 +43,7 @@
                        v-model="dataForm[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option
                        :placeholder="item.pageComment">
               <el-option
-                v-for="itemss in getBusConfig(item.dictionaryIndex).list"
+                v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                 :key="itemss.confVue"
 
                 :label="itemss.confName"
@@ -123,6 +122,8 @@
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
             <el-cascader v-model="dataForm[item.fieldName]"
               :placeholder="item.pageComment"
+                         @change="cascChange"
+                         @active-item-change="handleSelect"
               :options="options2" style="width:100%;"
               filterable
               :props="props"
@@ -162,7 +163,7 @@
     name: 'save',
     data () {
       return {
-        options2: this.address,
+        options2: getAddress(0,1,4),
         props: {
           label:"areaname",
           value: 'id',
@@ -175,9 +176,6 @@
         prewImgLoad: false,
         prewImg: null,
         imgUrl: API.sysoss.upload(this.$cookie.get('token')),
-        busConfig: this.busConfig,
-        tableFieldMap: this.tableFieldMap,
-        sysurl: window.SITE_CONFIG.baseUrl,
         visible: false,
         dialogImageUrl: '',
         dialogVisible: false,
@@ -201,22 +199,27 @@
       pathUrl: {
         type: String
       },
+      model: {
+        type: String
+      },
       list: {
         type: Array
       },
       updateFunction: {
         type: Function
-      }
+      },
+      tableFieldMap: {
+        type:Object
+      },
+      busConfig: {
+        type:Object
+      },
     },
     watch: {
-      // content (val) {
-      //   this.editor && val !== this.outContent && this.editor.html(val)
-      // },
-      // outContent (val) {
-      //   this.$emit('update-content', val, this.fieldName)
-      //   this.$emit('update:content', val, this.fieldName)
-      //   this.$emit('on-content-change', val, this.fieldName)
-      // }
+      dataForm (val) {
+        console.log(val);
+        //this.setListSelections(val)
+      }
     },
     mounted () {
       // // 初始访问时创建
@@ -226,6 +229,10 @@
      * keep-alive 会用到进入时调用activated 离开时调用deactivated
      * 初始访问 created、mounted 切换时deactivated 再次进入时 activated
      */
+    created(){
+
+    },
+
     activated () {
       // // keep-alive 进入时创建
       // this.initEditor()
@@ -235,6 +242,9 @@
       // this.removeEditor()
     },
     methods: {
+      cascChange(a,b){
+        console.log(a,b);
+      },
       activeFieldName(fieldName){
         //console.log(fieldName);
         this.fieldNmae=fieldName;
@@ -247,12 +257,37 @@
         }
         this.dataForm[this.fieldNmae]=JSON.stringify(list);
       },
+      //地址的选中方法
       handleSelect(item) {
-        //////console.log(this.activeIndex=item.dictionaryIndex);
+        //获得层级
+        var level = item.length;
+        var address = [];
+        console.log(level);
+        this.queryAddressById(this.options2,item[level-1],address);
+        address[0].children=getAddress(item[level-1],level,4);
+      },
+      //根据id查询数据
+      queryAddressById(list,id,address){
+        // if(list==null){
+        //   return;
+        // }
+        console.log(list);
+        for(var i in list){
+          var item = list[i];
+          if(item.id===id){
+            console.log(item);
+            address[0]=item;
+            return;
+          }
+          if(item.children!=null && item.children.length>0){
+            this.queryAddressById(item.children,id,address)
+          }
+
+        }
       },
       querySearch(queryString, cb) {
         //////console.log(this.activeIndex);
-        var restaurants = this.getBusConfig(this.activeIndex).list;
+        var restaurants = this.getBusConfig(busConfig,this.activeIndex).list;
         for(var i in restaurants){
           restaurants[i].value=restaurants[i].confName;
         }
@@ -296,8 +331,9 @@
       init: function (id,json) {
         var dataForm = {};
         dataForm.id = id || 0
-        for (var i = 0; i < this.tableFieldMap[this.pathUrl].columns.length; i++) {
-          var cou = this.tableFieldMap[this.pathUrl].columns[i];
+        console.log(this.tableFieldMap);
+        for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
+          var cou = this.tableFieldMap.columns[i];
             this.dataRule[cou.fieldName] = [
           //   { required: true, message: cou.pageComment + '不能为空', trigger: 'blur' },
           //     { fieldName:cou.fieldName,checkout:cou.checkout,validator: function(rule, value, callback) {
@@ -355,8 +391,8 @@
           if (id) {
             API[this.pathUrl].info(id).then(({data}) => {
               if (data && data.code === 0) {
-                for (var i = 0; i < this.tableFieldMap[this.pathUrl].columns.length; i++) {
-                  var cou = this.tableFieldMap[this.pathUrl].columns[i]
+                for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
+                  var cou = this.tableFieldMap.columns[i]
                   // 多选框兼容
                   if (cou.inputType === '5' || cou.inputType === '11') {
                     if (!data.data[cou.fieldName]) {
@@ -418,8 +454,8 @@
                   duration: 1500,
                   onClose: () => {
                     this.visible = false;
-                    if( this.tableFieldMap[this.pathUrl].isBusiness==0){
-                      this.reloadBusConfig(this.tableFieldMap[this.pathUrl].tableName);
+                    if( this.tableFieldMap.isBusiness==0){
+                      this.reloadBusConfig(this.tableFieldMap.tableName);
                     }
                     this.$emit('refreshDataList')
                   }

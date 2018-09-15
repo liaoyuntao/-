@@ -1,6 +1,6 @@
 <template>
   <div class="mod-config">
-    <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
+   <!-- <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
       <seek ref="seek" :dataForm.sync="dataForm" :pathUrl="pathUrl"></seek>
       <div style="float:right">
         <el-button @click="getDataList()">查询</el-button>
@@ -12,18 +12,16 @@
         <el-button  type="danger" @click="showSeekField()" :disabled="dataListSelections.length <= 0">显示搜索字段</el-button>
         <el-button  type="danger" @click="showExportField()" :disabled="dataListSelections.length <= 0">显示导出字段</el-button>
       </div>
-    </el-form>
-    <tablefield :pathUrl="pathUrl" ref="tablefield" :saveForm="saveForm"  :dataForm.sync="dataForm"  :model="model" :operation.sync="operation" :setListSelections="setListSelections"></tablefield>
+    </el-form>-->
+    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton"  :saveForm="saveForm"  :dataForm.sync="dataForm"  :model="model" :operation.sync="operation" :setListSelections="setListSelections"></tablefield>
   </div>
 </template>
 
 <script>
   import API from '@/api'
-  import seek from '@/components/generator/seek.vue'
   import tablefield from '@/components/generator/tablefield.vue'
   export default {
     components: {
-      seek,
       tablefield
     },
     data: function () {
@@ -35,9 +33,21 @@
         sysurl: window.SITE_CONFIG.baseUrl,
         dataForm: {},
         dataListSelections: [],
-        // 操作按钮
         operation: [
-          // {'scope': 'delete', fun: this.hideTableField, name: '显示所有字段'}
+          {type:"primary",'scope': 'save', fun: this.addOrUpdateHandle, name: '修改',disabled:function(row){
+              return false;
+            }},
+          {type:"danger",'scope': 'delete', fun: this.deleteHandle, name: '删除',disabled:function(row){
+              return false;
+            }},
+        ],
+        //表格按钮
+        formButton:[
+          {type:"primary",'scope': 'save', fun: this.addOrUpdateHandle, name: '新增',},
+          {type:"primary",'scope': 'delete', fun: this.addAllOrUpdateHandle, name: '批量新增',},
+          {type:"danger",'scope': 'delete', fun: this.deleteHandle, name: '批量删除',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }}
         ],
         saveForm: {
 
@@ -54,6 +64,7 @@
         })
       },
       init: function (id) {
+        console.log(id);
         this.dataForm.tableId = id
         this.saveForm.tableId = id
         this.getDataList()
@@ -63,9 +74,9 @@
           this.$refs.tablefield.getDataList()
         })
       },
-      addOrUpdateHandle () {
+      addOrUpdateHandle (row) {
         this.$nextTick(() => {
-          this.$refs.tablefield.addOrUpdateHandle()
+          this.$refs.tablefield.addOrUpdateHandle(row)
         })
       },
       deleteHandle () {

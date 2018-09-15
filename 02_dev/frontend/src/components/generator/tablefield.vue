@@ -1,5 +1,14 @@
 <template>
   <div style="margin-top:20px">
+    <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
+      <seek ref="seek" :dataForm.sync="dataForm"  :tableFieldMap="tableFieldMap" :busConfig="busConfig" :pathUrl="pathUrl":model="model"></seek>
+      <div style="float:right">
+        <el-button type="primary" @click="getDataList()" size="small">查询</el-button>
+      <!--  <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
+        <el-button v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>-->
+        <el-button :type="items.type" plain  v-for="items in formButton"   v-if="isAuth(model+':'+pathUrl+':'+items.scope)"  :disabled="items.disabled!=undefined&&items.disabled(dataListSelections)" @click="items.fun()" size="small" v-text="items.name"></el-button>
+      </div>
+    </el-form>
   <el-table
     :default-sort="{prop: 'createTime', order: 'descending'}"
     @sort-change="sort"
@@ -16,13 +25,13 @@
       align="center"
       width="50">
     </el-table-column>
-    <template v-for="item in tableFieldMap[pathUrl].tableSetList">
-      <table-tree-column  v-if="item.fieldName===tableFieldMap[pathUrl].treeFieldName"
+    <template v-for="item in tableFieldMap.columns" v-if="item.tableSet=='0'">
+      <table-tree-column  v-if="item.fieldName===tableFieldMap.treeFieldName"
                           :prop="item.fieldName"
                          header-align="center"
                          :pathUrl="pathUrl"
-                         :treeKey="tableFieldMap[pathUrl].treeKey"
-                         :label="item.pageComment" :parentKey="tableFieldMap[pathUrl].parentKey"  :levelKey="tableFieldMap[pathUrl].levelKey">
+                         :treeKey="tableFieldMap.treeKey"
+                         :label="item.pageComment" :parentKey="tableFieldMap.parentKey"  :levelKey="tableFieldMap.levelKey">
       </table-tree-column>
       <el-table-column
                        sortable="custom"
@@ -40,16 +49,16 @@
         </span>
           <!--下拉选selec-->
           <!-- <span  v-else-if="item.inputType=='5' "  v-text="jsonStr(busConfig[pathUrl+item.fieldnames].map,scope.row[item.fieldName])" >  </span>-->
-          <span  v-else-if="item.inputType=='4' "   >
-        <el-tag v-text="getBusConfig(item.dictionaryIndex).map[scope.row[item.fieldName]]" v-if="scope.row[item.fieldName]!=null" ></el-tag>
+          <span  v-else-if="item.inputType=='4' "  v-text="getBusConfig(model+pathUrl,item.dictionaryIndex).map[scope.row[item.fieldName]]" >
+       <!-- <el-tag v-text="getBusConfig(model+pathUrl,item.dictionaryIndex).map[scope.row[item.fieldName]]" v-if="scope.row[item.fieldName]!=null" ></el-tag>-->
         </span>
           <!--复选框-->
-          <span  v-else-if=" item.inputType=='5'" >
-         <el-tag v-text="selectText(getBusConfig(item.dictionaryIndex).map,scope.row[item.fieldName])"   ></el-tag>
+          <span  v-else-if=" item.inputType=='5'" v-text="selectText(getBusConfig(model+pathUrl,item.dictionaryIndex).map,scope.row[item.fieldName])">
+         <!--<el-tag v-text="selectText(getBusConfig(model+pathUrl,item.dictionaryIndex).map,scope.row[item.fieldName])"   ></el-tag>-->
         </span>
-          <span  v-else-if=" item.inputType=='11'" >
-         <el-tag v-text="selectText(addressMap,scope.row[item.fieldName])" v-if="item.fieldName!=null"></el-tag>
-        </span>
+        <!--  <span  v-else-if=" item.inputType=='11'" v-text="selectText(addressMap,scope.row[item.fieldName])">
+        &lt;!&ndash; <el-tag v-text="selectText(addressMap,scope.row[item.fieldName])" v-if="item.fieldName!=null"></el-tag>&ndash;&gt;
+        </span>-->
           <span v-else v-text="scope.row[item.fieldName]"></span>
         </template>
       </el-table-column>
@@ -62,11 +71,11 @@
       width="300"
       label="操作" >
       <template slot-scope="scope">
-        <el-button type="primary" plain  v-if="isAuth(model+':'+pathUrl+':save') && updateFunction==null"  size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+        <!--<el-button type="primary" plain  v-if="isAuth(model+':'+pathUrl+':save') && updateFunction==null"  size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
         <el-button type="primary" plain   v-if="isAuth(model+':'+pathUrl+':save') && updateFunction!=null"  size="small" @click="updateFunction(scope.row.id)">修改</el-button>
          <el-button type="primary" plain   v-if="isAuth(model+':'+pathUrl+':save') && viewFunction!=null"  size="small" @click="viewFunction(scope.row.table_name)">查看</el-button>
-        <el-button   v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" plain size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
-        <el-button type="primary" plain  v-for="items in operation"   v-if="isAuth(model+':'+pathUrl+':'+items.scope)"  @click="items.fun(scope.row)" size="small" v-text="items.name"></el-button>
+        <el-button   v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" plain size="small" @click="deleteHandle(scope.row.id)">删除</el-button>-->
+        <el-button :type="items.type" plain  v-for="items in operation"   v-if="isAuth(model+':'+pathUrl+':'+items.scope)" :disabled="items.disabled!=undefined&&items.disabled(scope.row)" @click="items.fun(scope.row)" size="small" v-text="items.name"></el-button>
       </template>
     </el-table-column>
 
@@ -81,30 +90,34 @@
     layout="total, sizes, prev, pager, next, jumper">
   </el-pagination>
     <!-- 弹窗, 新增 / 修改 -->
-    <save  ref="save" :pathUrl="pathUrl" @refreshDataList="getDataList"  :updateFunction="updateFunction"></save>
+    <save  ref="save" :pathUrl="pathUrl":model="model" :dataForm="dataForm" @refreshDataList="getDataList"   :tableFieldMap="tableFieldMap"></save>
     <!--批量新增-->
-    <saveall ref="saveall" :pathUrl="pathUrl" :visible.sync="saveall" @refreshDataList="getDataList"></saveall>
+    <saveall ref="saveall":model="model" :pathUrl="pathUrl"  :dataForm="dataForm" :visible.sync="saveall" @refreshDataList="getDataList" :tableFieldMap="tableFieldMap"></saveall>
   </div>
 </template>
 
 <script>
   import API from '@/api'
+  import seek from '@/components/generator/seek.vue'
   import save from '@/components/generator/save.vue'
   import saveall from '@/components/generator/saveall.vue'
   import TableTreeColumn from '@/components/table-tree-column/index1'
+  import $ from 'jquery'
+  import requestUrl from '@/api/requestUrl'
   export default {
     name: 'tablefield',
     components: {
       save,
       saveall,
+      seek,
       TableTreeColumn
     },
     data () {
       return {
         addressMap:this.addressMap,
         saveall:false,
-        busConfig: this.busConfig,
-        tableFieldMap: this.tableFieldMap,
+        busConfig: {},
+        tableFieldMap: {},
         sysurl: window.SITE_CONFIG.baseUrl,
         sortData: {
           order: undefined,
@@ -129,13 +142,21 @@
       pathUrl: {
         type: String
       },
-      templateHtml: {
-        type: String
-      },
       model: {
         type: String
       },
+      templateHtml: {
+        type: String
+      },
+      //操作按钮
       operation: {
+        type: Array,
+        default: function () {
+          return []
+        }
+      },
+      //表格按钮
+      formButton: {
         type: Array,
         default: function () {
           return []
@@ -156,16 +177,28 @@
     },
     watch: {
       dataListSelections (val) {
-        //////console.log(val)
         this.setListSelections(val)
       }
     },
     activated () {
-      // for (var i = 0; i < this.tableFieldMap[this.pathUrl].columns.length; i++) {
-      //   var cou = this.tableFieldMap[this.pathUrl].columns[i]
-      //   this.saveForm[cou.fieldName] = ''
-      // // 多图像上传兼容
-      // }
+      // //查询所需表格参数
+      // API.generatortable.queryTabeConfig({module:this.model+this.pathUrl}).then(({data}) => {
+      //   if (data && data.code === 0) {
+      //     this.tableFieldMap=data.data;
+      //   } else {
+      //     this.$message.error(data.msg)
+      //   }
+      // })
+    },
+    created(){
+      //查询所需表格参数
+      API.generatortable.queryTabeConfig({module:this.model+this.pathUrl}).then(({data}) => {
+        if (data && data.code === 0) {
+          this.tableFieldMap=data.data;
+        } else {
+          this.$message.error(data.msg)
+        }
+      })
     },
     methods: {
       selectText(map,val){
@@ -185,6 +218,7 @@
       },
       // 获取数据列表
       getDataList () {
+
         this.dataListLoading = true
         var params = {
           page: this.pageIndex,
@@ -192,8 +226,8 @@
           sidx: this.sortData.sidx,
           order: this.sortData.order
         }
-        if(this.tableFieldMap[this.pathUrl].parentKey!=null){
-          params[this.tableFieldMap[this.pathUrl].parentKey]=0;
+        if(this.tableFieldMap.parentKey!=null){
+          params[this.tableFieldMap.parentKey]=0;
         }
         for (var key in this.dataForm) {
           if (this.dataForm[key]!=null) {
@@ -235,14 +269,17 @@
         this.dataListSelections = val
       },
       // 新增 / 修改
-      addOrUpdateHandle (id) {
+      addOrUpdateHandle (row) {
         this.addOrUpdateVisible = true
         this.$nextTick(() => {
-          this.$refs.save.init(id,this.dataForm)
+          this.$refs.save.init(row!=undefined?row.id:null,this.dataForm)
         })
       },
       // 删除
       deleteHandle (id) {
+        if(id!=null){
+          id=id.id;
+        }
         var ids = id ? [id] : this.dataListSelections.map(item => {
           return item.id
         })

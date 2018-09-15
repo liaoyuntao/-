@@ -32,7 +32,7 @@ var getCookie = function (name) {
  * 获取联动地址
  * @param id
  */
-export function getAddress(id=0,level,levelLength=4){
+export function getAddress(id=0,level,levelLength){
   var list = [];
   $.ajax({
     url: requestUrl('/sys/syspbarea/list'),
@@ -50,12 +50,12 @@ export function getAddress(id=0,level,levelLength=4){
     }
   })
   for(var i in list){
-      var item = list[i];
-      item.values=item;
-      if(level!==levelLength){
-        item.cities=[];
-      }
-      item.level=level;
+    var item = list[i];
+    console.log(level,levelLength);
+    if(level!=levelLength-1){
+      item.children=[];
+    }
+    item.level=level;
   }
   return list;
 }

@@ -61,8 +61,8 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row)">导入本地</el-button>
-          <!--<el-button type="text" size="small" @click="deleteHandle(scope.row.id)">导入本地</el-button>-->
+          <el-button type="text" size="mini" @click="addOrUpdateHandle(scope.row)">导入本地</el-button>
+          <!--<el-button type="text" size="mini" @click="deleteHandle(scope.row.id)">导入本地</el-button>-->
         </template>
       </el-table-column>
     </el-table>

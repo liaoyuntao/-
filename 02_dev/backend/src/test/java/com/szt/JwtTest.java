@@ -45,6 +45,6 @@ public class JwtTest {
      */
     @Test
     public void test3() {
-        InitBusConfig.updateAddressConfig();
+     //   InitBusConfig.updateAddressConfig();
     }
 }

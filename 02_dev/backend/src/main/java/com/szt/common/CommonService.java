@@ -3,6 +3,7 @@ package com.szt.common;
 import com.baomidou.mybatisplus.service.IService;
 import com.szt.common.utils.PageUtils;
 import com.szt.modules.sys.entity.SysCommcomFieldEntity;
+import com.szt.modules.sys.entity.SysConfigEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -46,4 +47,5 @@ public interface   CommonService<T> extends IService<T> {
       * @param ids
       */
      void deleteList(List<Long> ids);
+
 }

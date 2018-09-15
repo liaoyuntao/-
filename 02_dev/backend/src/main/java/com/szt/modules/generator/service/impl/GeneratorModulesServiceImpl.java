@@ -117,8 +117,8 @@ public class GeneratorModulesServiceImpl extends CommonServiceImpl<GeneratorModu
                 fieldEntity.setIsDataBase(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_DATA_BASE_0);
                 fieldEntity.setIsSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SET_0);
                 fieldEntity.setDataType(fieldEntity.getFieldType());
-                Map<String, String> map =  InitBusConfig.getFieldType().getMap();
-                for(Map.Entry<String, String> item : map.entrySet()){
+                Map<String, GeneratorBusConfigEntity> map =  generatorBusConfigService.querySysBusConfigByCodeKey("generator_table_field_field_type");
+                for(Map.Entry<String, GeneratorBusConfigEntity> item : map.entrySet()){
                     if(item.getValue().equals(fieldEntity.getDataType())){
                         fieldEntity.setFieldType(item.getKey());
                             break;
@@ -141,6 +141,6 @@ public class GeneratorModulesServiceImpl extends CommonServiceImpl<GeneratorModu
                     fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_0);
                 }
                 generatorTableFieldService.insert(fieldEntity);
-                InitBusConfig.updateTabConfig(t.getTableName());
+               // InitBusConfig.updateTabConfig(t.getTableName());
     }
 }

@@ -64,3 +64,11 @@ export function querySysBusConfigByKey (params) {
     params: requestParam(params, 'get', false)
   })
 }
+//根据模块查询所需的业务参数
+export function queryModuleBusConfig (params) {
+  return request({
+    url: requestUrl('/generator/generatorbusconfig/queryModuleBusConfig'),
+    method: 'get',
+    params: requestParam(params, 'get', false)
+  })
+}

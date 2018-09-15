@@ -113,12 +113,12 @@ public class SysPbAreaController {
             sysPbAreaService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    /**
-     * 查询地址信息
-     */
-    @ApiOperation("删除")
-    @PostMapping("/getAddressConfig")
-    public R getAddressConfig() {
-        return R.ok().put("data",InitBusConfig.getAddressConfig());
-    }
+//    /**
+//     * 查询地址信息
+//     */
+//    @ApiOperation("删除")
+//    @PostMapping("/getAddressConfig")
+//    public R getAddressConfig() {
+//        return R.ok().put("data",InitBusConfig.getAddressConfig());
+//    }
 }

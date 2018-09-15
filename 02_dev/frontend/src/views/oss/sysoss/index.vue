@@ -1,6 +1,6 @@
 <template>
   <div class="mod-config">
-    <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="padding-bottom:70px;">
+    <!--<el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="padding-bottom:70px;">
       <seek ref="seek" :dataForm.sync="dataForm" :pathUrl="pathUrl"></seek>
       <div style="float:right">
         <el-button @click="getDataList()">查询</el-button>
@@ -9,8 +9,8 @@
         <el-button type="primary" @click="configHandle()">云存储配置</el-button>
         <el-button type="primary" @click="uploadHandle()">上传文件</el-button>
       </div>
-    </el-form>
-    <tablefield :pathUrl="pathUrl" ref="tablefield" :saveForm="saveForm" :dataForm.sync="dataForm"  :setListSelections="setListSelections"  :model="model" :operation.sync="operation"></tablefield>
+    </el-form>-->
+    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton":saveForm="saveForm" :dataForm.sync="dataForm"  :setListSelections="setListSelections"  :model="model" :operation.sync="operation"></tablefield>
     <!-- 弹窗, 云存储配置 -->
     <config v-if="configVisible" ref="config"></config>
     <!-- 弹窗, 上传文件 -->
@@ -36,14 +36,33 @@
         configVisible: false,
         model: 'oss',
         pathUrl: 'sysoss',
-        busConfig: this.busConfig,
-        tableFieldMap: this.tableFieldMap,
         sysurl: window.SITE_CONFIG.baseUrl,
         dataForm: {},
         dataListSelections: [],
         // 操作按钮
+        // 操作按钮
         operation: [
-          // {'scope': 'delete', fun: this.hideTableField, name: '显示所有字段'}
+          {type:"primary",'scope': 'save', fun: this.addOrUpdateHandle, name: '修改',disabled:function(row){
+              return false;
+            }},
+          {type:"danger",'scope': 'delete', fun: this.deleteHandle, name: '删除',disabled:function(row){
+              return false;
+            }},
+
+        ],
+        //表格按钮
+        formButton:[
+          {type:"primary",'scope': 'save', fun: this.addOrUpdateHandle, name: '新增',},
+          {type:"primary",'scope': 'delete', fun: this.addAllOrUpdateHandle, name: '批量新增',},
+          {type:"danger",'scope': 'delete', fun: this.deleteHandle, name: '批量删除',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},
+          {type:"primary",'scope': 'delete', fun: this.configHandle, name: '云存储配置',disabled:function(row){
+              return false;
+            }},
+          {type:"primary",'scope': 'delete', fun: this.uploadHandle, name: '上传图片',disabled:function(row){
+              return false;
+            }},
         ],
         saveForm: {
           id: 0,
@@ -63,9 +82,14 @@
       this.getDataList()
     },
     methods: {
-      addOrUpdateHandle () {
+      addAllOrUpdateHandle () {
         this.$nextTick(() => {
-          this.$refs.tablefield.addOrUpdateHandle()
+          this.$refs.tablefield.addAllOrUpdateHandle()
+        })
+      },
+      addOrUpdateHandle (row) {
+        this.$nextTick(() => {
+          this.$refs.tablefield.addOrUpdateHandle(row)
         })
       },
       deleteHandle () {

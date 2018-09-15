@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.szt.modules.generator.entity.GeneratorBusConfigEntity;
 import com.szt.modules.generator.entity.GeneratorTableEntity;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.szt.modules.generator.entity.GeneratorTableFieldEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -48,4 +49,6 @@ public interface GeneratorTableDao extends BaseMapper<GeneratorTableEntity> {
      */
     @Select("select  ${value} confVue,${key} confName  from ${tableName} group by confName")
     List<GeneratorBusConfigEntity> queryData(@Param("tableName") String tableName, @Param("key") String key, @Param("value") String value);
+
+    GeneratorTableEntity queryTabeConfig(@Param("module")String module);
 }

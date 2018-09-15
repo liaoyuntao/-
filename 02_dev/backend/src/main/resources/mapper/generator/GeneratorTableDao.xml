@@ -179,6 +179,39 @@
         order by field.sort
     </select>
 
+    <select id="queryTabeConfig" resultMap="queryTableFilePreviewVOMap">
+select * from(SELECT
+concat((select name from generator_modules mo where mo.id=tab.modules_id),REPLACE(tab.table_name,'_','')) module_tab_name,
+tab.id,
+tab.modules_id,
+tab.table_comment,
+tab.business_value,
+tab.business_key,
+tab.is_business,
+tab.level_key,
+tab.parent_key,
+tab.tree_key,
+tab.tree_field_name,
+f.field_name,
+f.is_seek,
+f.data_length,
+f.width_length,
+f.dictionary_index,
+f.checkout,
+f.is_export,
+f.page_comment,
+f.comment,
+f.table_set,
+f.is_data_base,
+f.is_set,
+f.input_type,
+f.data_default
+  FROM
+`generator_table` tab
+left join generator_table_field f on f.table_id=tab.id
+order by f.sort
+) tabs where tabs.module_tab_name = #{module}
+    </select>
 
 
 </mapper>

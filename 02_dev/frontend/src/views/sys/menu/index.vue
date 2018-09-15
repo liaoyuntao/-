@@ -45,9 +45,9 @@
         align="center"
         label="类型">
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 0" size="small">目录</el-tag>
-          <el-tag v-else-if="scope.row.type === 1" size="small" type="success">菜单</el-tag>
-          <el-tag v-else-if="scope.row.type === 2" size="small" type="info">按钮</el-tag>
+          <el-tag v-if="scope.row.type === 0" size="mini">目录</el-tag>
+          <el-tag v-else-if="scope.row.type === 1" size="mini" type="success">菜单</el-tag>
+          <el-tag v-else-if="scope.row.type === 2" size="mini" type="info">按钮</el-tag>
         </template>
       </el-table-column>
       <el-table-column
@@ -79,8 +79,8 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button v-if="isAuth('sys:user:update')" type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-          <el-button v-if="isAuth('sys:user:delete')" type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
+          <el-button v-if="isAuth('sys:user:update')" type="text" size="mini" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+          <el-button v-if="isAuth('sys:user:delete')" type="text" size="mini" @click="deleteHandle(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

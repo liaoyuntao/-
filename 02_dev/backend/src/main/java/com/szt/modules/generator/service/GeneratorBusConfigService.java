@@ -45,5 +45,11 @@ public interface GeneratorBusConfigService extends CommonService<GeneratorBusCon
      */
     Map<String,GeneratorBusConfigEntity> querySysBusConfigByCodeKey(String key);
 
+    /**
+     * 根据模块查询所需的业务参数
+     * @param module
+     * @return
+     */
+    Map<String, QuerySysBusConfigListVO> queryModuleBusConfig(String module);
 }
 
