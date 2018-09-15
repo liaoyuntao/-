@@ -41,47 +41,8 @@ var getCookie = function (name) {
   return ''
 }
 Vue.prototype.reloadConfig = function () {
-  // var tableFieldMap = sessionStorage.getItem("tableFieldMap");
-  // if(tableFieldMap==undefined){
-  //查询表格所需列信息
-  //   $.ajax({
-  //     url: requestUrl('/generator/generatortable/queryTableFilePreviewVO'),
-  //     type: 'get', // GET
-  //     async: false, // 或false,是否异步
-  //     data: { },
-  //     timeout: 5000, // 超时时间
-  //     dataType: 'json', // 返回的数据格式：
-  //     beforeSend: function (request) {
-  //       request.setRequestHeader('token', getCookie('token'))
-  //     },
-  //     success: function (data, textStatus, jqXHR) {
-  //       //console.log('获取服务器配置')
-  //       Vue.prototype.tableFieldMap = data.data
-  //     }
-  //   })
-  // // }else{
-  // //   Vue.prototype.tableFieldMap =JSON.parse(tableFieldMap)
-  // //
-
-  // // }
-  // // var busConfig = sessionStorage.getItem("busConfig");
-  // // if(busConfig==undefined){
-  // //查询表格所需业务字段
-  //   $.ajax({
-  //     url: requestUrl('/generator/generatorbusconfig/querySysBusConfigList'),
-  //     type: 'get', // GET
-  //     async: false, // 或false,是否异步
-  //     beforeSend: function (request) {
-  //       request.setRequestHeader('token', getCookie('token'))
-  //     },
-  //     timeout: 5000, // 超时时间
-  //     dataType: 'json', // 返回的数据格式：
-  //     success: function (data, textStatus, jqXHR) {
-  //       //console.log('获取服务器配置')
-  //       Vue.prototype.busConfig = data.data
-  //     }
-  //   })
   var list = [];
+  //自动配置路由
   $.ajax({
     url: requestUrl('/sys/menu/router'),
     type: 'post', // GET
@@ -92,18 +53,12 @@ Vue.prototype.reloadConfig = function () {
     timeout: 5000, // 超时时间
     dataType: 'json', // 返回的数据格式：
     success: function (data, textStatus, jqXHR) {
-      //console.log('获取服务器配置')
-      //console.log(data.data);
       for(var i in data.data){
         var item = data.data[i];
         var url = item.url;
         var str = url.substring(url.indexOf("/")+1,url.lastIndexOf("."));
         var name = str.split("/");
         var names = name.length==2?name[1]:name[0];
-        // //console.log("/n/"+str);
-        // //console.log(str+'/index');
-        // //console.log(names);
-        // //console.log(item.name);
         try{
           list.push({path:"/n/"+str,component:_import( str+'/index'),name:names,desc:item.name,meta: { isTab: true }})
         }catch (e) {
@@ -113,21 +68,6 @@ Vue.prototype.reloadConfig = function () {
       Vue.prototype.list = list
     }
   })
-  // $.ajax({
-  //   url: requestUrl('/sys/syspbarea/getAddressConfig'),
-  //   type: 'post', // GET
-  //   async: false, // 或false,是否异步
-  //   beforeSend: function (request) {
-  //     request.setRequestHeader('token', getCookie('token'))
-  //   },
-  //   timeout: 5000, // 超时时间
-  //   dataType: 'json', // 返回的数据格式：
-  //   success: function (data, textStatus, jqXHR) {
-  //     console.log(data);
-  //     Vue.prototype.address=data.data.address;
-  //     Vue.prototype.addressMap=data.data.addressMap;
-  //   }
-  // })
 }
 // 开发环境不使用懒加载, 因为懒加载页面太多的话会造成webpack热更新太慢, 所以只有开发环境使用懒加载
 const _import = require('./router/import-' + process.env.NODE_ENV)
