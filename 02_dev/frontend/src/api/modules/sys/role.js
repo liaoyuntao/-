@@ -1,6 +1,6 @@
-import request from '../request'
-import requestUrl from '../requestUrl'
-import requestParam from '../requestParam'
+import request from '../../request'
+import requestUrl from '../../requestUrl'
+import requestParam from '../../requestParam'
 import isInteger from 'lodash/isInteger'
 
 // 获取角色列表

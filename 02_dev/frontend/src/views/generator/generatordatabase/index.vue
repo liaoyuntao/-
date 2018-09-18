@@ -69,9 +69,9 @@
           this.$refs.tablefield.addOrUpdateHandle(row)
         })
       },
-      deleteHandle () {
+      deleteHandle (row) {
         this.$nextTick(() => {
-          this.$refs.tablefield.deleteHandle()
+          this.$refs.tablefield.deleteHandle(row)
         })
       },
       setListSelections (val) {

@@ -51,7 +51,6 @@ export function getAddress(id=0,level,levelLength){
   })
   for(var i in list){
     var item = list[i];
-    console.log(level,levelLength);
     if(level!=levelLength-1){
       item.children=[];
     }

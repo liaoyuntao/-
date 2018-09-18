@@ -21,15 +21,15 @@
           </div>
           <!--日期date-->
           <div  v-else-if="item.inputType==='2'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
-            <el-date-picker v-model="scope.row[item.fieldName]"  type="date" style="width:100%;" value-format="yyyy-MM-dd"  :placeholder="item.pageComment" format="yyyy-MM-dd"><template slot="prepend">{{item.pageComment}}</template> </el-date-picker>
+            <el-date-picker v-model="scope.row[item.fieldName]"  type="date" style="width:100%;" value-format="yyyy-MM-dd"  :placeholder="item.pageComment" format="yyyy-MM-dd" size="mini"><template slot="prepend">{{item.pageComment}}</template> </el-date-picker>
           </div>
           <!--时间datetime-->
           <div v-else-if="item.inputType==='3'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
-            <el-date-picker v-model="scope.row[item.fieldName]" value-format="yyyy-MM-dd HH:mm:ss"  format="yyyy-MM-dd HH:mm:ss" :placeholder="item.pageComment" type="datetime" style="width:100%;"  ><template slot="prepend">{{item.pageComment}}</template></el-date-picker>
+            <el-date-picker v-model="scope.row[item.fieldName]" value-format="yyyy-MM-dd HH:mm:ss"  format="yyyy-MM-dd HH:mm:ss" size="mini" :placeholder="item.pageComment" type="datetime" style="width:100%;"  ><template slot="prepend">{{item.pageComment}}</template></el-date-picker>
           </div>
           <!--下拉选select-->
           <div  v-else-if="item.inputType=='4'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
-            <el-select v-model="scope.row[item.fieldName]" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
+            <el-select v-model="scope.row[item.fieldName]" :filterable="true" :placeholder="item.pageComment" size="mini" style="width:100%;">
               <el-option
                 v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                 :key="itemss.confName"
@@ -40,7 +40,7 @@
           </div>
           <!--复选框-->
           <div  v-else-if="item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
-            <el-select  style="width:100%"
+            <el-select  style="width:100%" size="mini"
                         v-model="scope.row[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option
                         :placeholder="item.pageComment" >
               <el-option
@@ -79,7 +79,7 @@
           </div>-->
           <div  v-else-if="item.inputType=='8'"class="el-input el-input-group el-input-group--prepend el-input--suffix"@click="handleEdit(scope.$index,item.fieldName)" >
             <!--上传图片-->
-            <el-upload
+            <el-upload size="mini"
               class="avatar-uploader"
               :action="imgUrl"
               list-type="picture-card"
@@ -93,7 +93,7 @@
           </div>
           <!--多图片上传-->
           <div  v-else-if="item.inputType=='9'" class="el-input el-input-group el-input-group--prepend el-input--suffix"   @click="handleEdit(scope.$index,item.fieldName)">
-            <el-upload
+            <el-upload size="mini"
               :action="imgUrl"
               :on-remove="handleRemove"
               :data="item"
@@ -105,15 +105,15 @@
               <i class="el-icon-plus"></i><template slot="prepend">{{item.pageComment}}</template>
             </el-upload>
           </div>
-        <div v-else-if="item.inputType=='10'" @click="handleSelect(item)">
-          <el-autocomplete style="width:100%;"
+        <div v-else-if="item.inputType=='10'" @click="activeIndex=item.dictionaryIndex">
+          <el-autocomplete style="width:100%;" size="mini"
                            class="inline-input"
                            v-model="dataForm[item.fieldName]"
                            :fetch-suggestions="querySearch"
                            :placeholder="item.pageComment"
           > </el-autocomplete>
         </div>
-          <el-input v-model="scope.row[item.fieldName]" :placeholder="item.pageComment" v-else>
+          <el-input size="mini" v-model="scope.row[item.fieldName]" :placeholder="item.pageComment" v-else>
           </el-input>
       <!--  <el-input size="small" v-model="scope.row[item.fieldName]" placeholder="请输入内容"></el-input> <span>{{scope.row.address}}</span>
 -->
@@ -225,7 +225,7 @@
       },
       querySearch(queryString, cb) {
         ////console.log(this.activeIndex);
-        var restaurants = this.getBusConfig(busConfig,this.activeIndex).list;
+        var restaurants = this.getBusConfig(this.model+this.pathUrl,this.activeIndex).list;
         for(var i in restaurants){
           restaurants[i].value=restaurants[i].confName;
         }
@@ -311,8 +311,8 @@
                   duration: 1500,
                   onClose: () => {
                     this.visible = false;
-                    if( this.tableFieldMap[this.pathUrl].isBusiness==0){
-                      this.reloadBusConfig(this.tableFieldMap[this.pathUrl].tableName);
+                    if( this.tableFieldMap.isBusiness==0){
+                      this.reloadBusConfig(this.model+this.pathUrl,this.tableFieldMap.tableName);
                     }
                     this.$emit('refreshDataList')
                   }

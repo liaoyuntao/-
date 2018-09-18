@@ -47,7 +47,19 @@
           {type:"primary",'scope': 'delete', fun: this.addAllOrUpdateHandle, name: '批量新增',},
           {type:"danger",'scope': 'delete', fun: this.deleteHandle, name: '批量删除',disabled:function(dataListSelections){
               return dataListSelections.length<=0;
-            }}
+            }},
+        {type:"danger",'scope': 'delete', fun: this.hideTableField, name: '隐藏表格字段',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},
+        {type:"danger",'scope': 'delete', fun: this.hideSetField, name: '隐藏修改字段',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},
+        {type:"danger",'scope': 'delete', fun: this.showSeekField, name: '显示搜索字段',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},
+        {type:"danger",'scope': 'delete', fun: this.showExportField, name: '显示导出字段',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},
         ],
         saveForm: {
 
@@ -64,7 +76,6 @@
         })
       },
       init: function (id) {
-        console.log(id);
         this.dataForm.tableId = id
         this.saveForm.tableId = id
         this.getDataList()
@@ -79,9 +90,9 @@
           this.$refs.tablefield.addOrUpdateHandle(row)
         })
       },
-      deleteHandle () {
+      deleteHandle (row) {
         this.$nextTick(() => {
-          this.$refs.tablefield.deleteHandle()
+          this.$refs.tablefield.deleteHandle(row)
         })
       },
       setListSelections (val) {

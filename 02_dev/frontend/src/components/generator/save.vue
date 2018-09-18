@@ -11,23 +11,23 @@
             <!--数字number-->
             <div   v-if="item.inputType==='1'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-input-number v-model="dataForm[item.fieldName]"  :min="0" >
+            <el-input-number v-model="dataForm[item.fieldName]"  :min="0"  size="mini">
             </el-input-number>
             </div>
               <!--日期date-->
             <div  v-else-if="item.inputType==='2'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-date-picker v-model="dataForm[item.fieldName]"   type="date" style="width:100%;" value-format="yyyy-MM-dd"  :placeholder="item.pageComment" format="yyyy-MM-dd"><template slot="prepend">{{item.pageComment}}</template> </el-date-picker>
+            <el-date-picker v-model="dataForm[item.fieldName]" size="mini"  type="date" style="width:100%;" value-format="yyyy-MM-dd"  :placeholder="item.pageComment" format="yyyy-MM-dd"><template slot="prepend">{{item.pageComment}}</template> </el-date-picker>
             </div>
               <!--时间datetime-->
             <div v-else-if="item.inputType==='3'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-date-picker v-model="dataForm[item.fieldName]"  value-format="yyyy-MM-dd HH:mm:ss"  format="yyyy-MM-dd HH:mm:ss" :placeholder="item.pageComment" type="datetime" style="width:100%;"  ><template slot="prepend">{{item.pageComment}}</template></el-date-picker>
+            <el-date-picker v-model="dataForm[item.fieldName]" size="mini" value-format="yyyy-MM-dd HH:mm:ss"  format="yyyy-MM-dd HH:mm:ss" :placeholder="item.pageComment" type="datetime" style="width:100%;"  ><template slot="prepend">{{item.pageComment}}</template></el-date-picker>
             </div>
               <!--下拉选select-->
             <div  v-else-if="item.inputType=='4'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-              <el-select v-model="dataForm[item.fieldName]" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
+              <el-select v-model="dataForm[item.fieldName]" size="mini" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
                 <el-option
                   v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                   :key="itemss.confName"
@@ -39,7 +39,7 @@
             <!--复选框-->
             <div  v-else-if="item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-select  style="width:100%"
+            <el-select  style="width:100%" size="mini"
                        v-model="dataForm[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option
                        :placeholder="item.pageComment">
               <el-option
@@ -71,7 +71,7 @@
             <!--文本域-->
             <div  v-else-if="item.inputType=='7'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-input :autosize="{ minRows: 10, maxRows: 4}"
+            <el-input size="mini" :autosize="{ minRows: 10, maxRows: 4}"
                       type="textarea"
                       :rows="2"
                       :placeholder="item.pageComment"
@@ -81,7 +81,7 @@
             <div  v-else-if="item.inputType=='8'"class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
             <!--上传图片-->
-            <el-upload
+            <el-upload size="mini"
                        class="avatar-uploader"
                        :action="imgUrl"
                        list-type="picture-card"
@@ -96,7 +96,7 @@
             <!--多图片上传-->
             <div  v-else-if="item.inputType=='9'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-upload
+            <el-upload size="mini"
                        :action="imgUrl"
                        :on-remove="handleRemove"
                        :data="item"
@@ -109,8 +109,8 @@
             </el-upload>
             </div>
             <!--搜索框-->
-            <div v-else-if="item.inputType=='10'" @click="handleSelect(item)">
-              <el-autocomplete style="width:100%;"
+            <div v-else-if="item.inputType=='10'" @click="activeIndex=item.dictionaryIndex">
+              <el-autocomplete  size="mini" style="width:100%;"
                 class="inline-input"
                 v-model="dataForm[item.fieldName]"
                 :fetch-suggestions="querySearch"
@@ -120,7 +120,7 @@
             <!--四级联动-->
             <div  v-else-if="item.inputType=='11'" class="el-input el-input-group el-input-group--prepend el-input--suffix" @click="activeFieldName(item.fieldName)">
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-cascader v-model="dataForm[item.fieldName]"
+            <el-cascader size="mini" v-model="dataForm[item.fieldName]"
               :placeholder="item.pageComment"
                          @change="cascChange"
                          @active-item-change="handleSelect"
@@ -130,7 +130,7 @@
             ></el-cascader>
             </div>
             <!--普通文本框-->
-            <el-input v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" v-else>
+            <el-input size="mini" v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" v-else>
               <template slot="prepend">{{item.pageComment}}</template>
             </el-input>
          <!--   <el-cascader  v-else
@@ -158,6 +158,7 @@
 <script>
   import API from '@/api'
   import {getAddress} from '@/utils'
+  import $ from 'jquery'
   import { isEmail, isMobile,isPhone,isIdentityCard,isInteger,isDecimals,isNull } from '@/utils/validate'
   export default {
     name: 'save',
@@ -266,7 +267,7 @@
         this.queryAddressById(this.options2,item[level-1],address);
         address[0].children=getAddress(item[level-1],level,4);
       },
-      //根据id查询数据
+      //递归根据id查询数据
       queryAddressById(list,id,address){
         // if(list==null){
         //   return;
@@ -287,10 +288,11 @@
       },
       querySearch(queryString, cb) {
         //////console.log(this.activeIndex);
-        var restaurants = this.getBusConfig(busConfig,this.activeIndex).list;
+        var restaurants = this.getBusConfig(this.module+this.pathUrl,this.activeIndex).list;
         for(var i in restaurants){
           restaurants[i].value=restaurants[i].confName;
         }
+        //查询表格数据
         var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
         // 调用 callback 返回建议列表的数据
         cb(results);
@@ -455,7 +457,7 @@
                   onClose: () => {
                     this.visible = false;
                     if( this.tableFieldMap.isBusiness==0){
-                      this.reloadBusConfig(this.tableFieldMap.tableName);
+                      this.reloadBusConfig(this.model+this.pathUrl,this.tableFieldMap.tableName);
                     }
                     this.$emit('refreshDataList')
                   }

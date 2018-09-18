@@ -66,7 +66,12 @@
           {type:"primary",'scope': 'delete', fun: this.addAllOrUpdateHandle, name: '批量新增',},
           {type:"danger",'scope': 'delete', fun: this.deleteHandle, name: '批量删除',disabled:function(dataListSelections){
               return dataListSelections.length<=0;
-            }}
+            }},
+          {type:"danger",'scope': 'delete', fun: this.synchronizationStructure, name: '批量同步',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},{type:"danger",'scope': 'delete', fun: this.generate, name: '生成',disabled:function(dataListSelections){
+              return dataListSelections.length<=0;
+            }},
         ],
 
         saveForm: {
@@ -106,9 +111,9 @@
           this.$refs.tablefield.addOrUpdateHandle(row)
         })
       },
-      deleteHandle () {
+      deleteHandle (row) {
         this.$nextTick(() => {
-          this.$refs.tablefield.deleteHandle()
+          this.$refs.tablefield.deleteHandle(row)
         })
       },
       setListSelections (val) {
