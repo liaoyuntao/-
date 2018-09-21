@@ -23,7 +23,7 @@ public interface GeneratorBusConfigDao extends BaseMapper<GeneratorBusConfigEnti
     Map<String, QuerySysBusConfigListVO> querySysBusConfigList(String[] codes);
     @MapKey("confCode")
     Map<String,Object> queryAppSysBusConfigList();
-    @MapKey("confCode")
+    @MapKey("confName")
     @Select("select id,conf_name,conf_code,conf_vue from generator_bus_config where conf_code=#{key}")
     Map<String,GeneratorBusConfigEntity> querySysBusConfigByCodeKey(String key);
 //    @Select("  select id, conf_code ,conf_name,conf_vue from generator_bus_config\n" +

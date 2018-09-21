@@ -5,7 +5,7 @@
       <div v-if="item.inputType=='2'|| item.inputType=='3'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
         <div class="el-input-group__prepend date">{{item.pageComment}}</div>
         <el-date-picker style="line-height: 18px;"
-          v-model="dataForm[item.fieldName]" value-format="yyyy-MM-dd"
+          v-model="seekForm[item.fieldName]" value-format="yyyy-MM-dd"
           type="daterange"
           size="mini"
           range-separator="至"
@@ -20,7 +20,7 @@
         &lt;!&ndash;&ndash;&gt;</div>-->
       <div v-else-if="item.inputType=='4' || item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
         <div class="el-input-group__prepend">{{item.pageComment}}</div>
-        <el-select clearable v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" style="width:100%;" size="small">
+        <el-select clearable v-model="seekForm[item.fieldName]" :placeholder="item.pageComment" style="width:100%;" size="small">
           <el-option
             v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
             :key="itemss.confName"
@@ -31,7 +31,7 @@
         </el-select>
       </div>
       <!--普通输入框-->
-      <el-input v-model="dataForm[item.fieldName]" :content="item.pageComment" :placeholder="item.pageComment" clearable size="small"
+      <el-input v-model="seekForm[item.fieldName]" :content="item.pageComment" :placeholder="item.pageComment" clearable size="small"
                 v-else>
         <template slot="prepend">{{item.pageComment}}</template>
       </el-input>
@@ -40,18 +40,22 @@
 </template>
 
 <script>
-  import API from '@/api'
   export default {
     name: 'seek',
     data() {
       return {
+        seekForm: {},
+      }
+    },
+    watch:{
+      seekForm:{
+        handler: function (seekForm) {
+          this.$emit('updateSeekForm', seekForm)
+        },
+        deep: true    //深度监听
       }
     },
     props: {
-      dataForm: {
-        type: Object,
-        default:{}
-      },
       pathUrl: {
         type: String
       },
@@ -64,7 +68,11 @@
       busConfig: {
         type:Object
       },
-
+    },
+    methods:{
+      setValue(seekForm){
+        this.seekForm=seekForm;
+      }
     }
   }
 </script>

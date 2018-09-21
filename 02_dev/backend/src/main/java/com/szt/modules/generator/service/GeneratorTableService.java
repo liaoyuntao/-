@@ -70,5 +70,11 @@ public interface GeneratorTableService extends CommonService<GeneratorTableEntit
      * @return
      */
     GeneratorTableEntity queryTabeConfig(String module);
+
+    /**
+     * 模板导出
+     * @param module
+     */
+    void excelModule(String module);
 }
 

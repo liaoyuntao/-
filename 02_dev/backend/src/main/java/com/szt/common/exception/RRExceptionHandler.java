@@ -27,17 +27,14 @@ public class RRExceptionHandler {
 	 */
 	@ExceptionHandler(RRException.class)
 	public R handleRRException(RRException e){
-		e.printStackTrace();
 		R r = new R();
 		r.put("code", e.getCode());
 		r.put("msg", e.getMessage());
-
 		return r;
 	}
 
 	@ExceptionHandler(DuplicateKeyException.class)
 	public R handleDuplicateKeyException(DuplicateKeyException e){
-		e.printStackTrace();
 		log.error(e.getMessage(), e);
 
 		return R.error("数据库中已存在该记录");
@@ -45,20 +42,17 @@ public class RRExceptionHandler {
 
 	@ExceptionHandler(AuthorizationException.class)
 	public R handleAuthorizationException(AuthorizationException e){
-		e.printStackTrace();
 		log.error(e.getMessage(), e);
 		return R.error("没有权限，请联系管理员授权");
 	}
 
 	@ExceptionHandler(Exception.class)
 	public R handleException(Exception e){
-		e.printStackTrace();
 		log.error(e.getMessage(), e);
 		return R.error();
 	}
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public R handleException(DataIntegrityViolationException e){
-		e.printStackTrace();
 		log.error(e.getMessage(), e);
 		return R.error("您填写的数据过长无法储存!");
 	}

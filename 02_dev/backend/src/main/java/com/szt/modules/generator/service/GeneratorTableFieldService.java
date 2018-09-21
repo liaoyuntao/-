@@ -60,4 +60,9 @@ public interface GeneratorTableFieldService extends CommonService<GeneratorTable
      * 刷新表格字段
      */
     void tabFieldTypeReload();
+
+    /**
+     * 刷新字段表格的数据长度
+     */
+    void updateDataLength();
 }

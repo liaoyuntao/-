@@ -3,6 +3,7 @@ package com.szt.modules.generator.dao;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.szt.modules.generator.entity.GeneratorTableEntity;
 import com.szt.modules.generator.entity.GeneratorTableFieldEntity;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -28,4 +29,6 @@ public interface SysGeneratorDao {
 	List<GeneratorTableFieldEntity> queryColumns(String tableName);
 	@Select("select * from information_schema.tables")
 	Map<String, String> queryTables();
+	@MapKey("fieldName")
+    Map<String,GeneratorTableFieldEntity> queryColumnsMap(String tableName);
 }

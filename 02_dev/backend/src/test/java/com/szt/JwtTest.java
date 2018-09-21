@@ -18,6 +18,8 @@ public class JwtTest {
     @Autowired
     private GeneratorTableFieldService  generatorTableFieldService;
     @Autowired
+    private GeneratorTableService  generatorTableService;
+    @Autowired
     private SysPbAreaService sysPbAreaService;
     /**
      * 更新字段索引
@@ -46,5 +48,28 @@ public class JwtTest {
     @Test
     public void test3() {
      //   InitBusConfig.updateAddressConfig();
+    }
+    /**
+     * 刷新字段表所有数据长度
+     */
+    @Test
+    public void test4() {
+        generatorTableFieldService.updateDataLength();
+        //   InitBusConfig.updateAddressConfig();
+    }
+    /**
+     * 刷新字段表所有数据长度
+     */
+    @Test
+    public void test5() {
+        sysPbAreaService.defaultData();
+        //   InitBusConfig.updateAddressConfig();
+    }
+    /**
+     * excel导出模板
+     */
+    @Test
+    public void test6() {
+        generatorTableService.excelModule("module");
     }
 }

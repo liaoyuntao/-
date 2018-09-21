@@ -26,10 +26,14 @@
       <el-form-item label="状态" prop="deleteFlag">
         <el-select v-model="dataForm.deleteFlag" placeholder="请选择" style="width:100%;">
           <el-option
-            v-for="item in busConfig.generator_table_delete_flag.list"
-            :key="item.confName"
-            :label="item.confName"
-            :value="item.confVue">
+            key="存在"
+            label="存在"
+            value="0">
+          </el-option>
+          <el-option
+            key="隐藏"
+            label="隐藏"
+            value="1">
           </el-option>
         </el-select>
       </el-form-item>

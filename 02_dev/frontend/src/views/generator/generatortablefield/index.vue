@@ -1,19 +1,6 @@
 <template>
   <div class="mod-config">
-   <!-- <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
-      <seek ref="seek" :dataForm.sync="dataForm" :pathUrl="pathUrl"></seek>
-      <div style="float:right">
-        <el-button @click="getDataList()">查询</el-button>
-        <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addAllOrUpdateHandle()">批量新增</el-button>
-        <el-button v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
-        <el-button  type="danger" @click="hideTableField()" :disabled="dataListSelections.length <= 0">隐藏表格字段</el-button>
-        <el-button  type="danger" @click="hideSetField()" :disabled="dataListSelections.length <= 0">隐藏修改字段</el-button>
-        <el-button  type="danger" @click="showSeekField()" :disabled="dataListSelections.length <= 0">显示搜索字段</el-button>
-        <el-button  type="danger" @click="showExportField()" :disabled="dataListSelections.length <= 0">显示导出字段</el-button>
-      </div>
-    </el-form>-->
-    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton"  :saveForm="saveForm"  :dataForm.sync="dataForm"  :model="model" :operation.sync="operation" :setListSelections="setListSelections"></tablefield>
+    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton"   :dataForm.sync="dataForm"  :model="model" :operation.sync="operation" :setListSelections="setListSelections"></tablefield>
   </div>
 </template>
 
@@ -26,6 +13,7 @@
     },
     data: function () {
       return {
+        tableId:null,
         model: 'generator',
         pathUrl: 'generatortablefield',
         busConfig: this.busConfig,
@@ -76,9 +64,11 @@
         })
       },
       init: function (id) {
-        this.dataForm.tableId = id
-        this.saveForm.tableId = id
-        this.getDataList()
+        this.tableId=id;
+        this.$nextTick(() => {
+          this.$refs.tablefield.setSeekForm({tableId:id})
+          this.getDataList()
+        })
       },  // 多选
       getDataList () {
         this.$nextTick(() => {
@@ -87,7 +77,7 @@
       },
       addOrUpdateHandle (row) {
         this.$nextTick(() => {
-          this.$refs.tablefield.addOrUpdateHandle(row)
+          this.$refs.tablefield.addOrUpdateHandle(row,{tableId:this.tableId})
         })
       },
       deleteHandle (row) {

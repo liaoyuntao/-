@@ -168,6 +168,7 @@ public class GenUtils {
             }
             maps.put(key,true);
         }
+        columnEntity.setWidthLength("100");
         columnEntity.setPageComment(note);
         columnEntity.setExtra(columnEntity.getExtra());
         columnEntity.setNullable(columnEntity.getIsNull().equals("0"));

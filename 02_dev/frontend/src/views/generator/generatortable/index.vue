@@ -1,18 +1,6 @@
 <template>
   <div class="mod-config">
-    <!--<el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
-      <seek ref="seek" :dataForm.sync="dataForm" :pathUrl="pathUrl"></seek>
-      <div style="float:right">
-        <el-button @click="getDataList()">查询</el-button>
-        <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addAllOrUpdateHandle()">批量新增</el-button>
-       &lt;!&ndash; <el-button v-if="isAuth(model+':'+pathUrl+':save')" type="primary" @click="addOrUpdateHandle()"></el-button>&ndash;&gt;
-        <el-button v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
-        <el-button v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" @click="synchronizationStructure()" :disabled="dataListSelections.length <= 0">批量同步</el-button>
-        <el-button  type="primary" @click="generate()" :disabled="dataListSelections.length <= 0">生成</el-button>
-      </div>
-    </el-form>-->
-    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton" :saveForm="saveForm":dataForm.sync="dataForm"  :setListSelections="setListSelections"  :model="model" :operation.sync="operation"></tablefield>
+    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton"   :setListSelections="setListSelections"  :model="model" :operation.sync="operation"></tablefield>
     <el-dialog title="字段列表"  :visible.sync="generatortablefield" :append-to-body="true" :modal-append-to-body="false"width="75%"  >
       <generatortablefield v-if="generatortablefield" ref="generatortablefield" @refreshDataList="getDataList"></generatortablefield>
     </el-dialog>
@@ -35,8 +23,7 @@
     },
     data () {
       return {
-        dataForm: {
-        },
+
         model: 'generator',
         pathUrl: 'generatortable',
         dataListSelections: [],
@@ -73,28 +60,6 @@
               return dataListSelections.length<=0;
             }},
         ],
-
-        saveForm: {
-          parentKey: '',
-          tableComment: '',
-          treeKey: '',
-          remarks: '',
-          treeFieldName: '',
-          id: 0,
-          tableName: '',
-          levelKey: '',
-          modulesId: '',
-          versionNo: '',
-          createBy: '',
-          createTime: '',
-          updateBy: '',
-          updateTime: '',
-          deleteFlag: '',
-          sort: '',
-          businessKey: '',
-          isBusiness: '',
-          businessValue: '',
-        }
       }
     },
     activated () {
@@ -120,7 +85,7 @@
         this.dataListSelections = val
       },
       init: function (id) {
-        this.dataForm.tableId = id
+        //this.dataForm.tableId = id
         this.getDataList()
       },  // 多选
       getDataList () {
@@ -146,7 +111,8 @@
       queryField (scope) {
         this.generatortablefield = true
         this.$nextTick(() => {
-          this.$refs.generatortablefield.init(scope.id)
+          console.log();
+          this.$refs.generatortablefield.init(scope.id, this.dataForm)
         })
       },
       // 模板预览

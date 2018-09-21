@@ -59,7 +59,7 @@ Vue.prototype.getBusConfig = function (module,key) {
       beforeSend: function (request) {
         request.setRequestHeader('token', getCookie('token'))
       },
-      timeout: 5000, // 超时时间
+    //  timeout: 5000, // 超时时间
       dataType: 'json', // 返回的数据格式：
       success: function (data, textStatus, jqXHR) {
         Vue.prototype.busConfig[module]=data.data
@@ -76,7 +76,7 @@ Vue.prototype.getBusConfig = function (module,key) {
       beforeSend: function (request) {
         request.setRequestHeader('token', getCookie('token'))
       },
-      timeout: 5000, // 超时时间
+      //timeout: 5000, // 超时时间
       dataType: 'json', // 返回的数据格式：
       success: function (data, textStatus, jqXHR) {
         for(var i in data.data.list){

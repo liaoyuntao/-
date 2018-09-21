@@ -1,6 +1,7 @@
 package com.szt.modules.sys.service;
 
 import com.szt.common.CommonService;
+import com.szt.common.utils.PageUtils;
 import com.szt.modules.sys.entity.SysPbAreaEntity;
 
 import java.util.List;
@@ -24,4 +25,9 @@ public interface SysPbAreaService extends CommonService<SysPbAreaEntity> {
      * 刷新redis地址缓存
      */
     List<SysPbAreaEntity> addressRedisReload();
+
+    /**
+     * 获取数据
+     */
+    void defaultData();
 }

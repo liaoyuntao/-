@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="批量新增" :modal-append-to-body="false"
+    title="批量新增" :modal-append-to-body="false" :close-on-click-modal="false"
     :visible.sync="visible" width="75%" :append-to-body="true" >
 
       <div style="float:right;    margin-bottom: 10px;">
@@ -77,34 +77,9 @@
                       v-model="scope.row[item.fieldName]"><template slot="prepend">{{item.pageComment}}</template>
             </el-input>
           </div>-->
-          <div  v-else-if="item.inputType=='8'"class="el-input el-input-group el-input-group--prepend el-input--suffix"@click="handleEdit(scope.$index,item.fieldName)" >
-            <!--上传图片-->
-            <el-upload size="mini"
-              class="avatar-uploader"
-              :action="imgUrl"
-              list-type="picture-card"
-              :show-file-list="false"
-              :data="item"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload" :on-preview="handlePictureCardPreview">
-              <img  style="width:100%;height:100%;" v-if="scope.row[item.fieldName]" :src="scope.row[item.fieldName]" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>
-          </div>
-          <!--多图片上传-->
-          <div  v-else-if="item.inputType=='9'" class="el-input el-input-group el-input-group--prepend el-input--suffix"   @click="handleEdit(scope.$index,item.fieldName)">
-            <el-upload size="mini"
-              :action="imgUrl"
-              :on-remove="handleRemove"
-              :data="item"
-              list-type="picture-card"
-              :file-list="scope.row[item.fieldName]"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-              :on-preview="handlePictureCardPreview">
-              <i class="el-icon-plus"></i><template slot="prepend">{{item.pageComment}}</template>
-            </el-upload>
-          </div>
+        <!--图片上传-->
+        <upload v-else-if="item.inputType=='8' || item.inputType=='9'"  v-model="dataForm[item.fieldName]" :isMultiple="item.inputType=='9'" ></upload>
+
         <div v-else-if="item.inputType=='10'" @click="activeIndex=item.dictionaryIndex">
           <el-autocomplete style="width:100%;" size="mini"
                            class="inline-input"
@@ -113,7 +88,10 @@
                            :placeholder="item.pageComment"
           > </el-autocomplete>
         </div>
-          <el-input size="mini" v-model="scope.row[item.fieldName]" :placeholder="item.pageComment" v-else>
+        <!--四级联动-->
+        <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :level="item.inputType=='11'?4:3"  v-model="dataForm[item.fieldName]"  > </linkage>
+
+        <el-input size="mini" v-model="scope.row[item.fieldName]" :placeholder="item.pageComment" v-else>
           </el-input>
       <!--  <el-input size="small" v-model="scope.row[item.fieldName]" placeholder="请输入内容"></el-input> <span>{{scope.row.address}}</span>
 -->
@@ -134,20 +112,25 @@
 
 <script>
   import API from '@/api'
+  import linkage from '@/components/input/linkage.vue'
+  import upload from '@/components/input/upload.vue'
+  import {getAddress,queryAddressById} from '@/utils'
   export default {
     name: 'saveall',
+    components: {
+      linkage,
+      upload
+    },
     data () {
       return {
         config: {
           initialFrameWidth: null,
           initialFrameHeight: 350
         },
+
         fieldName:null,
         index:null,
-        prewImgLoad: false,
-        prewImg: null,
         imgUrl: API.sysoss.upload(this.$cookie.get('token')),
-        sysurl: window.SITE_CONFIG.baseUrl,
         visible: false,
         dialogImageUrl: '',
         dialogVisible: false,
@@ -157,8 +140,13 @@
           }],
           email: ''
         },
-        tableData: []
-    }
+        tableData: [],
+      }
+    },
+    watch:{
+      model:function (val) {
+        console.log(val);
+      }
     },
     props: {
       dataForm: {
@@ -177,7 +165,7 @@
         type: String
       },
       model: {
-        type: String
+
       },
       list: {
         type: Array
@@ -192,37 +180,7 @@
         type:Object
       },
     },
-    watch: {
-      // content (val) {
-      //   this.editor && val !== this.outContent && this.editor.html(val)
-      // },
-      // outContent (val) {
-      //   this.$emit('update-content', val, this.fieldName)
-      //   this.$emit('update:content', val, this.fieldName)
-      //   this.$emit('on-content-change', val, this.fieldName)
-      // }
-    },
-    mounted () {
-      // // 初始访问时创建
-      // this.initEditor()
-    },
-    /**
-     * keep-alive 会用到进入时调用activated 离开时调用deactivated
-     * 初始访问 created、mounted 切换时deactivated 再次进入时 activated
-     */
-    activated () {
-      // // keep-alive 进入时创建
-      // this.initEditor()
-    },
-    deactivated () {
-      // // keep-alive 离开时移除
-      // this.removeEditor()
-    },
     methods: {
-
-      handleSelect(item) {
-        ////console.log(this.activeIndex=item.dictionaryIndex);
-      },
       querySearch(queryString, cb) {
         ////console.log(this.activeIndex);
         var restaurants = this.getBusConfig(this.model+this.pathUrl,this.activeIndex).list;
@@ -238,58 +196,29 @@
           return (restaurant.confName.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
         };
       },
-      onEditorChange: function (text, fielName) {
-        this.dataForm[fielName] = text
-      },
-      // 多图片上传删除事件
-      handleRemove (file, fileList) {
-        this.tableData[this.index][this.fieldName] = fileList
-      },
-      // 预览多图片事件
-      handlePictureCardPreview: function (file) {
-        this.prewImgLoad = true
-        this.prewImg = file.url
-      },
-      // 添加多图片上传事件
-      handleAvatarSuccess: function (res, file) {
-     //   ////console.log(this.dataForm[res.fieldName] instanceof Array)
-        ////console.log(this.tableData);
-        if (this.tableData[this.index][this.fieldName] instanceof Array) {
-          this.tableData[this.index][this.fieldName].push({urd: 888, name: res.fieldName, url: res.url})
-        } else {
-          this.tableData[this.index][this.fieldName] = res.url
-        }
-      },
-      // 图片上传格式验证
-      beforeAvatarUpload (file) {
-        const isJPG = file.type === 'image/jpeg'
-        const isLt2M = file.size / 1024 / 1024 < 2
-        return true
-      },
       // 初始化方法
-      init: function (id,json) {
+      init: function (id,dataForms) {
         this.tableData=[];
-        var dataForm = {};
+        var dataForm = dataForms==null?{}:dataForms;
         dataForm.id = id || 0
         for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
           var cou = this.tableFieldMap.columns[i];
-          ////console.log(cou);
           if (cou.isNull === '1') {
             this.dataRule[cou.fieldName] = [
               { required: true, message: cou.pageComment + '不能为空', trigger: 'blur' }
             ]
           }
-          if(cou.inputType === '9' || cou.inputType === '5' ){
-            dataForm[cou.fieldName]=[]
+          if(cou.inputType === '9'  || cou.inputType === '5'  || cou.inputType === '11'){
+            dataForm[cou.fieldName]=[];
           }else{
             dataForm[cou.fieldName]='';
           }
         }
-        if(json!=null){
-          for(var key in json){
-            dataForm[key]=json[key];
-          }
-        }
+        // if(json!=null){
+        //   for(var key in json){
+        //     dataForm[key]=json[key];
+        //   }
+        // }
         this.dataForm=dataForm;
         this.visible = true
         this.addOrUpdateHandle();

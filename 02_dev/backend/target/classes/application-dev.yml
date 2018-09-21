@@ -4,13 +4,13 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         druid:
             first:
-                url: jdbc:mysql://120.79.193.54/brm-admin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                url: jdbc:mysql://127.0.0.1/lyt_zc?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: 123456
+                password: root
             second:
-                url: jdbc:mysql://120.79.193.54/brm-admin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                url: jdbc:mysql://127.0.0.1/lyt_zc?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: 123456
+                password: root
             initial-size: 10
             max-active: 100
             min-idle: 10
@@ -38,8 +38,8 @@ spring:
                         multi-statement-allow: true
     redis:
             database: 0
-            host:  120.79.193.54
-            password: brmredis
+            host:  127.0.0.1
+            password:
             port: 6379
             timeout: 6000  # 连接超时时长（毫秒）
             pool:

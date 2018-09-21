@@ -1,4 +1,5 @@
 package com.szt.modules.sys.entity;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.szt.common.CommonConstant;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -107,7 +108,8 @@ public class SysPbAreaEntity implements Serializable {
             @NotBlank(message="逻辑删除不能为空")
         @ApiModelProperty(value = "逻辑删除@0-存在,1-隐藏,2-删除,3-停用",required = false)
     private String deleteFlag;
-
+    @TableField(exist = false)
+    private String isNext;
         /**
          * 设置：ID
          */
@@ -288,5 +290,13 @@ public class SysPbAreaEntity implements Serializable {
     }
     public void update(){
         this.updateTime = new Date();
+    }
+
+    public String getIsNext() {
+        return isNext;
+    }
+
+    public void setIsNext(String isNext) {
+        this.isNext = isNext;
     }
 }

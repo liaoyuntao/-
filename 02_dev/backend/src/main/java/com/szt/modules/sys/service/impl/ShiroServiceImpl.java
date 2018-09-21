@@ -34,10 +34,12 @@ public class ShiroServiceImpl implements ShiroService {
             List<SysMenuEntity> menuList = sysMenuDao.selectList(null);
             permsList = new ArrayList<>(menuList.size());
             for(SysMenuEntity menu : menuList){
+               permsList.add("null");
                 permsList.add(menu.getPerms());
             }
         }else{
             permsList = sysUserDao.queryAllPerms(userId);
+           permsList.add("null");
         }
         //用户权限列表
         Set<String> permsSet = new HashSet<>();

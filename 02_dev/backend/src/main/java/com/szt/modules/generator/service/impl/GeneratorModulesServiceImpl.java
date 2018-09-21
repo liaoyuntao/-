@@ -4,20 +4,17 @@ import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.szt.common.CommonServiceImpl;
 import com.szt.common.exception.RRException;
-import com.szt.modules.generator.config.InitBusConfig;
+import com.szt.common.utils.GenUtils;
 import com.szt.modules.generator.constant.GeneratorTableFieldConstant;
 import com.szt.modules.generator.dao.GeneratorModulesDao;
 import com.szt.modules.generator.dao.SysGeneratorDao;
 import com.szt.modules.generator.entity.*;
 import com.szt.modules.generator.service.*;
-import com.szt.common.utils.GenUtils;
 import com.szt.modules.sys.service.SysMenuService;
-import com.szt.modules.sys.vo.QuerySysBusConfigListVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.misc.REException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,31 +45,34 @@ public class GeneratorModulesServiceImpl extends CommonServiceImpl<GeneratorModu
     private GeneratorTableService generatorTableService;
     @Autowired
     private GeneratorModulesDao generatorModulesDao;
+
     @Override
     public List<GeneratorModulesEntity> queryGeneratorModulesList() {
         Wrapper wrapper = Condition.create();
         wrapper.eq("delete_flag", "0");
         return baseMapper.selectList(wrapper);
     }
+
     @Transactional
     @Override
     public void generatorCode(List<GeneratorTableEntity> tableNames) {
         List<ColumnListEntity> lists = new ArrayList<ColumnListEntity>();
-        Map<String,Boolean> map = new HashMap<String,Boolean>();
-        Map<String, GeneratorTemplateConfigEntity> config  = generatorTemplateConfigService.queryGeneratorTemplateConfig();
-        for(GeneratorTableEntity tableName : tableNames){
-            insertTable(tableName,lists,map,config);
+        Map<String, Boolean> map = new HashMap<String, Boolean>();
+        Map<String, GeneratorTemplateConfigEntity> config = generatorTemplateConfigService.queryGeneratorTemplateConfig();
+        for (GeneratorTableEntity tableName : tableNames) {
+            insertTable(tableName, lists, map, config);
         }
     }
+
     @Override
-    public void insertTable(GeneratorTableEntity tableName, List<ColumnListEntity> lists, Map<String, Boolean> map, Map<String, GeneratorTemplateConfigEntity> config){
+    public void insertTable(GeneratorTableEntity tableName, List<ColumnListEntity> lists, Map<String, Boolean> map, Map<String, GeneratorTemplateConfigEntity> config) {
         //查询表信息
         GeneratorTableEntity tab = sysGeneratorDao.queryTable(tableName.getTableName());
         //查询列信息
         List<GeneratorTableFieldEntity> columns = sysGeneratorDao.queryColumns(tableName.getTableName());
         tab.setColumns(columns);
-        Map<String,Object> obj = new HashMap<>();
-        tab=GenUtils.readerTable(tab,map,lists,config,false,obj);
+        Map<String, Object> obj = new HashMap<>();
+        tab = GenUtils.readerTable(tab, map, lists, config, false, obj);
         GeneratorTableEntity t = new GeneratorTableEntity();
         t.insert();
         t.setTableComment(tab.getTableComment());
@@ -82,65 +82,86 @@ public class GeneratorModulesServiceImpl extends CommonServiceImpl<GeneratorModu
 
         //根据模块id查询模块名称
         GeneratorModulesEntity moduleName = generatorModulesDao.selectById(tableName.getModulesId());
-        if(moduleName==null){
+        if (moduleName == null) {
             throw new RRException("模块不存在");
         }
         //保存权限
-        sysMenuService.insertPermission((String)obj.get("comments"),moduleName.getName(),(String)obj.get("pathName"));
-        int i =30;
-        for(GeneratorTableFieldEntity fieldEntity : tab.getColumns()){
-            this.insertTableField(fieldEntity,i++,t);
+        sysMenuService.insertPermission((String) obj.get("comments"), moduleName.getName(), (String) obj.get("pathName"));
+        int i = 30;
+        for (GeneratorTableFieldEntity fieldEntity : tab.getColumns()) {
+            this.insertTableField(fieldEntity, i++, t);
         }
 
     }
+
     /**
      * 保存字段
+     *
      * @param fieldEntity
      * @param i
      * @param t
      */
     @Override
     public void insertTableField(GeneratorTableFieldEntity fieldEntity, int i, GeneratorTableEntity t) {
-                if(fieldEntity.getSelectKey()!=null){
-                    generatorBusConfigService.insertSysBusConfigPar(fieldEntity.getSelectKey(),fieldEntity.getList());
+        if (fieldEntity.getSelectKey() != null) {
+            generatorBusConfigService.insertSysBusConfigPar(fieldEntity.getSelectKey(), fieldEntity.getList());
+        }
+        ///GeneratorTableFieldEntity tableEntity = new GeneratorTableFieldEntity();
+        fieldEntity.insert();
+        fieldEntity.setDictionaryIndex((t.getTableName() + "_" + fieldEntity.getFieldName()));
+        fieldEntity.setSort(i);
+        fieldEntity.setTableId(t.getId());
+        if(fieldEntity.getDataLength()==null && fieldEntity.getColumnType()!=null) {
+            if(fieldEntity.getColumnType().indexOf("(")!=-1){
+                fieldEntity.setDataLength( fieldEntity.getColumnType().substring(fieldEntity.getColumnType().indexOf("(")+1,fieldEntity.getColumnType().indexOf(")")));
+            }else{
+                fieldEntity.setDataLength("0");
+            }
+        }
+        if (fieldEntity.getDeleteFlag() == null) {
+            fieldEntity.setDeleteFlag(GeneratorTableFieldConstant.DELETE_FLAG_0);
+        }
+        if (fieldEntity.getIsExport() == null) {
+            fieldEntity.setIsExport(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_EXPORT_1);
+        }
+        if(fieldEntity.getIsSeek()==null){
+        fieldEntity.setIsSeek(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_SEEK_1);
+        }
+        if(fieldEntity.getTableSet()==null){
+            fieldEntity.setTableSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_TABLE_SET_0);
+        }
+        if(fieldEntity.getIsDataBase()==null){
+        fieldEntity.setIsDataBase(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_DATA_BASE_0);
+        }
+        if(fieldEntity.getIsSet()==null){
+        fieldEntity.setIsSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SET_0);
+        }
+        fieldEntity.setDataType(fieldEntity.getFieldType());
+        Map<String, GeneratorBusConfigEntity> map = generatorBusConfigService.querySysBusConfigByCodeKey("generator_table_field_field_type");
+        for (Map.Entry<String, GeneratorBusConfigEntity> item : map.entrySet()) {
+            if (item.getValue().getConfName().equals(fieldEntity.getDataType())) {
+                fieldEntity.setFieldType(item.getValue().getConfVue());
+                break;
+            }
+        }
+        //判断上拉
+        if(fieldEntity.getInputType()==null){
+            if (fieldEntity.getAttrType().equals("Date")) {
+                fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_2);
+            } else if (fieldEntity.getAttrType().equals("Integer")) {
+                fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_1);
+            } //判断是否下拉
+            else if (fieldEntity.getSelectKey() != null) {
+                if (fieldEntity.getComment().indexOf("@") != -1) {
+                    fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_4);
+                } else {
+                    fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_5);
                 }
-                ///GeneratorTableFieldEntity tableEntity = new GeneratorTableFieldEntity();
-                fieldEntity.insert();
-                fieldEntity.setDictionaryIndex((t.getTableName()+"_"+fieldEntity.getFieldName()));
-                fieldEntity.setSort(i);
-                fieldEntity.setTableId(t.getId());
-                fieldEntity.setCheckout("0");
-                fieldEntity.setDeleteFlag(GeneratorTableFieldConstant.DELETE_FLAG_0);
-                fieldEntity.setIsExport(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_EXPORT_1);
-                fieldEntity.setIsSeek(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_SEEK_1);
-                fieldEntity.setTableSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_TABLE_SET_0);
-                fieldEntity.setIsDataBase(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_DATA_BASE_0);
-                fieldEntity.setIsSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SET_0);
-                fieldEntity.setDataType(fieldEntity.getFieldType());
-                Map<String, GeneratorBusConfigEntity> map =  generatorBusConfigService.querySysBusConfigByCodeKey("generator_table_field_field_type");
-                for(Map.Entry<String, GeneratorBusConfigEntity> item : map.entrySet()){
-                    if(item.getValue().equals(fieldEntity.getDataType())){
-                        fieldEntity.setFieldType(item.getKey());
-                            break;
-                    }
-                }
-                //判断上拉
-                if(fieldEntity.getAttrType().equals("Date")) {
-                    fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_2);
-                }else if(fieldEntity.getAttrType().equals("Integer")){
-                    fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_1);
-                }
-                //判断是否下拉
-                else if(fieldEntity.getSelectKey()!=null){
-                    if(fieldEntity.getComment().indexOf("@")!=-1){
-                        fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_4);
-                    }else{
-                        fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_5);
-                    }
-                }else{
-                    fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_0);
-                }
-                generatorTableFieldService.insert(fieldEntity);
-               // InitBusConfig.updateTabConfig(t.getTableName());
+            } else {
+                fieldEntity.setInputType(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_INPUT_TYPE_0);
+            }
+        }
+        generatorTableFieldService.insert(fieldEntity);
+        // InitBusConfig.updateTabConfig(t.getTableName());
     }
 }

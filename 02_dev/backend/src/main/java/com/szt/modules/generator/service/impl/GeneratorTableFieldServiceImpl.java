@@ -8,8 +8,10 @@ import com.szt.common.utils.GenUtils;
 import com.szt.modules.generator.config.InitBusConfig;
 import com.szt.modules.generator.constant.GeneratorTableFieldConstant;
 import com.szt.modules.generator.dao.GeneratorTableFieldDao;
+import com.szt.modules.generator.dao.SysGeneratorDao;
 import com.szt.modules.generator.entity.*;
 import com.szt.modules.generator.service.*;
+import lombok.experimental.var;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,8 @@ import java.util.Map;
 public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorTableFieldDao, GeneratorTableFieldEntity> implements GeneratorTableFieldService {
     @Autowired
     private GeneratorTableService generatorTableService;
+    @Autowired
+    private SysGeneratorDao sysGeneratorDao;
     @Autowired
     private GeneratorTableFieldService generatorTableFieldService;
     @Autowired
@@ -94,8 +98,8 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
         }
         Map<String, GeneratorBusConfigEntity> map =  generatorBusConfigService.querySysBusConfigByCodeKey("generator_table_field_field_type");
         for(Map.Entry<String, GeneratorBusConfigEntity> item : map.entrySet()){
-            if(item.getValue().equals(generatorTableField.getDataType())){
-                generatorTableField.setFieldType(item.getKey());
+            if(item.getValue().getConfVue().equals(generatorTableField.getFieldType())){
+                generatorTableField.setDataType(item.getKey());
                 break;
             }
         }
@@ -174,6 +178,40 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
 
         }
     }
+
+    @Override
+    public void updateDataLength() {
+       Map<String, GeneratorTableEntity> tab =  generatorTableService.queryTableFilePreviewVO(null);
+       for(Map.Entry<String, GeneratorTableEntity> map : tab.entrySet()){
+           GeneratorTableEntity tableName = map.getValue();
+           //查询列信息
+           Map<String, GeneratorTableFieldEntity> columnsMap = sysGeneratorDao.queryColumnsMap(tableName.getTableName());
+           Map<String,GeneratorTableFieldEntity> fielMap = new HashMap<>();
+           for(Map.Entry<String, GeneratorTableFieldEntity> a : columnsMap.entrySet()){
+               String attrName = GenUtils.columnToJava(a.getKey());
+               fielMap.put(org.apache.commons.lang.StringUtils.uncapitalize(attrName),a.getValue());
+           }
+           for(GeneratorTableFieldEntity fieldEntity : tableName.getColumns()){
+               String columnType=fielMap.get(fieldEntity.getFieldName()).getColumnType();
+               if(columnType.indexOf("(")!=-1){
+                   fieldEntity.setDataLength( columnType.substring(columnType.indexOf("(")+1,columnType.indexOf(")")));
+               }else{
+                   fieldEntity.setDataLength("0");
+               }
+
+               GeneratorTableFieldEntity gefe = new GeneratorTableFieldEntity();
+               gefe.setId(fieldEntity.getId());
+               if(fieldEntity.getIsNull().equals("1")){
+                   gefe.setCheckout("[\"1\"]");
+               }else{
+                   gefe.setCheckout("[]");
+               }
+               gefe.setDataLength(fieldEntity.getDataLength());
+               generatorTableFieldService.updateEntity(gefe);
+           }
+       }
+    }
+
     @Override
     public void updateEntity(GeneratorTableFieldEntity entity){
         entity.update();

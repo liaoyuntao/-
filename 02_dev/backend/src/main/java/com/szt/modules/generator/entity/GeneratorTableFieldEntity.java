@@ -220,6 +220,9 @@ public class GeneratorTableFieldEntity implements Serializable {
 	private String attrType;
 	@TableField(exist = false)
 	private String fieldnames;
+	@TableField(exist = false)
+	private String columnType;
+
 	/**
 	 * 表名称
 	 */
@@ -698,5 +701,13 @@ public class GeneratorTableFieldEntity implements Serializable {
 
 	public void setParentKey(String parentKey) {
 		this.parentKey = parentKey;
+	}
+
+	public String getColumnType() {
+		return columnType;
+	}
+
+	public void setColumnType(String columnType) {
+		this.columnType = columnType;
 	}
 }

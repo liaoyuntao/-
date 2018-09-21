@@ -28,11 +28,29 @@ var getCookie = function (name) {
   }
   return ''
 }
+
+/**
+ * 根据地址id递归查询层级
+ * @param list
+ * @param id
+ * @param address
+ */
+export function queryAddressById(list,id,obj){
+  for(var i in list){
+    var item = list[i];
+    if(item.id===id){
+      obj[0]=item;
+       return;
+    }else if(item.children!=null && item.children.length>0){
+      queryAddressById(item.children,id,obj)
+    }
+  }
+}
 /**
  * 获取联动地址
  * @param id
  */
-export function getAddress(id=0,level,levelLength){
+export function getAddress(id=0,level){
   var list = [];
   $.ajax({
     url: requestUrl('/sys/syspbarea/list'),
@@ -40,7 +58,7 @@ export function getAddress(id=0,level,levelLength){
     async: false, // 或false,是否异步
     data: { page: 1,
       limit: 10000,parentid:id},
-    timeout: 5000, // 超时时间
+//    timeout: 5000, // 超时时间
     dataType: 'json', // 返回的数据格式：
     beforeSend: function (request) {
       request.setRequestHeader('token', getCookie('token'))
@@ -51,10 +69,9 @@ export function getAddress(id=0,level,levelLength){
   })
   for(var i in list){
     var item = list[i];
-    if(level!=levelLength-1){
+    if(item.isNext!='0' && item.level!=level){
       item.children=[];
     }
-    item.level=level;
   }
   return list;
 }

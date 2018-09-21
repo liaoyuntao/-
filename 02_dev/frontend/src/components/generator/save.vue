@@ -1,6 +1,6 @@
 <template>
      <el-dialog
-   :title="!dataForm.id ? '新增' : '修改'" :modal-append-to-body="false"
+   :title="!dataForm.id ? '新增' : '修改'" :modal-append-to-body="false" :close-on-click-modal="false"
    :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" >
       <el-row :gutter="20">
@@ -39,9 +39,7 @@
             <!--复选框-->
             <div  v-else-if="item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-select  style="width:100%" size="mini"
-                       v-model="dataForm[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option
-                       :placeholder="item.pageComment">
+            <el-select  style="width:100%" size="mini"   v-model="dataForm[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option  :placeholder="item.pageComment">
               <el-option
                 v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                 :key="itemss.confVue"
@@ -58,12 +56,10 @@
                       height="400px"
                       width="100%"
                       style="width:100%"
-                      :fieldName="item.fieldName"
-                      :content="dataForm[item.fieldName]"
+                      v-model="dataForm[item.fieldName]"
                       :pluginsPath="'/static/kindeditor/plugins/'"
-                      :uploadJson="sysurl+'api/uploadFile'"
+                      :uploadJson="imgUrl"
                       :loadStyleMode="false"
-                      @update-content="onEditorChange"
                       :allowFileManager="false"
                       :allowImageRemote="false"
               ></editor>
@@ -78,36 +74,8 @@
                       v-model="dataForm[item.fieldName]"><template slot="prepend">{{item.pageComment}}</template>
             </el-input>
             </div>
-            <div  v-else-if="item.inputType=='8'"class="el-input el-input-group el-input-group--prepend el-input--suffix" >
-              <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <!--上传图片-->
-            <el-upload size="mini"
-                       class="avatar-uploader"
-                       :action="imgUrl"
-                       list-type="picture-card"
-                       :show-file-list="false"
-                       :data="item"
-                       :on-success="handleAvatarSuccess"
-                       :before-upload="beforeAvatarUpload" :on-preview="handlePictureCardPreview">
-              <img  style="width:100%;height:100%;" v-if="dataForm[item.fieldName]" :src="dataForm[item.fieldName]" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>
-            </div>
-            <!--多图片上传-->
-            <div  v-else-if="item.inputType=='9'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
-              <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-upload size="mini"
-                       :action="imgUrl"
-                       :on-remove="handleRemove"
-                       :data="item"
-                       list-type="picture-card"
-                       :file-list="dataForm[item.fieldName]"
-                       :on-success="handleAvatarSuccess"
-                       :before-upload="beforeAvatarUpload"
-                       :on-preview="handlePictureCardPreview">
-              <i class="el-icon-plus"></i><template slot="prepend">{{item.pageComment}}</template>
-            </el-upload>
-            </div>
+            <!--图片上传-->
+            <upload v-else-if="item.inputType=='8' || item.inputType=='9'" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]" :isMultiple="item.inputType=='9'" ></upload>
             <!--搜索框-->
             <div v-else-if="item.inputType=='10'" @click="activeIndex=item.dictionaryIndex">
               <el-autocomplete  size="mini" style="width:100%;"
@@ -118,36 +86,18 @@
               > <template slot="prepend">{{item.pageComment}}</template></el-autocomplete>
             </div>
             <!--四级联动-->
-            <div  v-else-if="item.inputType=='11'" class="el-input el-input-group el-input-group--prepend el-input--suffix" @click="activeFieldName(item.fieldName)">
-              <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-cascader size="mini" v-model="dataForm[item.fieldName]"
-              :placeholder="item.pageComment"
-                         @change="cascChange"
-                         @active-item-change="handleSelect"
-              :options="options2" style="width:100%;"
-              filterable
-              :props="props"
-            ></el-cascader>
-            </div>
+            <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :level="item.inputType=='11'?4:3" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]"  > </linkage>
             <!--普通文本框-->
             <el-input size="mini" v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" v-else>
               <template slot="prepend">{{item.pageComment}}</template>
             </el-input>
-         <!--   <el-cascader  v-else
-                         v-model="dataForm[item.fieldName]"
-              :options="options2"
-              @active-item-change="handleItemChange"
-              :props="props"
-            ><template slot="prepend">{{item.pageComment}}</template></el-cascader>-->
           </el-form-item>
         <!--</div>-->
         </el-col>
       </el-row>
 
     </el-form>
-    <el-dialog :visible.sync="prewImgLoad" :modal="false">
-      <img width="100%" :src="prewImg" alt="">
-    </el-dialog>
+
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
       <el-button type="primary" @click="dataFormSubmit()">确定</el-button>
@@ -157,35 +107,33 @@
 
 <script>
   import API from '@/api'
-  import {getAddress} from '@/utils'
-  import $ from 'jquery'
+  import {getAddress,queryAddressById} from '@/utils'
+  import linkage from '@/components/input/linkage.vue'
+  import upload from '@/components/input/upload.vue'
   import { isEmail, isMobile,isPhone,isIdentityCard,isInteger,isDecimals,isNull } from '@/utils/validate'
   export default {
     name: 'save',
+    components: {
+      linkage,
+      upload
+    },
     data () {
       return {
-        options2: getAddress(0,1,4),
-        props: {
-          label:"areaname",
-          value: 'id',
-          children: 'children'
-        },
         config: {
           initialFrameWidth: null,
           initialFrameHeight: 350
         },
-        prewImgLoad: false,
-        prewImg: null,
-        imgUrl: API.sysoss.upload(this.$cookie.get('token')),
+        dataForm:{},
         visible: false,
         dialogImageUrl: '',
         dialogVisible: false,
         activeIndex:null,
-        fieldNmae:null
+        fieldNmae:null,
+        imgUrl: API.sysoss.upload(this.$cookie.get('token')),
       }
     },
     props: {
-      dataForm: {
+      optionsMap: {
         default: function () {
           return {}
         },
@@ -196,6 +144,12 @@
           return {}
         },
         type: Object
+      },
+      options2:{
+        type:Array,
+        default: function () {
+          return getAddress(0,1,4)
+        },
       },
       pathUrl: {
         type: String
@@ -216,78 +170,15 @@
         type:Object
       },
     },
-    watch: {
-      dataForm (val) {
-        console.log(val);
-        //this.setListSelections(val)
-      }
-    },
-    mounted () {
-      // // 初始访问时创建
-      // this.initEditor()
-    },
-    /**
-     * keep-alive 会用到进入时调用activated 离开时调用deactivated
-     * 初始访问 created、mounted 切换时deactivated 再次进入时 activated
-     */
-    created(){
-
-    },
-
-    activated () {
-      // // keep-alive 进入时创建
-      // this.initEditor()
-    },
-    deactivated () {
-      // // keep-alive 离开时移除
-      // this.removeEditor()
-    },
     methods: {
-      cascChange(a,b){
-        console.log(a,b);
-      },
+      /**
+       * 点击输入框时保存点击输入框的字段名,这样可以自动绑定输入值
+       * @param fieldName
+       */
       activeFieldName(fieldName){
-        //console.log(fieldName);
         this.fieldNmae=fieldName;
       },
-      test(val){
-        var list=[];
-        for(var i in val){
-          var item = val[i];
-          list.push(item.id);
-        }
-        this.dataForm[this.fieldNmae]=JSON.stringify(list);
-      },
-      //地址的选中方法
-      handleSelect(item) {
-        //获得层级
-        var level = item.length;
-        var address = [];
-        console.log(level);
-        this.queryAddressById(this.options2,item[level-1],address);
-        address[0].children=getAddress(item[level-1],level,4);
-      },
-      //递归根据id查询数据
-      queryAddressById(list,id,address){
-        // if(list==null){
-        //   return;
-        // }
-        console.log(list);
-        for(var i in list){
-          var item = list[i];
-          if(item.id===id){
-            console.log(item);
-            address[0]=item;
-            return;
-          }
-          if(item.children!=null && item.children.length>0){
-            this.queryAddressById(item.children,id,address)
-          }
-
-        }
-      },
       querySearch(queryString, cb) {
-        //////console.log(this.activeIndex);
         var restaurants = this.getBusConfig(this.module+this.pathUrl,this.activeIndex).list;
         for(var i in restaurants){
           restaurants[i].value=restaurants[i].confName;
@@ -302,89 +193,55 @@
           return (restaurant.confName.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
         };
       },
-      onEditorChange: function (text, fielName) {
-        this.dataForm[fielName] = text
-      },
-      // 多图片上传删除事件
-      handleRemove (file, fileList) {
-        this.dataForm[file.name] = fileList
-      },
-      // 预览多图片事件
-      handlePictureCardPreview: function (file) {
-        this.prewImgLoad = true
-        this.prewImg = file.url
-      },
-      // 添加多图片上传事件
-      handleAvatarSuccess: function (res, file) {
-        //////console.log(this.dataForm[res.fieldName] instanceof Array)
-        if (this.dataForm[res.fieldName] instanceof Array) {
-          this.dataForm[res.fieldName].push({urd: 888, name: res.fieldName, url: res.url})
-        } else {
-          this.dataForm[res.fieldName] = res.url
-        }
-      },
-      // 图片上传格式验证
-      beforeAvatarUpload (file) {
-        const isJPG = file.type === 'image/jpeg'
-        const isLt2M = file.size / 1024 / 1024 < 2
-        return true
-      },
       // 初始化方法
-      init: function (id,json) {
-        var dataForm = {};
+      init: function (id,dataForms) {
+        //console.log(dataForms);
+        var dataForm = dataForms==null?{}:dataForms;
         dataForm.id = id || 0
-        console.log(this.tableFieldMap);
         for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
           var cou = this.tableFieldMap.columns[i];
             this.dataRule[cou.fieldName] = [
-          //   { required: true, message: cou.pageComment + '不能为空', trigger: 'blur' },
-          //     { fieldName:cou.fieldName,checkout:cou.checkout,validator: function(rule, value, callback) {
-          //         console.log(rule.fieldName);
-          //       if(rule.checkout!=null  ){
-          //         var che = JSON.parse(rule.checkout);
-          //         var boo=true;
-          //         for(var i in che){
-          //           var item = che[i];
-          //           //0-手机号,1-非空,2-身份证,3-邮箱,4-数字,5-小数
-          //           if (item==="0" && !isMobile(value)) {
-          //             callback(new Error('手机号格式错误'))
-          //           }else if(item==="1" && !isNull(value)){
-          //             callback(new Error('不能为空'))
-          //             boo=false;
-          //           }else if(item==="2" && ! isIdentityCard(value)){
-          //             callback(new Error('身份证格式错误'))
-          //             boo=false;
-          //           }else if(item==="3" && !isEmail(value)){
-          //             callback(new Error('邮箱格式错误'))
-          //             boo=false;
-          //           }else if(item==="4" && !isInteger(value)){
-          //             callback(new Error('数字格式错误'))
-          //             boo=false;
-          //           }else if(item==="5" && !isDecimals(value)){
-          //             callback(new Error('小数格式错误'))
-          //             boo=false;
-          //           }
-          //         }
-          //         if(boo){
-          //           callback()
-          //         }
-          //       }else{
-          //         callback()
-          //       }
-          //
-          //       }
-          //       , trigger: 'blur' }
+              { fieldName:cou.fieldName,checkout:cou.checkout,validator: function(rule, value, callback) {
+                 // console.log(rule.fieldName);
+                if(rule.checkout!=null  ){
+                  var che = JSON.parse(rule.checkout);
+                  var boo=true;
+                  for(var i in che){
+                    var item = che[i];
+                    //0-手机号,1-非空,2-身份证,3-邮箱,4-数字,5-小数
+                    if (item==="0" && !isMobile(value)) {
+                      callback(new Error('手机号格式错误'))
+                    }else if(item==="1" && !isNull(value)){
+                      callback(new Error('不能为空'))
+                      boo=false;
+                    }else if(item==="2" && ! isIdentityCard(value)){
+                      callback(new Error('身份证格式错误'))
+                      boo=false;
+                    }else if(item==="3" && !isEmail(value)){
+                      callback(new Error('邮箱格式错误'))
+                      boo=false;
+                    }else if(item==="4" && !isInteger(value)){
+                      callback(new Error('数字格式错误'))
+                      boo=false;
+                    }else if(item==="5" && !isDecimals(value)){
+                      callback(new Error('小数格式错误'))
+                      boo=false;
+                    }
+                  }
+                  if(boo){
+                    callback()
+                  }
+                }else{
+                  callback()
+                }
+                }
+                , trigger: 'blur' }
             ]
-          if(cou.inputType === '9' || cou.inputType === '5' ){
-            dataForm[cou.fieldName]=[]
-          }else{
-            dataForm[cou.fieldName]='';
-          }
-        }
-        if(json!=null){
-          for(var key in json){
-            dataForm[key]=json[key];
-          }
+            if(cou.inputType === '9'  || cou.inputType === '5'  || cou.inputType === '11'){
+              dataForm[cou.fieldName]=[];
+            }else{
+              dataForm[cou.fieldName]='';
+            }
         }
         this.dataForm=dataForm;
         this.visible = true
@@ -416,7 +273,7 @@
                     }
                   }
                   // 多图像上传兼容
-                  else if (cou.inputType === '9') {
+                  else if (cou.inputType === '9' ) {
                     if (!data.data[cou.fieldName]) {
                       this.dataForm[cou.fieldName] = []
                     } else {
@@ -472,3 +329,4 @@
     }
   }
 </script>
+

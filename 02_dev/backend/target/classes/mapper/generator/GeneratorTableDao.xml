@@ -185,6 +185,7 @@ concat((select name from generator_modules mo where mo.id=tab.modules_id),REPLAC
 tab.id,
 tab.modules_id,
 tab.table_comment,
+tab.table_name,
 tab.business_value,
 tab.business_key,
 tab.is_business,
@@ -205,12 +206,12 @@ f.table_set,
 f.is_data_base,
 f.is_set,
 f.input_type,
-f.data_default
+f.data_default,
+f.sort
   FROM
 `generator_table` tab
 left join generator_table_field f on f.table_id=tab.id
-order by f.sort
-) tabs where tabs.module_tab_name = #{module}
+) tabs where tabs.module_tab_name = #{module} order by sort
     </select>
 
 

@@ -4,15 +4,15 @@
 ;(function () {
   window.SITE_CONFIG = {}
   // api接口请求地址
-  window.SITE_CONFIG.baseUrl = '//localhost:8082/wjxcx/'
+  window.SITE_CONFIG.baseUrl = 'http://admin.3zhit.com/admin/'
 
   // 嵌套iframe地址
-  window.SITE_CONFIG.nestIframeUrl = '//localhost:8082/wjxcx/'
+  window.SITE_CONFIG.nestIframeUrl = 'http://admin.3zhit.com/admin/'
   // 嵌套iframe路由名称列表
   window.SITE_CONFIG.nestIframeRouteNameList = ['sql']
 
   // 静态资源文件夹名称
-  window.SITE_CONFIG.staticFileName = '180903'
+  window.SITE_CONFIG.staticFileName = '180915'
   // cdn地址
   window.SITE_CONFIG.cdnUrl = './' + window.SITE_CONFIG.staticFileName
 })();

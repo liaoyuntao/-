@@ -1,5 +1,9 @@
 package com.szt.modules.sys.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.szt.common.utils.PageUtils;
+import com.szt.modules.sys.entity.KeRegionEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.szt.common.CommonServiceImpl;
 import com.szt.modules.sys.dao.SysPbAreaDao;
@@ -8,6 +12,7 @@ import com.szt.modules.sys.service.SysPbAreaService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 地址管理
@@ -19,7 +24,8 @@ import java.util.List;
 @Service("syssysPbAreaService")
 public class SysPbAreaServiceImpl extends CommonServiceImpl<SysPbAreaDao, SysPbAreaEntity> implements SysPbAreaService {
 
-
+//    @Autowired
+//    private KeRegionService keRegionService;
     @Override
     @Transactional
     public void addressReload() {
@@ -33,5 +39,28 @@ public class SysPbAreaServiceImpl extends CommonServiceImpl<SysPbAreaDao, SysPbA
     @Override
     public List<SysPbAreaEntity> addressRedisReload() {
         return selectList(null);
+    }
+
+    @Override
+    public void defaultData() {
+//        List<KeRegionEntity> list = keRegionService.selectList(null);
+//        for(KeRegionEntity item : list){
+//            SysPbAreaEntity entity = new SysPbAreaEntity();
+//            entity.setId(new Long(item.getId()));
+//            entity.setParentid(new Long(item.getPid()));
+//            entity.setAreaname(item.getName());
+//            entity.setLevel(item.getType());
+//            this.insertEntity(entity);
+//        }
+    }
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        Page<SysPbAreaEntity> page = new Page<SysPbAreaEntity>(
+                Integer.parseInt((String)params.get("page")),
+                Integer.parseInt((String)params.get("limit"))
+        );
+        page.setRecords(baseMapper.queryList(page,params));
+        return new PageUtils(page);
     }
 }

@@ -25,7 +25,7 @@ public class CommonController<S extends CommonService<E>, E> {
      */
     @ApiOperation("列表")
     @GetMapping("/list")
-    @RequiresPermissions("sys:sysconfig:lists")
+    @RequiresPermissions("null")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = service.queryPage(params);
 
@@ -38,7 +38,7 @@ public class CommonController<S extends CommonService<E>, E> {
      */
     @ApiOperation("信息")
     @GetMapping("/info/{id}")
-    @RequiresPermissions("sys:sysconfig:info")
+    @RequiresPermissions("null")
     public R info(@PathVariable("id") Long id) {
         E sysConfig = service.selectById(id);
 
@@ -51,7 +51,7 @@ public class CommonController<S extends CommonService<E>, E> {
     @SysLog("保存信息")
     @ApiOperation("保存")
     @PostMapping("/save")
-    @RequiresPermissions("sys:sysconfig:save")
+    @RequiresPermissions("null")
     public R save(@RequestBody E sysConfig) {
         service.insertEntity(sysConfig);
         return R.ok();
@@ -63,7 +63,7 @@ public class CommonController<S extends CommonService<E>, E> {
     @SysLog("修改信息")
     @ApiOperation("修改")
     @PostMapping("/update")
-    @RequiresPermissions("sys:sysconfig:update")
+    @RequiresPermissions("null")
     public R update(@RequestBody E sysConfig) {
         service.updateEntity(sysConfig);
 
@@ -76,7 +76,7 @@ public class CommonController<S extends CommonService<E>, E> {
     @SysLog("删除信息")
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @RequiresPermissions("sys:sysconfig:delete")
+    @RequiresPermissions("null")
     public R delete(@RequestBody Long[] ids) {
         service.deleteBatchIds(Arrays.asList(ids));
         return R.ok();

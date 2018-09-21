@@ -127,7 +127,7 @@ public class SysOssController {
         if (file.isEmpty()) {
             throw new RRException("上传文件不能为空");
         }
-         String fieldName = request.getParameter("fieldName");
+        // String fieldName = request.getParameter("fieldName");
         //上传文件
         String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         String url = OSSFactory.build().uploadSuffix(file.getBytes(), suffix)+"?imageslim";
@@ -136,7 +136,7 @@ public class SysOssController {
         ossEntity.setUrl(url);
         ossEntity.insert();
         sysOssService.insert(ossEntity);
-        return R.ok().put("url", url).put("fieldName",fieldName);
+        return R.ok().put("url", url);
     }
     /**
      * 修改
