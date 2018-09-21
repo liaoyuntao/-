@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top:20px">
     <el-form :inline="true"  @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
-      <seek ref="seek" @updateSeekForm="updateSeekForm" :tableFieldMap="tableFieldMap" :busConfig="busConfig" :pathUrl="pathUrl" :model="model"></seek>
+      <seek ref="seek" v-model="seekForm" :tableFieldMap="tableFieldMap" :busConfig="busConfig" :pathUrl="pathUrl" :model="model"></seek>
       <div style="float:right">
         <el-button type="primary" @click="getDataList()" size="small">查询</el-button>
         <el-button :type="items.type" plain v-for="items in formButton" v-if="isAuth(model+':'+pathUrl+':'+items.scope)"
@@ -121,7 +121,6 @@
     data() {
       return {
         seekForm:{},
-       // dataForm:{},
         options2: getAddress(0,4),
         optionsMap: {},
         saveall: false,

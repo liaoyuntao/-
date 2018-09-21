@@ -1,28 +1,5 @@
 import $ from "jquery";
 import requestUrl from "./requestUrl";
-// import * as common from './modules/common'
-// import * as user from './modules/user'
-// import * as role from './modules/role'
-// import * as menu from './modules/menu'
-// import * as generator from './modules/generator/generator'
-// import * as generatordatabase from './modules/generator/generatordatabase'
-// import * as generatortemplate from './modules/generator/generatortemplate'
-// import * as generatortemplateconfig from './modules/generator/generatortemplateconfig'
-// import * as generatormodules from './modules/generator/generatormodules'
-// import * as generatortable from './modules/generator/generatortable'
-// import * as generatortablefield from './modules/generator/generatortablefield'
-// import * as generatorbusconfig from './modules/generator/generatorbusconfig'
-// import * as schedulejob from './modules/job/schedulejob'
-// import * as schedulejoblog from './modules/job/schedulejoblog'
-// import * as syslog from './modules/sys/syslog'
-// import * as syspbarea from './modules/sys/syspbarea'
-// import * as sysconfig from './modules/sys/sysconfig'
-// import * as sysoss from './modules/oss/sysoss'
-// import * as sysagreement from './modules/sys/sysagreement'
-// import * as sysprotocolhistory from './modules/sys/sysprotocolhistory'
-
-//轮播图管理
-//import * as slideshowslideshow from './modules/slideshow/slideshowslideshow'
 var getCookie = function (name) {
   var strcookie = document.cookie// 获取cookie字符串
   var arrcookie = strcookie.split('; ')// 分割
