@@ -171,13 +171,6 @@
       },
     },
     methods: {
-      /**
-       * 点击输入框时保存点击输入框的字段名,这样可以自动绑定输入值
-       * @param fieldName
-       */
-      activeFieldName(fieldName){
-        this.fieldNmae=fieldName;
-      },
       querySearch(queryString, cb) {
         var restaurants = this.getBusConfig(this.module+this.pathUrl,this.activeIndex).list;
         for(var i in restaurants){
