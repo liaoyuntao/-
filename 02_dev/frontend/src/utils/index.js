@@ -16,7 +16,7 @@ export function getRouteNameByUrl (url) {
   let val = /.*\/(.*)\.html/.exec(url)
   return val && val.length >= 1 ? val[1] : ''
 }
-var getCookie = function (name) {
+export function  getCookie (name) {
   var strcookie = document.cookie// 获取cookie字符串
   var arrcookie = strcookie.split('; ')// 分割
 // 遍历匹配
@@ -28,7 +28,6 @@ var getCookie = function (name) {
   }
   return ''
 }
-
 /**
  * 根据地址id递归查询层级
  * @param list

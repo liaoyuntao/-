@@ -1,17 +1,6 @@
 import $ from "jquery";
 import requestUrl from "./requestUrl";
-var getCookie = function (name) {
-  var strcookie = document.cookie// 获取cookie字符串
-  var arrcookie = strcookie.split('; ')// 分割
-// 遍历匹配
-  for (var i = 0; i < arrcookie.length; i++) {
-    var arr = arrcookie[i].split('=')
-    if (arr[0] === name) {
-      return arr[1]
-    }
-  }
-  return ''
-}
+import {getCookie} from '@/utils'
 var map = {};
 //自动配置路由
 $.ajax({

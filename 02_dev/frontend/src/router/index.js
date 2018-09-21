@@ -1,21 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import requestUrl from "../api/requestUrl";
+import {getCookie} from '@/utils'
 import $ from "jquery";
 // 开发环境不使用懒加载, 因为懒加载页面太多的话会造成webpack热更新太慢, 所以只有开发环境使用懒加载
 const _import = require('./import-' + process.env.NODE_ENV)
-var getCookie = function (name) {
-  var strcookie = document.cookie// 获取cookie字符串
-  var arrcookie = strcookie.split('; ')// 分割
-// 遍历匹配
-  for (var i = 0; i < arrcookie.length; i++) {
-    var arr = arrcookie[i].split('=')
-    if (arr[0] === name) {
-      return arr[1]
-    }
-  }
-  return ''
-}
 Vue.use(Router)
 var list = [];
 $.ajax({
