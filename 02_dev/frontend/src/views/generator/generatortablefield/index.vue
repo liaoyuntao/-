@@ -1,6 +1,7 @@
 <template>
   <div class="mod-config">
-    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton"   :dataForm.sync="dataForm"  :model="model" :operation.sync="operation" :setListSelections="setListSelections"></tablefield>
+
+    <tablefield :pathUrl="pathUrl" ref="tablefield" :formButton="formButton" :seekForm="seekForm" :dataForm="dataForm"    :model="model" :operation.sync="operation" :setListSelections="setListSelections"></tablefield>
   </div>
 </template>
 
@@ -18,7 +19,6 @@
         pathUrl: 'generatortablefield',
         busConfig: this.busConfig,
         tableFieldMap: this.tableFieldMap,
-        sysurl: window.SITE_CONFIG.baseUrl,
         dataForm: {},
         dataListSelections: [],
         operation: [
@@ -49,7 +49,7 @@
               return dataListSelections.length<=0;
             }},
         ],
-        saveForm: {
+        seekForm: {
 
         }
       }
@@ -64,11 +64,9 @@
         })
       },
       init: function (id) {
-        this.tableId=id;
-        this.$nextTick(() => {
-          this.$refs.tablefield.setSeekForm({tableId:id})
-          this.getDataList()
-        })
+        this.seekForm={tableId:id}
+        this.dataForm={tableId:id}
+        this.getDataList();
       },  // 多选
       getDataList () {
         this.$nextTick(() => {

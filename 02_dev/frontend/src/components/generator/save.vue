@@ -119,37 +119,17 @@
     },
     data () {
       return {
-        config: {
-          initialFrameWidth: null,
-          initialFrameHeight: 350
-        },
         dataForm:{},
         visible: false,
-        dialogImageUrl: '',
-        dialogVisible: false,
         activeIndex:null,
-        fieldNmae:null,
         imgUrl: API.sysoss.upload(this.$cookie.get('token')),
+        dataRule:{}
       }
     },
     props: {
-      optionsMap: {
-        default: function () {
-          return {}
-        },
-        type: Object
-      },
-      dataRule: {
-        default: function () {
-          return {}
-        },
-        type: Object
-      },
-      options2:{
-        type:Array,
-        default: function () {
-          return getAddress(0,1,4)
-        },
+      defaultForm:{
+        type:Object,
+        default:{}
       },
       pathUrl: {
         type: String
@@ -157,16 +137,7 @@
       model: {
         type: String
       },
-      list: {
-        type: Array
-      },
-      updateFunction: {
-        type: Function
-      },
       tableFieldMap: {
-        type:Object
-      },
-      busConfig: {
         type:Object
       },
     },
@@ -187,9 +158,8 @@
         };
       },
       // 初始化方法
-      init: function (id,dataForms) {
-        //console.log(dataForms);
-        var dataForm = dataForms==null?{}:dataForms;
+      init: function (id) {
+        var dataForm = {};
         dataForm.id = id || 0
         for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
           var cou = this.tableFieldMap.columns[i];
@@ -236,6 +206,7 @@
               dataForm[cou.fieldName]='';
             }
         }
+        Object.assign(dataForm,this.defaultForm);
         this.dataForm=dataForm;
         this.visible = true
         this.$nextTick(() => {

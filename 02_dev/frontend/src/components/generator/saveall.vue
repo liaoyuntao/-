@@ -123,23 +123,8 @@
     },
     data () {
       return {
-        config: {
-          initialFrameWidth: null,
-          initialFrameHeight: 350
-        },
-
-        fieldName:null,
-        index:null,
         imgUrl: API.sysoss.upload(this.$cookie.get('token')),
         visible: false,
-        dialogImageUrl: '',
-        dialogVisible: false,
-        dynamicValidateForm: {
-          domains: [{
-            value: ''
-          }],
-          email: ''
-        },
         tableData: [],
         dataForm:{},
       }
@@ -150,12 +135,11 @@
       }
     },
     props: {
-      // dataForm: {
-      //   default: function () {
-      //     return {}
-      //   },
-      //   type: Object
-      // },
+      defaultForm:{
+        type:Object,
+        default:{}
+      },
+
       dataRule: {
         default: function () {
           return {}
@@ -198,9 +182,9 @@
         };
       },
       // 初始化方法
-      init: function (id,dataForms) {
+      init: function (id) {
         this.tableData=[];
-        var dataForm = dataForms==null?{}:dataForms;
+        var dataForm = {};
         dataForm.id = id || 0
         for (var i = 0; i < this.tableFieldMap.columns.length; i++) {
           var cou = this.tableFieldMap.columns[i];
@@ -215,11 +199,7 @@
             dataForm[cou.fieldName]='';
           }
         }
-        // // if(json!=null){
-        // //   for(var key in json){
-        // //     dataForm[key]=json[key];
-        // //   }
-        // // }
+        Object.assign(dataForm,this.defaultForm);
          this.dataForm=dataForm;
         this.visible = true
         this.addOrUpdateHandle();
@@ -253,14 +233,6 @@
             })
           }
         })
-      },
-      // handleCurrentChange(row, event, column) {
-      //   ////console.log(row, event, column, event.currentTarget)
-      // },
-      handleEdit(index,fieldName) {
-        ////console.log(index,fieldName);
-        this.index=index;
-        this.fieldName=fieldName;
       },
       handleDelete(index, row) {
         this.tableData.splice(index,1)

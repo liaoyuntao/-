@@ -23,7 +23,7 @@
     },
     data () {
       return {
-
+        dataForm:{},
         model: 'generator',
         pathUrl: 'generatortable',
         dataListSelections: [],
@@ -85,7 +85,6 @@
         this.dataListSelections = val
       },
       init: function (id) {
-        //this.dataForm.tableId = id
         this.getDataList()
       },  // 多选
       getDataList () {
@@ -111,7 +110,6 @@
       queryField (scope) {
         this.generatortablefield = true
         this.$nextTick(() => {
-          console.log();
           this.$refs.generatortablefield.init(scope.id, this.dataForm)
         })
       },

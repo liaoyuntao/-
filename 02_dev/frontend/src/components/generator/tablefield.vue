@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top:20px">
-    <el-form :inline="true"  @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
-      <seek ref="seek" v-model="seekForm" :tableFieldMap="tableFieldMap" :busConfig="busConfig" :pathUrl="pathUrl" :model="model"></seek>
+    <el-form :inline="true" @keyup.enter.native="getDataList()" style="margin-bottom:60px;">
+      <seek ref="seek" v-model="seekForm" :tableFieldMap="tableFieldMap"  :pathUrl="pathUrl" :model="model"></seek>
       <div style="float:right">
         <el-button type="primary" @click="getDataList()" size="small">查询</el-button>
         <el-button :type="items.type" plain v-for="items in formButton" v-if="isAuth(model+':'+pathUrl+':'+items.scope)"
@@ -45,7 +45,9 @@
             <!-- 时间datetime-->
             <span v-else-if="item.inputType==='3'" v-text="scope.row[item.fieldName]"></span>
             <!--上传图片-->
-            <span v-else-if="item.inputType==='8'"><img :src="oneImg(scope.row[item.fieldName])" @click="handlePictureCardPreview(oneImg(scope.row[item.fieldName]))"style="width:50px;height:50px;">
+            <span v-else-if="item.inputType==='8'"><img :src="oneImg(scope.row[item.fieldName])"
+                                                        @click="handlePictureCardPreview(oneImg(scope.row[item.fieldName]))"
+                                                        style="width:50px;height:50px;">
         </span>
             <!--下拉选selec-->
             <span v-else-if="item.inputType=='4' "
@@ -69,10 +71,6 @@
         width="300"
         label="操作">
         <template slot-scope="scope">
-          <!--<el-button type="primary" plain  v-if="isAuth(model+':'+pathUrl+':save') && updateFunction==null"  size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-          <el-button type="primary" plain   v-if="isAuth(model+':'+pathUrl+':save') && updateFunction!=null"  size="small" @click="updateFunction(scope.row.id)">修改</el-button>
-           <el-button type="primary" plain   v-if="isAuth(model+':'+pathUrl+':save') && viewFunction!=null"  size="small" @click="viewFunction(scope.row.table_name)">查看</el-button>
-          <el-button   v-if="isAuth(model+':'+pathUrl+':delete')" type="danger" plain size="small" @click="deleteHandle(scope.row.id)">删除</el-button>-->
           <el-button :type="items.type" plain v-for="items in operation"
                      v-if="isAuth(model+':'+pathUrl+':'+items.scope)"
                      :disabled="items.disabled!=undefined&&items.disabled(scope.row)" @click="items.fun(scope.row)"
@@ -91,9 +89,9 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
     <!-- 弹窗, 新增 / 修改 -->
-    <save ref="save" :pathUrl="pathUrl"  :model="model" @refreshDataList="getDataList" :tableFieldMap="tableFieldMap" ></save>
+    <save ref="save" :pathUrl="pathUrl" :model="model" @refreshDataList="getDataList" :defaultForm="dataForm" :tableFieldMap="tableFieldMap"></save>
     <!--批量新增-->
-    <saveall ref="saveall"   :model="model" :pathUrl="pathUrl"  @refreshDataList="getDataList" :tableFieldMap="tableFieldMap" ></saveall>
+    <saveall ref="saveall" :model="model" :pathUrl="pathUrl" @refreshDataList="getDataList" :defaultForm="dataForm"   :tableFieldMap="tableFieldMap"></saveall>
     <!--预览图片-->
     <el-dialog :visible.sync="prewImgLoad" :modal="false">
       <img width="100%" :src="prewImg" alt="">
@@ -110,6 +108,7 @@
   import TableTreeColumn from '@/components/table-tree-column/index1'
   import $ from 'jquery'
   import requestUrl from '@/api/requestUrl'
+
   export default {
     name: 'tablefield',
     components: {
@@ -120,13 +119,11 @@
     },
     data() {
       return {
-        seekForm:{},
-        options2: getAddress(0,4),
+        options2: getAddress(0, 4),
         optionsMap: {},
         saveall: false,
         busConfig: {},
         tableFieldMap: {},
-        sysurl: window.SITE_CONFIG.baseUrl,
         sortData: {
           order: undefined,
           sidx: undefined
@@ -143,6 +140,12 @@
       }
     },
     props: {
+      seekForm: {
+        type: Object,
+        default: function () {
+          return {}
+        }
+      },
       dataForm: {
         type: Object,
         default: function () {
@@ -175,12 +178,6 @@
       setListSelections: {
         type: Function
       },
-      updateFunction: {
-        type: Function
-      },
-      viewFunction: {
-        type: Function
-      }
     },
     watch: {
       dataListSelections(val) {
@@ -219,6 +216,7 @@
         var item = this.options2[i];
         this.optionsMap[item.id] = item;
       }
+      console.log(this.seekForm);
     },
     methods: {
       // 预览多图片事件
@@ -226,12 +224,12 @@
         this.prewImgLoad = true
         this.prewImg = url
       },
-      oneImg(val){
-       return val;
+      oneImg(val) {
+        return val;
       },
-      setSeekForm(seekForm){
-        this.seekForm=seekForm;
-      },
+      // setSeekForm(seekForm) {
+      //   this.seekForm = seekForm;
+      // },
       addJsonText(val) {
         if (val == null) {
           return '';
@@ -241,7 +239,7 @@
         if (list[0] != null) {
           var item = list[0];
           var obj = this.optionsMap[item];
-          if(obj!=null &&obj.isNext!='0' && obj.children.length==0){
+          if (obj != null && obj.isNext != '0' && obj.children.length == 0) {
             var children = getAddress(item);
             for (var j = 0; j < children.length; j++) {
               var item1 = children[j];
@@ -254,7 +252,7 @@
         if (list[1] != null) {
           var item = list[1];
           var obj = this.optionsMap[item];
-          if(obj!=null &&obj.isNext!='0' && obj.children.length==0){
+          if (obj != null && obj.isNext != '0' && obj.children.length == 0) {
             var children = getAddress(item);
             for (var j = 0; j < children.length; j++) {
               var item1 = children[j];
@@ -262,12 +260,12 @@
             }
             obj.children = children
           }
-            str += " " + obj.areaname;
+          str += " " + obj.areaname;
         }
         if (list[2] != null) {
           var item = list[2];
           var obj = this.optionsMap[item];
-          if(obj!=null &&obj.isNext!='0' && obj.children.length==0){
+          if (obj != null && obj.isNext != '0' && obj.children.length == 0) {
             var children = getAddress(item);
             for (var j = 0; j < children.length; j++) {
               var item1 = children[j];
@@ -275,12 +273,12 @@
             }
             obj.children = children
           }
-            str += " " + obj.areaname;
+          str += " " + obj.areaname;
         }
         if (list[3] != null) {
           var item = list[3];
           var obj = this.optionsMap[item];
-          if(obj!=null && obj.isNext!='0' && obj.children.length==0){
+          if (obj != null && obj.isNext != '0' && obj.children.length == 0) {
             var children = getAddress(item);
             for (var j = 0; j < children.length; j++) {
               var item1 = children[j];
@@ -288,7 +286,7 @@
             }
             obj.children = children
           }
-            str += " " + obj.areaname;
+          str += " " + obj.areaname;
         }
 
         return str;
@@ -368,7 +366,7 @@
         this.dataListSelections = val
       },
       // 新增 / 修改
-      addOrUpdateHandle(row,defaultFrom) {
+      addOrUpdateHandle(row, defaultFrom) {
         this.addOrUpdateVisible = true
         this.$nextTick(() => {
           this.$refs.save.init(row != undefined ? row.id : null, defaultFrom)
@@ -394,8 +392,8 @@
                 type: 'success',
                 duration: 1500,
                 onClose: () => {
-                  if( this.tableFieldMap.isBusiness==0){
-                    this.reloadBusConfig(this.model+this.pathUrl,this.tableFieldMap.tableName);
+                  if (this.tableFieldMap.isBusiness == 0) {
+                    this.reloadBusConfig(this.model + this.pathUrl, this.tableFieldMap.tableName);
                   }
                   this.getDataList()
                 }
@@ -410,7 +408,7 @@
       addAllOrUpdateHandle() {
         this.saveall = true
         this.$nextTick(() => {
-          this.$refs.saveall.init(null, this.dataForm)
+          this.$refs.saveall.init()
         })
       },
     }
