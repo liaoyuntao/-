@@ -7,7 +7,7 @@
         <el-button  type="primary" @click="addOrUpdateHandle()">新增</el-button>
         <el-button  type="primary" @click="dataFormSubmit()">保存</el-button>
       </div>
-    <el-form :inline="true" :model="tableData" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" >
+    <el-form :inline="true"  :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" >
   <el-table :data="tableData" class="tb-edit" style="width: 100%"  height="500"  size="mini" border highlight-current-row >
     <el-table-column v-for="item in tableFieldMap.columns" v-if="item.isSet=='0'"
                      sortable="custom"
@@ -78,18 +78,18 @@
             </el-input>
           </div>-->
         <!--图片上传-->
-        <upload v-else-if="item.inputType=='8' || item.inputType=='9'"  v-model="dataForm[item.fieldName]" :isMultiple="item.inputType=='9'" ></upload>
+        <upload v-else-if="item.inputType=='8' || item.inputType=='9'"  v-model="scope.row[item.fieldName]" :isMultiple="item.inputType=='9'" ></upload>
 
         <div v-else-if="item.inputType=='10'" @click="activeIndex=item.dictionaryIndex">
           <el-autocomplete style="width:100%;" size="mini"
                            class="inline-input"
-                           v-model="dataForm[item.fieldName]"
+                           v-model="scope.row[item.fieldName]"
                            :fetch-suggestions="querySearch"
                            :placeholder="item.pageComment"
           > </el-autocomplete>
         </div>
         <!--四级联动-->
-        <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :level="item.inputType=='11'?4:3"  v-model="dataForm[item.fieldName]"  > </linkage>
+        <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :level="item.inputType=='11'?4:3"  v-model="scope.row[item.fieldName]"  > </linkage>
 
         <el-input size="mini" v-model="scope.row[item.fieldName]" :placeholder="item.pageComment" v-else>
           </el-input>
@@ -141,6 +141,7 @@
           email: ''
         },
         tableData: [],
+        dataForm:{},
       }
     },
     watch:{
@@ -149,12 +150,12 @@
       }
     },
     props: {
-      dataForm: {
-        default: function () {
-          return {}
-        },
-        type: Object
-      },
+      // dataForm: {
+      //   default: function () {
+      //     return {}
+      //   },
+      //   type: Object
+      // },
       dataRule: {
         default: function () {
           return {}
@@ -214,12 +215,12 @@
             dataForm[cou.fieldName]='';
           }
         }
-        // if(json!=null){
-        //   for(var key in json){
-        //     dataForm[key]=json[key];
-        //   }
-        // }
-        this.dataForm=dataForm;
+        // // if(json!=null){
+        // //   for(var key in json){
+        // //     dataForm[key]=json[key];
+        // //   }
+        // // }
+         this.dataForm=dataForm;
         this.visible = true
         this.addOrUpdateHandle();
       },

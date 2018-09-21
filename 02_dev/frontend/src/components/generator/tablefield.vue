@@ -93,7 +93,7 @@
     <!-- 弹窗, 新增 / 修改 -->
     <save ref="save" :pathUrl="pathUrl"  :model="model" @refreshDataList="getDataList" :tableFieldMap="tableFieldMap" ></save>
     <!--批量新增-->
-    <saveall ref="saveall" :optionsMap="optionsMap"  :model="model" :pathUrl="pathUrl" :dataForm="dataForm"  @refreshDataList="getDataList" :tableFieldMap="tableFieldMap" ></saveall>
+    <saveall ref="saveall"   :model="model" :pathUrl="pathUrl"  @refreshDataList="getDataList" :tableFieldMap="tableFieldMap" ></saveall>
     <!--预览图片-->
     <el-dialog :visible.sync="prewImgLoad" :modal="false">
       <img width="100%" :src="prewImg" alt="">
@@ -231,12 +231,6 @@
       },
       setSeekForm(seekForm){
         this.seekForm=seekForm;
-        this.$nextTick(() => {
-          this.$refs.seek.setValue(seekForm)
-        })
-      },
-      updateSeekForm(seekForm) {
-        this.seekForm = seekForm;
       },
       addJsonText(val) {
         if (val == null) {
