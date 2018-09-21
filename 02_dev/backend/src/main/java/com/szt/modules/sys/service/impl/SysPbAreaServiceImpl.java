@@ -1,14 +1,12 @@
 package com.szt.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.szt.common.utils.PageUtils;
-import com.szt.modules.sys.entity.KeRegionEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.szt.common.CommonServiceImpl;
+import com.szt.common.utils.PageUtils;
 import com.szt.modules.sys.dao.SysPbAreaDao;
 import com.szt.modules.sys.entity.SysPbAreaEntity;
 import com.szt.modules.sys.service.SysPbAreaService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -24,16 +22,16 @@ import java.util.Map;
 @Service("syssysPbAreaService")
 public class SysPbAreaServiceImpl extends CommonServiceImpl<SysPbAreaDao, SysPbAreaEntity> implements SysPbAreaService {
 
-//    @Autowired
+    //    @Autowired
 //    private KeRegionService keRegionService;
     @Override
     @Transactional
     public void addressReload() {
-       List<SysPbAreaEntity> list =  baseMapper.selectList(null);
-       for(SysPbAreaEntity item : list){
-           item.insert();
-           baseMapper.updateById(item);
-       }
+        List<SysPbAreaEntity> list = baseMapper.selectList(null);
+        for (SysPbAreaEntity item : list) {
+            item.insert();
+            baseMapper.updateById(item);
+        }
     }
 
     @Override
@@ -57,10 +55,10 @@ public class SysPbAreaServiceImpl extends CommonServiceImpl<SysPbAreaDao, SysPbA
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         Page<SysPbAreaEntity> page = new Page<SysPbAreaEntity>(
-                Integer.parseInt((String)params.get("page")),
-                Integer.parseInt((String)params.get("limit"))
+                Integer.parseInt((String) params.get("page")),
+                Integer.parseInt((String) params.get("limit"))
         );
-        page.setRecords(baseMapper.queryList(page,params));
+        page.setRecords(baseMapper.queryList(page, params));
         return new PageUtils(page);
     }
 }
