@@ -13,4 +13,3 @@
 
 6.将业务分为模块提高管理和控制性
 
-![模块管理](http://p1kqsiha2.bkt.clouddn.com/upload/20180922/cc052bc8da274e50a562ff2cecd022da.png)
