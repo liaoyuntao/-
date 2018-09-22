@@ -6,3 +6,7 @@
 3.所有的简单表单验证都是配置的
 
 4.拥有多种输入框配置例如:3,4级地址选择输入框,单图像和多图像上传
+
+5.体验地址: http://admin.3zhit.com/admin/admin/index.html#/login
+  账号:admin
+  密码:tiger
