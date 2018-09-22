@@ -73,7 +73,7 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
         for (Long id : longs) {
             GeneratorTableFieldEntity entity = new GeneratorTableFieldEntity();
             entity.setId(id);
-            entity.setIsExport(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_EXPORT_0);
+            entity.setIsExport(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_EXPORT_0);
             this.updateEntity(entity);
         }
     }
@@ -84,7 +84,7 @@ public class GeneratorTableFieldServiceImpl extends CommonServiceImpl<GeneratorT
         for (Long id : longs) {
             GeneratorTableFieldEntity entity = new GeneratorTableFieldEntity();
             entity.setId(id);
-            entity.setIsSeek(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_SEEK_0);
+            entity.setIsSeek(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SEEK_0);
             this.updateEntity(entity);
         }
     }

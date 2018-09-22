@@ -204,7 +204,7 @@ public class GeneratorTableServiceImpl extends CommonServiceImpl<GeneratorTableD
                 if (GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SET_0.equals(field.getIsSet())) {
                     isSetList.add(CloneOper.deepCloneObject(field));
                 }
-                if (GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_SEEK_0.equals(field.getIsSeek())) {
+                if (GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SEEK_0.equals(field.getIsSeek())) {
                     isSeekList.add(CloneOper.deepCloneObject(field));
                 }
             }

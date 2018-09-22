@@ -103,12 +103,15 @@ public class GeneratorBusConfigServiceImpl extends CommonServiceImpl<GeneratorBu
            quer.setConfCode(tab.getTableName());
            Map<String,String> map1 = new HashMap<>();
            List<GeneratorBusConfigEntity> lists = generatorTableService.queryData(tab.getTableName(),tab.getBusinessKey(),tab.getBusinessValue());
-//           if(key.equals("generator_bus_config")){
-//               generatorTableService.selectList(new EntityWrapper<>());
-//               for(){
-//
-//               }
-//           }
+           if(key.equals("generator_bus_config")){
+               List<GeneratorTableEntity> tabList = generatorTableService.selectList(new EntityWrapper<>());
+               for(GeneratorTableEntity item: tabList){
+                   GeneratorBusConfigEntity tabEn=new GeneratorBusConfigEntity();
+                   tabEn.setConfName(item.getTableName());
+                   tabEn.setConfVue(item.getTableName());
+                   lists.add(tabEn);
+               }
+           }
            quer.setList(lists);
            for(GeneratorBusConfigEntity items : quer.getList()){
                map1.put(items.getConfVue(),items.getConfName());

@@ -206,8 +206,8 @@
       },
       // 表单提交
       dataFormSubmit () {
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
+       // this.$refs['dataForm'].validate((valid) => {
+         // if (valid) {
             // var params = {}
             // Object.assign(params, this.tableData)
             ////console.log(this.tableData);
@@ -231,8 +231,8 @@
                 this.$message.error(data.msg)
               }
             })
-          }
-        })
+          //}
+       // })
       },
       handleDelete(index, row) {
         this.tableData.splice(index,1)

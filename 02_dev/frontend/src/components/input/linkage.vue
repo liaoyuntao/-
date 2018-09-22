@@ -1,7 +1,7 @@
 <template>
   <div   class="el-input el-input-group el-input-group--prepend el-input--suffix" >
     <div class="el-input-group__prepend" v-if="pageComment!=''">{{pageComment}}</div>
-    <el-cascader size="mini" v-model="val"
+    <el-cascader size="mini" v-model="val" :disabled="disabled"
                  :placeholder="pageComment"
                  @active-item-change="handleSelect"
                  :options="options2" style="width:100%;"
@@ -28,11 +28,14 @@
       },
       watch:{
         val (val) {
-          console.log(val);
            this.$emit('input', val)
         }
       },
       props: {
+        disabled:{
+          type:Boolean,
+          default:false
+        },
         // 使用v-module必须要使用value
         value: {
           default: '',

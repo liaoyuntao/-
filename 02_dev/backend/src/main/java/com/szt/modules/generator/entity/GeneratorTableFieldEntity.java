@@ -200,6 +200,12 @@ public class GeneratorTableFieldEntity implements Serializable {
 	 */
 	@ApiModelProperty(value = "树父id",required = true)
 	private String parentKey;
+	/**
+	 * 是否允许修改@0-是,1-否
+	 */
+	@NotBlank(message="是否允许修改不能为空")
+	@ApiModelProperty(value = "是否允许修改@0-是,1-否",required = false)
+	private String isUpdate;
 	@TableField(exist = false)
 	private String thisComment;
 	@TableField(exist = false)
@@ -527,7 +533,7 @@ public class GeneratorTableFieldEntity implements Serializable {
 		this.updateTime = new Date();
 		this.sort = this.sort == null ? 1 : this.sort;
 		if(this.deleteFlag == null || this.deleteFlag.length()==0){
-			this.deleteFlag = GeneratorTableFieldConstant.DELETE_FLAG_0;
+			this.deleteFlag = GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_DELETE_FLAG_0;
 		}
 		this.versionNo=1;
 	}
@@ -709,5 +715,13 @@ public class GeneratorTableFieldEntity implements Serializable {
 
 	public void setColumnType(String columnType) {
 		this.columnType = columnType;
+	}
+
+	public String getIsUpdate() {
+		return isUpdate;
+	}
+
+	public void setIsUpdate(String isUpdate) {
+		this.isUpdate = isUpdate;
 	}
 }

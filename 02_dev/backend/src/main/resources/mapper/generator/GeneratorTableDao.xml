@@ -125,6 +125,7 @@
             <result column="data_default" property="dataDefault"></result>
             <result column="remarks" property="remarks"></result>
            <result column="column_key" property="columnKey"></result>
+           <result column="is_update" property="isUpdate"></result>
             <!--  <result column="tree_key" property="treeKey"></result>
              <result column="parent_key" property="parentKey"></result>
              <result column="level_key" property="levelKey"></result>-->
@@ -193,6 +194,7 @@ tab.level_key,
 tab.parent_key,
 tab.tree_key,
 tab.tree_field_name,
+f.is_update,
 f.field_name,
 f.is_seek,
 f.data_length,

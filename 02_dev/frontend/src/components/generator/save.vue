@@ -11,7 +11,7 @@
             <!--数字number-->
             <div   v-if="item.inputType==='1'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-input-number v-model="dataForm[item.fieldName]"  :min="0"  size="mini">
+            <el-input-number v-model="dataForm[item.fieldName]" :disabled="isUpdate(item)"  :min="0"  size="mini">
             </el-input-number>
             </div>
               <!--日期date-->
@@ -22,12 +22,12 @@
               <!--时间datetime-->
             <div v-else-if="item.inputType==='3'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-date-picker v-model="dataForm[item.fieldName]" size="mini" value-format="yyyy-MM-dd HH:mm:ss"  format="yyyy-MM-dd HH:mm:ss" :placeholder="item.pageComment" type="datetime" style="width:100%;"  ><template slot="prepend">{{item.pageComment}}</template></el-date-picker>
+            <el-date-picker v-model="dataForm[item.fieldName]"  :disabled="isUpdate(item)" size="mini" value-format="yyyy-MM-dd HH:mm:ss"  format="yyyy-MM-dd HH:mm:ss" :placeholder="item.pageComment" type="datetime" style="width:100%;"  ><template slot="prepend">{{item.pageComment}}</template></el-date-picker>
             </div>
               <!--下拉选select-->
             <div  v-else-if="item.inputType=='4'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-              <el-select v-model="dataForm[item.fieldName]" size="mini" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
+              <el-select v-model="dataForm[item.fieldName]"   :disabled="isUpdate(item)" size="mini" :filterable="true" :placeholder="item.pageComment" style="width:100%;">
                 <el-option
                   v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                   :key="itemss.confName"
@@ -39,7 +39,7 @@
             <!--复选框-->
             <div  v-else-if="item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-select  style="width:100%" size="mini"   v-model="dataForm[item.fieldName]"  multiple  :filterable="true" allow-create default-first-option  :placeholder="item.pageComment">
+            <el-select  style="width:100%" size="mini"   :disabled="isUpdate(item)" v-model="dataForm[item.fieldName]"  multiple  :filterable="true" default-first-option  :placeholder="item.pageComment">
               <el-option
                 v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
                 :key="itemss.confVue"
@@ -67,7 +67,7 @@
             <!--文本域-->
             <div  v-else-if="item.inputType=='7'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
               <div class="el-input-group__prepend">{{item.pageComment}}</div>
-            <el-input size="mini" :autosize="{ minRows: 10, maxRows: 4}"
+            <el-input size="mini" :autosize="{ minRows: 10, maxRows: 4}"  :disabled="isUpdate(item)"
                       type="textarea"
                       :rows="2"
                       :placeholder="item.pageComment"
@@ -75,10 +75,10 @@
             </el-input>
             </div>
             <!--图片上传-->
-            <upload v-else-if="item.inputType=='8' || item.inputType=='9'" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]" :isMultiple="item.inputType=='9'" ></upload>
+            <upload v-else-if="item.inputType=='8' || item.inputType=='9'" :disabled="isUpdate(item)" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]" :isMultiple="item.inputType=='9'" ></upload>
             <!--搜索框-->
             <div v-else-if="item.inputType=='10'" @click="activeIndex=item.dictionaryIndex">
-              <el-autocomplete  size="mini" style="width:100%;"
+              <el-autocomplete  size="mini" style="width:100%;"  :disabled="isUpdate(item)"
                 class="inline-input"
                 v-model="dataForm[item.fieldName]"
                 :fetch-suggestions="querySearch"
@@ -86,9 +86,9 @@
               > <template slot="prepend">{{item.pageComment}}</template></el-autocomplete>
             </div>
             <!--四级联动-->
-            <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :level="item.inputType=='11'?4:3" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]"  > </linkage>
+            <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :disabled="isUpdate(item)" :level="item.inputType=='11'?4:3" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]"  > </linkage>
             <!--普通文本框-->
-            <el-input size="mini" v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" v-else>
+            <el-input size="mini" v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" v-else  :disabled="isUpdate(item)">
               <template slot="prepend">{{item.pageComment}}</template>
             </el-input>
           </el-form-item>
@@ -142,6 +142,9 @@
       },
     },
     methods: {
+      isUpdate(item){
+        return item.isUpdate=='1'&&!(!this.dataForm.id)
+      },
       querySearch(queryString, cb) {
         var restaurants = this.getBusConfig(this.module+this.pathUrl,this.activeIndex).list;
         for(var i in restaurants){

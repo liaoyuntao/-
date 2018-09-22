@@ -16,7 +16,7 @@
       <!--下拉选择-->
       <div v-else-if="item.inputType=='4' || item.inputType=='5'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
         <div class="el-input-group__prepend">{{item.pageComment}}</div>
-        <el-select clearable v-model="value[item.fieldName]" :placeholder="item.pageComment" style="width:100%;" size="mini">
+        <el-select clearable v-model="value[item.fieldName]" :placeholder="item.pageComment" style="width:100%;" size="small">
           <el-option
             v-for="itemss in getBusConfig(model+pathUrl,item.dictionaryIndex).list"
             :key="itemss.confName"
@@ -26,7 +26,7 @@
         </el-select>
       </div>
       <!--普通输入框-->
-      <el-input v-model="value[item.fieldName]" :content="item.pageComment" :placeholder="item.pageComment" clearable size="mini"v-else>
+      <el-input v-model="value[item.fieldName]" :content="item.pageComment" :placeholder="item.pageComment" clearable size="small"v-else>
         <template slot="prepend">{{item.pageComment}}</template>
       </el-input>
     </el-form-item>

@@ -119,13 +119,13 @@ public class GeneratorModulesServiceImpl extends CommonServiceImpl<GeneratorModu
             }
         }
         if (fieldEntity.getDeleteFlag() == null) {
-            fieldEntity.setDeleteFlag(GeneratorTableFieldConstant.DELETE_FLAG_0);
+            fieldEntity.setDeleteFlag(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_DELETE_FLAG_0);
         }
         if (fieldEntity.getIsExport() == null) {
-            fieldEntity.setIsExport(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_EXPORT_1);
+            fieldEntity.setIsExport(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_EXPORT_1);
         }
         if(fieldEntity.getIsSeek()==null){
-        fieldEntity.setIsSeek(GeneratorTableFieldConstant.GENTERATE_TABLE_FIELD_IS_SEEK_1);
+        fieldEntity.setIsSeek(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_EXPORT_1);
         }
         if(fieldEntity.getTableSet()==null){
             fieldEntity.setTableSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_TABLE_SET_0);
@@ -135,6 +135,9 @@ public class GeneratorModulesServiceImpl extends CommonServiceImpl<GeneratorModu
         }
         if(fieldEntity.getIsSet()==null){
         fieldEntity.setIsSet(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_SET_0);
+        }
+        if(fieldEntity.getIsUpdate()==null){
+            fieldEntity.setIsUpdate(GeneratorTableFieldConstant.GENERATOR_TABLE_FIELD_IS_UPDATE_0);
         }
         fieldEntity.setDataType(fieldEntity.getFieldType());
         Map<String, GeneratorBusConfigEntity> map = generatorBusConfigService.querySysBusConfigByCodeKey("generator_table_field_field_type");

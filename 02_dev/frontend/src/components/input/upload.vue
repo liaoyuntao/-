@@ -3,7 +3,7 @@
     <div class="el-input el-input-group el-input-group--prepend el-input--suffix one-img">
       <div class="el-input-group__prepend" v-if="pageComment!=''">{{pageComment}}</div>
       <!--上传图片-->
-      <el-upload size="mini"
+      <el-upload size="mini" :disabled="disabled"
                  :action="imgUrl"
                  :file-list="imgList"
                  :class="(imgList.length!=0 &&imgList!=''&&imgList!=null &&!isMultiple)?'disabled':''"
@@ -36,8 +36,6 @@
     },
     watch:{
       value:function(list){
-        console.log(list);
-        console.log(this.isMultiple);
         if(list==''|| list==null){
           this.imgList=[];
         }
@@ -49,6 +47,10 @@
       }
     },
     props: {
+      disabled:{
+        type:Boolean,
+      default:false
+      },
       isMultiple:{
         type:Boolean,
         default:false
