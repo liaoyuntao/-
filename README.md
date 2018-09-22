@@ -10,3 +10,7 @@
 5.体验地址: http://admin.3zhit.com/admin/admin/index.html#/login
 
 账号:test,密码:test
+
+6.将业务分为模块提高管理和控制性
+
+![image](http://p1kqsiha2.bkt.clouddn.com/upload/20180922/cc052bc8da274e50a562ff2cecd022da.png?imageslim)
