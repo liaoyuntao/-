@@ -87,6 +87,21 @@
             </div>
             <!--四级联动-->
             <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :disabled="isUpdate(item)" :level="item.inputType=='11'?4:3" :pageComment="item.pageComment" v-model="dataForm[item.fieldName]"  > </linkage>
+            <!--创建条目输入框-->
+            <div  v-else-if="item.inputType=='13'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
+              <div class="el-input-group__prepend">{{item.pageComment}}</div>
+              <el-select  style="width:100%" size="mini"   :disabled="isUpdate(item)" v-model="dataForm[item.fieldName]"   multiple
+                          filterable
+                          allow-create
+                          default-first-option  :placeholder="item.pageComment">
+                <el-option
+                  v-for="item in []"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
             <!--普通文本框-->
             <el-input size="mini" v-model="dataForm[item.fieldName]" :placeholder="item.pageComment" v-else  :disabled="isUpdate(item)">
               <template slot="prepend">{{item.pageComment}}</template>

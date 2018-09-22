@@ -90,7 +90,20 @@
         </div>
         <!--四级联动-->
         <linkage    v-else-if="item.inputType=='11'||item.inputType=='12'" :level="item.inputType=='11'?4:3"  v-model="scope.row[item.fieldName]"  > </linkage>
-
+        <!--创建条目输入框-->
+        <div  v-else-if="item.inputType=='13'" class="el-input el-input-group el-input-group--prepend el-input--suffix" >
+          <el-select  style="width:100%" size="mini"    v-model="scope.row[item.fieldName]"   multiple
+                      filterable
+                      allow-create
+                      default-first-option  :placeholder="item.pageComment">
+            <el-option
+              v-for="item in []"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
         <el-input size="mini" v-model="scope.row[item.fieldName]" :placeholder="item.pageComment" v-else>
           </el-input>
       <!--  <el-input size="small" v-model="scope.row[item.fieldName]" placeholder="请输入内容"></el-input> <span>{{scope.row.address}}</span>
