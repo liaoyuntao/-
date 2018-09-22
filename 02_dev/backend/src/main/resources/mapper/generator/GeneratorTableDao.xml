@@ -211,7 +211,8 @@ f.sort
   FROM
 `generator_table` tab
 left join generator_table_field f on f.table_id=tab.id
-) tabs where tabs.module_tab_name = #{module} order by sort
+order by sort,f.id
+) tabs where tabs.module_tab_name = #{module}
     </select>
 
 
