@@ -9,7 +9,7 @@
 
 5.体验地址: http://admin.3zhit.com/admin/admin/index.html#/login
 
-账号:test,密码:test
+账号:admin,密码:tiger
 
 6.将业务分为模块提高管理和控制性
 
